@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aervnyx Docs & Whitepaper — docs.aervnyx.one</title>
+<meta name="description" content="Official institutional documentation, technical whitepaper, and GitHub repositories for Aervnyx and the AERVYNX.One Card on DotOne Smart Chain.">
+<!-- Persian & Monospace Fonts for Institutional Typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   AERVNYX DOCS PORTAL — INSTITUTIONAL RTL STYLESHEET
+   Theme: Dark Cybernetic / Minimalist Glassmorphic
+===================================================== */
+:root {
+  /* Core Brand Palette */
+  --color-bg: #010B13;
+  --color-bg-elevated: #080E17;
+  --color-accent: #EC5800;
+  --color-text: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.74);
+  --color-text-muted: rgba(255, 255, 255, 0.46);
+  
+  /* 4-Layer Architecture Neon Accents */
+  --neon-blue: rgba(0, 150, 255, 1);
+  --neon-orange: rgba(236, 88, 0, 1);
+  --neon-red: rgba(255, 40, 40, 1);
+  --neon-green: rgba(0, 255, 128, 1);
+
+  /* Surfaces & Borders */
+  --surface: rgba(255, 255, 255, 0.025);
+  --surface-hover: rgba(255, 255, 255, 0.055);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-active: rgba(236, 88, 0, 0.65);
+
+  /* Layout Dimensions */
+  --header-h: 70px;
+  --sidebar-w: 290px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Typography */
+  --font-fa: "Vazirmatn", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- BASE RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(circle at 85% 10%, rgba(236, 88, 0, 0.08), transparent 40%),
+    radial-gradient(circle at 15% 80%, rgba(0, 150, 255, 0.05), transparent 45%);
+  color: var(--color-text);
+  font-family: var(--font-fa);
+  font-size: 15.5px;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+ul, ol { list-style: none; }
+code, pre, .mono { font-family: var(--font-mono); direction: ltr; unicode-bidi: embed; }
+
+/* ---------- TOP HEADER ---------- */
+.docs-header {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  height: var(--header-h);
+  background: rgba(1, 11, 19, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 3vw, 40px);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Hamburger Trigger Button (Always accessible) */
+.burger-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.burger-btn:hover {
+  border-color: var(--border-active);
+  background: var(--surface-hover);
+}
+.burger-lines {
+  width: 18px;
+  height: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.burger-lines span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+body.menu-open .burger-lines span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+body.menu-open .burger-lines span:nth-child(2) { opacity: 0; }
+body.menu-open .burger-lines span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+/* Brand & Subdomain Badge */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+.brand svg {
+  width: 28px;
+  height: 28px;
+  color: var(--color-accent);
+}
+.domain-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: rgba(236, 88, 0, 0.1);
+  border: 1px solid rgba(236, 88, 0, 0.3);
+  padding: 3px 10px;
+  border-radius: 99px;
+  direction: ltr;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.chain-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 99px;
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: #fff;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(236, 88, 0, 0.35);
+}
+
+/* ---------- MAIN LAYOUT (RIGHT SIDEBAR + CONTENT) ---------- */
+.docs-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  padding-top: var(--header-h);
+  min-height: 100vh;
+}
+
+/* Right Navigation Sidebar */
+.docs-sidebar {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  background: rgba(8, 14, 23, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  z-index: 90;
+  transition: transform 0.35s var(--ease);
+}
+
+.sidebar-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 12px 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  border: 1px solid transparent;
+  text-align: right;
+  transition: all 0.25s var(--ease);
+}
+.nav-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: stroke 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.nav-btn .nav-num {
+  margin-right: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+.nav-btn:hover {
+  color: var(--color-text);
+  background: var(--surface-hover);
+  padding-right: 18px;
+}
+.nav-btn.active {
+  color: var(--color-text);
+  font-weight: 600;
+  background: rgba(236, 88, 0, 0.12);
+  border-color: rgba(236, 88, 0, 0.4);
+  box-shadow: inset -3px 0 0 var(--color-accent);
+}
+.nav-btn.active svg {
+  stroke: var(--color-accent);
+}
+
+.sidebar-footer {
+  margin-top: 28px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+}
+.sidebar-footer b {
+  display: block;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+/* Backdrop Overlay for Mobile Menu */
+.sidebar-backdrop {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+/* ---------- CONTENT AREA & DYNAMIC VIEWS ---------- */
+.docs-main {
+  padding: clamp(32px, 5vw, 64px) clamp(20px, 6vw, 88px);
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.doc-view {
+  display: none;
+  animation: viewFadeIn 0.45s var(--ease) both;
+}
+.doc-view.active {
+  display: block;
+}
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography & Institutional Components */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(236, 88, 0, 0.1);
+  border: 1px solid rgba(236, 88, 0, 0.25);
+  padding: 4px 14px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.doc-title {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.doc-title em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+.doc-lead {
+  font-size: clamp(16px, 1.3vw, 18.5px);
+  color: var(--color-text-secondary);
+  margin-bottom: 36px;
+  max-width: 75ch;
+}
+.section-h2 {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 44px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-h2::before {
+  content: "";
+  width: 6px;
+  height: 22px;
+  border-radius: 4px;
+  background: var(--color-accent);
+}
+
+p { margin-bottom: 16px; color: var(--color-text-secondary); }
+
+/* Metric & Spec Grid */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 28px 0 40px;
+}
+.spec-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.spec-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-3px);
+}
+.spec-card small {
+  display: block;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+.spec-card strong {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+/* Quick Navigation Cards (Home View) */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+.portal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.portal-card:hover {
+  border-color: var(--color-accent);
+  background: var(--surface-hover);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.portal-card h3 {
+  font-size: 18px;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.portal-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* 4-Layer Architecture Cards (Explicit Color Parity) */
+.layer-stack {
+  display: grid;
+  gap: 20px;
+  margin: 28px 0;
+}
+.layer-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-right-width: 4px;
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+}
+.layer-box.layer-blue   { border-right-color: var(--neon-blue); }
+.layer-box.layer-orange { border-right-color: var(--neon-orange); }
+.layer-box.layer-red    { border-right-color: var(--neon-red); }
+.layer-box.layer-green  { border-right-color: var(--neon-green); }
+
+.layer-box .layer-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+.layer-blue .layer-tag   { color: var(--neon-blue); }
+.layer-orange .layer-tag { color: var(--neon-orange); }
+.layer-red .layer-tag    { color: var(--neon-red); }
+.layer-green .layer-tag  { color: var(--neon-green); }
+
+.layer-box h3 { font-size: 19px; margin-bottom: 8px; color: var(--color-text); }
+.layer-box ul { padding-right: 18px; list-style: disc; color: var(--color-text-secondary); font-size: 14.5px; }
+.layer-box li { margin-bottom: 6px; }
+
+/* Code & Terminal Blocks */
+.code-box {
+  background: #05080D;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin: 20px 0;
+  overflow: hidden;
+  direction: ltr;
+  text-align: left;
+}
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.copy-btn {
+  font-family: var(--font-fa);
+  font-size: 12px;
+  color: var(--color-accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(236, 88, 0, 0.3);
+  background: rgba(236, 88, 0, 0.08);
+}
+.copy-btn:hover { background: rgba(236, 88, 0, 0.2); }
+.code-box pre {
+  padding: 18px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #E2E8F0;
+}
+
+/* Institutional Data Table */
+.table-wrap {
+  overflow-x: auto;
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+  font-size: 14.5px;
+}
+th, td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  font-weight: 600;
+}
+tr:last-child td { border-bottom: none; }
+
+/* GitHub Repository Cards */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 28px 0;
+}
+.repo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.repo-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-4px);
+}
+.repo-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.repo-name {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-accent);
+  direction: ltr;
+}
+.repo-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  color: var(--color-text-secondary);
+}
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+/* FAQ Accordion */
+.faq-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease);
+}
+.faq-item.open {
+  border-color: var(--border-active);
+}
+.faq-q {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: right;
+  color: var(--color-text);
+}
+.faq-q span.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+  transition: transform 0.3s var(--ease);
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q span.icon {
+  transform: rotate(45deg);
+  border-color: var(--color-accent);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  transition: max-height 0.35s var(--ease), padding 0.35s var(--ease);
+}
+.faq-item.open .faq-a {
+  max-height: 360px;
+  padding: 0 24px 22px;
+}
+
+/* Bottom Page Pagination */
+.doc-pager {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.pager-btn {
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.pager-btn:hover {
+  border-color: var(--color-accent);
+  background: var(--surface-hover);
+}
+
+/* ---------- RESPONSIVE (TABLET & MOBILE DRAWER) ---------- */
+@media (max-width: 960px) {
+  .docs-layout {
+    grid-template-columns: 1fr;
+  }
+  .docs-sidebar {
+    position: fixed;
+    right: 0;
+    top: var(--header-h);
+    width: min(85vw, 310px);
+    transform: translateX(100%);
+    box-shadow: -16px 0 40px rgba(0, 0, 0, 0.6);
+  }
+  body.menu-open .docs-sidebar {
+    transform: translateX(0);
+  }
+  body.menu-open .sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .chain-status { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================
+     TOP BAR (BRAND + SUBDOMAIN + HAMBURGER + RETURN)
+================================================= -->
+<header class="docs-header">
+  <div class="header-right">
+    <button class="burger-btn" id="burger-btn" type="button" aria-label="باز کردن منوی مستندات" aria-expanded="false">
+      <div class="burger-lines"><span></span><span></span><span></span></div>
+    </button>
+    <a href="index.html" class="brand" aria-label="Aervnyx Home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>
+      <span>Aervnyx</span>
+    </a>
+    <span class="domain-badge">docs.aervnyx.one</span>
+  </div>
+
+  <div class="header-left">
+    <div class="chain-status">
+      <span class="status-dot"></span>
+      <span class="mono">DotOne Chain (ID: 505)</span>
+    </div>
+    <a href="index.html" class="back-btn">بازگشت به سایت اصلی ←</a>
+  </div>
+</header>
+
+<!-- ================================================
+     MAIN LAYOUT (RIGHT SIDEBAR + DYNAMIC VIEWS)
+================================================= -->
+<div class="docs-layout">
+  
+  <!-- RIGHT SIDEBAR NAVIGATION (6 ITEMS) -->
+  <aside class="docs-sidebar" id="docs-sidebar" aria-label="منوی مستندات">
+    <div>
+      <div class="sidebar-label">فهرست مستندات سازمانی</div>
+      <nav class="nav-list" id="docs-nav">
+        <!-- 1. Home -->
+        <button type="button" class="nav-btn active" data-target="home">
+          <svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>
+          <span>خانه</span>
+          <span class="nav-num">01</span>
+        </button>
+        <!-- 2. Getting Started -->
+        <button type="button" class="nav-btn" data-target="start">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span>شروع</span>
+          <span class="nav-num">02</span>
+        </button>
+        <!-- 3. GitHub Repositories -->
+        <button type="button" class="nav-btn" data-target="github">
+          <svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          <span>مخازن گیت‌هاب</span>
+          <span class="nav-num">03</span>
+        </button>
+        <!-- 4. Whitepaper -->
+        <button type="button" class="nav-btn" data-target="whitepaper">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <span>وایت‌پیپر</span>
+          <span class="nav-num">04</span>
+        </button>
+        <!-- 5. About Us -->
+        <button type="button" class="nav-btn" data-target="about">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+          <span>درباره ما</span>
+          <span class="nav-num">05</span>
+        </button>
+        <!-- 6. FAQ -->
+        <button type="button" class="nav-btn" data-target="faq">
+          <svg viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><path d="M12 17h.01"/></svg>
+          <span>سوالات متداول</span>
+          <span class="nav-num">06</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <b>نسخه معماری: v2.4.0</b>
+      <span>مستندات رسمی اکوسیستم Aervnyx و کارت سخت‌افزاری AERVYNX.One</span>
+    </div>
+  </aside>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="docs-main">
+
+    <!-- ==========================================
+         VIEW 01: HOME (OVERVIEW PORTAL)
+    =========================================== -->
+    <section class="doc-view active" id="view-home">
+      <span class="eyebrow">پورتال جامع مستندات و معماری</span>
+      <h1 class="doc-title">مستندات فنی و سازمانی <em>Aervnyx</em></h1>
+      <p class="doc-lead">
+        به مرکز مستندات مهندسی Aervnyx خوش آمدید. در این درگاه، معماری کامل اتصال دارایی‌های فیزیکی (پهپادها و خودروهای خودران)، خزانه‌داری ماژولار ZeroVault و کارت هیبریدی <b>AERVYNX.One</b> بر بستر بلاکچین لایه اول <b>DotOne Smart Chain</b> تشریح شده است.
+      </p>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <small>شبکه بلاکچین پایه</small>
+          <strong>DotOne (ID: 505)</strong>
+        </div>
+        <div class="spec-card">
+          <small>زمان تولید بلاک</small>
+          <strong>3.0 Seconds</strong>
+        </div>
+        <div class="spec-card">
+          <small>استاندارد امنیت تراشه</small>
+          <strong>EAL6+ Secure Enclave</strong>
+        </div>
+        <div class="spec-card">
+          <small>معماری حساب هوشمند</small>
+          <strong>ERC-4337 (AA)</strong>
+        </div>
+      </div>
+
+      <h2 class="section-h2">دسترسی سریع به بخش‌های مستندات</h2>
+      <div class="portal-grid">
+        <div class="portal-card" data-goto="start">
+          <h3><span>۰۲. راهنمای شروع سریع</span><span>←</span></h3>
+          <p>تنظیمات اتصال به شبکه DotOne، راه‌اندازی کارت NFC و پیکربندی سقف تراکنش روزانه Session Keys.</p>
+        </div>
+        <div class="portal-card" data-goto="github">
+          <h3><span>۰۳. مخازن گیت‌هاب</span><span>←</span></h3>
+          <p>دسترسی به کدهای قرارداد هوشمند ERC-4337، پروتکل DeliveryEscrow، خزانه ZeroVault و SDK سخت‌افزاری.</p>
+        </div>
+        <div class="portal-card" data-goto="whitepaper">
+          <h3><span>۰۴. وایت‌پیپر فنی</span><span>←</span></h3>
+          <p>بررسی عمیق معماری ۴ لایه کارت AERVYNX.One، تسویه فیات دوگانه (بین‌المللی و داخلی) و توکنومیکس RWA.</p>
+        </div>
+        <div class="portal-card" data-goto="faq">
+          <h3><span>۰۶. سوالات متداول</span><span>←</span></h3>
+          <p>پاسخ به پرسش‌های فنی درباره پشتیبان‌گیری بدون عبارت بازیابی (Shamir) و قوانین تسویه اعتباری.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 02: GETTING STARTED
+    =========================================== -->
+    <section class="doc-view" id="view-start">
+      <span class="eyebrow">راهنمای گام‌به‌گام توسعه‌دهندگان و کاربران</span>
+      <h1 class="doc-title">شروع کار با اکوسیستم <em>Aervnyx</em></h1>
+      <p class="doc-lead">
+        برای تعامل با قراردادهای هوشمند Aervnyx، دریافت سود ناوگان پهپادی (RWA) و استفاده از کارت سخت‌افزاری <b>AERVYNX.One</b>، مراحل پیکربندی زیر را دنبال کنید.
+      </p>
+
+      <h2 class="section-h2">گام اول: افزودن شبکه DotOne Smart Chain</h2>
+      <p>زیرساخت Aervnyx بر روی بلاکچین سازگار با ماشین مجازی اتریوم (EVM) به نام DotOne اجرا می‌شود. مشخصات شبکه جهت اتصال کیف پول یا نودها به شرح زیر است:</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>پارامتر شبکه</th>
+              <th>مقدار (Value)</th>
+              <th>توضیحات فنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>نام شبکه (Network Name)</td>
+              <td class="mono">DotOne Smart Chain Mainnet</td>
+              <td>بلاکچین لایه اول سازگار با EVM</td>
+            </tr>
+            <tr>
+              <td>شناسه زنجیره (Chain ID)</td>
+              <td class="mono">505</td>
+              <td>شناسه یکتای شبکه در امضاهای EIP-712</td>
+            </tr>
+            <tr>
+              <td>نماد ارز بومی (Currency Symbol)</td>
+              <td class="mono">DOTO</td>
+              <td>پرداخت گس از طریق Paymaster با سایر توکن‌ها نیز فعال است</td>
+            </tr>
+            <tr>
+              <td>زمان بلاک (Block Time)</td>
+              <td class="mono">3 Seconds</td>
+              <td>نهایی‌سازی سریع تراکنش‌های فروشگاهی و لجستیک</td>
+            </tr>
+            <tr>
+              <td>آدرس RPC پیش‌فرض</td>
+              <td class="mono">https://rpc.dotone.io</td>
+              <td>درگاه ارتباطی JSON-RPC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="section-h2">گام دوم: جفت‌سازی کارت سخت‌افزاری AERVYNX.One و پشتیبان‌گیری</h2>
+      <p>
+        کلید خصوصی شما در داخل تراشه امنیتی <b>EAL6+</b> تولید شده و هرگز از کارت خارج نمی‌شود. برای راه‌اندازی اولیه، کارت اصلی و کارت‌های پشتیبان را از طریق NFC (فرکانس 13.56MHz) به تلفن همراه نزدیک کنید تا پروتکل <b>Shamir's Secret Sharing</b> بدون نیاز به نوشتن کلمات بازیابی روی کاغذ، نسخه‌های پشتیبان رمزنگاری‌شده را ایجاد کند.
+      </p>
+
+      <h2 class="section-h2">گام سوم: فعال‌سازی Session Keys برای پرداخت آنی (ERC-4337)</h2>
+      <p>
+        برای حذف تاخیر تایید بلاک در هنگام خریدهای روزمره در پایانه‌های فروشگاهی (POS)، یک کلید نشست با سقف مجاز روزانه (مثلاً ۵۰ دلار) در حساب هوشمند خود تعریف کنید:
+      </p>
+
+      <div class="code-box">
+        <div class="code-head">
+          <span>TypeScript — Configure ERC-4337 Session Key</span>
+          <button type="button" class="copy-btn" data-copy="const tx = await smartAccount.authorizeSessionKey({\n  chainId: 505,\n  sessionKey: cardEnclavePublicKey,\n  dailyLimitUSD: 50_000000, // $50.00 (6 decimals)\n  paymaster: '0xAervnyxGaslessPaymaster'\n});">کپی کد</button>
+        </div>
+        <pre><code>const tx = await smartAccount.authorizeSessionKey({
+  chainId: 505,
+  sessionKey: cardEnclavePublicKey,
+  dailyLimitUSD: 50_000000, // $50.00 (6 decimals)
+  paymaster: '0xAervnyxGaslessPaymaster'
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 03: GITHUB REPOSITORIES
+    =========================================== -->
+    <section class="doc-view" id="view-github">
+      <span class="eyebrow">کدهای متن‌باز و ماژول‌های هسته</span>
+      <h1 class="doc-title">مخازن گیت‌هاب <em>Aervnyx</em></h1>
+      <p class="doc-lead">
+        معماری قراردادهای هوشمند، کتابخانه‌های ارتباطی NFC و ماژول‌های امنیتی ZeroVault در قالب مخازن ماژولار سازماندهی شده‌اند.
+      </p>
+
+      <div class="repo-grid">
+        <div class="repo-card">
+          <div>
+            <div class="repo-top">
+              <span class="repo-name">aervnyx/erc4337-dotone-aa</span>
+              <span class="repo-badge">Solidity</span>
+            </div>
+            <p style="margin-top:12px;">قراردادهای هوشمند Account Abstraction (استاندارد ERC-4337)، ماژول Session Keys با سقف خرج روزانه و Paymaster اختصاصی شبکه DotOne.</p>
+          </div>
+          <div class="repo-meta">
+            <span>Chain ID: 505</span>
+            <span>•</span>
+            <span>EIP-4337 / EIP-712</span>
+          </div>
+        </div>
+
+        <div class="repo-card">
+          <div>
+            <div class="repo-top">
+              <span class="repo-name">aervnyx/delivery-escrow</span>
+              <span class="repo-badge">Solidity</span>
+            </div>
+            <p style="margin-top:12px;">قرارداد هوشمند اسکارو لجستیک پهپادی. آزادسازی خودکار وجه پس از ثبت امضای رمزنگاری‌شده کارت AERVYNX.One روی گیرنده NFC پهپاد.</p>
+          </div>
+          <div class="repo-meta">
+            <span>ZeroVault Integrated</span>
+            <span>•</span>
+            <span>v1.8.2</span>
+          </div>
+        </div>
+
+        <div class="repo-card">
+          <div>
+            <div class="repo-top">
+              <span class="repo-name">aervnyx/zerovault-core</span>
+              <span class="repo-badge">Solidity</span>
+            </div>
+            <p style="margin-top:12px;">زیرساخت امنیت خزانه‌داری شامل کنترل دسترسی مبتنی بر نقش (RBAC)، تاخیر زمانی (Timelock) و مکانیزم توقف اضطراری (Emergency Pause).</p>
+          </div>
+          <div class="repo-meta">
+            <span>Multi-Role Security</span>
+            <span>•</span>
+            <span>v2.1.0</span>
+          </div>
+        </div>
+
+        <div class="repo-card">
+          <div>
+            <div class="repo-top">
+              <span class="repo-name">aervnyx/enclave-zkdid-sdk</span>
+              <span class="repo-badge">Rust / TS</span>
+            </div>
+            <p style="margin-top:12px;">رابط نرم‌افزاری ارتباط با تراشه EAL6+ کارت از طریق NFC، الگوریتم تقسیم راز شامیر (Shamir Backup) و احراز هویت دانش صفر (zk-DID) متصل به دامنه‌های .one.</p>
+          </div>
+          <div class="repo-meta">
+            <span>NFC 13.56MHz</span>
+            <span>•</span>
+            <span>ISO/IEC 14443</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-h2">دریافت و کامپایل مخازن (Quick Clone)</h2>
+      <div class="code-box">
+        <div class="code-head">
+          <span>Bash — Clone & Build Core Contracts</span>
+          <button type="button" class="copy-btn" data-copy="git clone https://github.com/aervnyx/erc4337-dotone-aa.git\ncd erc4337-dotone-aa && forge build">کپی دستور</button>
+        </div>
+        <pre><code>git clone https://github.com/aervnyx/erc4337-dotone-aa.git
+cd erc4337-dotone-aa && forge build</code></pre>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 04: TECHNICAL WHITEPAPER
+    =========================================== -->
+    <section class="doc-view" id="view-whitepaper">
+      <span class="eyebrow">وایت‌پیپر رسمی معماری و محصول</span>
+      <h1 class="doc-title">وایت‌پیپر جامع <em>AERVYNX.One & RWA</em></h1>
+      <p class="doc-lead">
+        تلفیق دارایی‌های فیزیکی دنیای واقعی (RWA)، لجستیک خودران و زیرساخت پرداخت نسل جدید از طریق کارت سخت‌افزاری-دیجیتالی AERVYNX.One بر بستر شبکه DotOne.
+      </p>
+
+      <h2 class="section-h2">۱. چکیده اجرایی (Executive Summary)</h2>
+      <p>
+        اکوسیستم Aervnyx با هدف حل شکاف میان مالکیت دیجیتال روی بلاکچین و کاربردپذیری واقعی در دنیای فیزیکی طراحی شده است. در حالی که توکنایز کردن ناوگان پهپادها و خودروها امکان مشارکت شفاف در اقتصاد لجستیک را فراهم می‌کند، محصول <b>AERVYNX.One Card</b> به عنوان یک ابزار چهارمنظوره عمل می‌کند:
+      </p>
+      <ul style="list-style:decimal; padding-right:22px; color:var(--color-text-secondary); margin-bottom:24px;">
+        <li><b>کیف پول سخت‌افزاری سرد (EAL6+ NFC Hardware Wallet):</b> نگهداری امن کلید خصوصی در تراشه ایزوله.</li>
+        <li><b>توکن هویت دیجیتال دانش صفر (zk-DID):</b> متصل به دامنه‌های یکپارچه <span class="mono">.one</span> بدون افشای اطلاعات حساس.</li>
+        <li><b>درگاه پرداخت آنی کریپتو به فیات:</b> مبتنی بر استاندارد Account Abstraction (ERC-4337).</li>
+        <li><b>تاییدکننده تحویل فیزیکی آن‌چین:</b> امضای دیجیتال تحویل مرسولات پهپادی با یک تماس NFC.</li>
+      </ul>
+
+      <h2 class="section-h2">۲. معماری ۴ لایه (The 4-Layer Architecture)</h2>
+      <p>طراحی مهندسی سیستم بر چهار لایه مستقل و هم‌افزا استوار است که با کدهای رنگی استاندارد اکوسیستم تفکیک می‌شوند:</p>
+
+      <div class="layer-stack">
+        <!-- Layer 1: Blue -->
+        <div class="layer-box layer-blue">
+          <span class="layer-tag">Layer 01 • Hardware & Security</span>
+          <h3>لایه اول: سخت‌افزار و امنیت تراشه (The Physical Card)</h3>
+          <ul>
+            <li><b>پشته فناوری:</b> ارتباط میدان نزدیک NFC (فرکانس 13.56MHz) و تراشه امنیتی استاندارد <b>EAL6+ Secure Enclave</b>.</li>
+            <li><b>قانون طلایی امنیت:</b> کلید خصوصی هرگز و تحت هیچ شرایطی از داخل تراشه خارج نمی‌شود. تمامی تراکنش‌ها با نزدیک کردن (Tap) کارت به گوشی هوشمند، پایانه فروش یا پهپاد در داخل خود تراشه امضا می‌شوند.</li>
+            <li><b>پشتیبان‌گیری بدون عبارت بازیابی (Seedless Backup):</b> استفاده از الگوریتم رمزنگاری <i>Shamir's Secret Sharing</i> میان چند کارت جفت‌شده جهت حذف ریسک سرقت یا گم شدن عبارت ۱۲/۲۴ کلمه‌ای.</li>
+          </ul>
+        </div>
+
+        <!-- Layer 2: Orange -->
+        <div class="layer-box layer-orange">
+          <span class="layer-tag">Layer 02 • On-Chain Logic (DotOne Chain ID: 505)</span>
+          <h3>لایه دوم: منطق آن‌چین و انتزاع حساب (ERC-4337)</h3>
+          <ul>
+            <li><b>پشته فناوری:</b> حساب‌های قرارداد هوشمند (Smart Contract Accounts)، ماژول Paymasters و کلیدهای نشست (Session Keys).</li>
+            <li><b>حل چالش تاخیر در پرداخت فروشگاهی:</b> کاربر از پیش کلیدهای نشست را با سقف خرید روزانه مشخص (مثلاً ۵۰ دلار) مجاز می‌کند. حساب هوشمند برداشت خودکار و آنی را مدیریت می‌کند.</li>
+            <li><b>تراکنش بدون کارمزد بومی (Gasless UX):</b> قرارداد Paymaster کارمزد شبکه را مستقیماً از همان توکن خرج‌شده کسر می‌کند و کاربر نیازی به نگهداری توکن بومی <span class="mono">DOTO</span> ندارد.</li>
+          </ul>
+        </div>
+
+        <!-- Layer 3: Red -->
+        <div class="layer-box layer-red">
+          <span class="layer-tag">Layer 03 • Dual-Mode Fiat Liquidation</span>
+          <h3>لایه سوم: تسویه فیات دوگانه (انطباق قانونی و تسویه بانکی)</h3>
+          <ul>
+            <li><b>حالت بین‌المللی (Visa / Mastercard):</b> یکپارچه‌سازی با ارائه‌دهندگان خدمات بانکداری به عنوان سرویس (BaaS) جهت صدور کارت‌های متصل به موجودی کیف پول DotOne.</li>
+            <li><b>حالت بومی / دارای محدودیت تحریمی (مانند شبکه شتاب):</b> یکپارچه‌سازی با صرافی همکار بومی (<b>BitBank</b>). کاربر دارایی کریپتویی خود را در BitBank وثیقه (Stake) می‌کند و سیستم یک <b>خط اعتباری ریالی/فیات آنی</b> به او اختصاص می‌دهد. در لحظه کشیدن کارت در فروشگاه، معادل دقیق ریالی از طریق خط اعتباری تسویه شده و به صورت همزمان مقدار معادل کریپتو در بازار اسپات BitBank نقد می‌شود؛ این معماری بدون نقض قوانین ممنوعیت پرداخت مستقیم رمزارز در شبکه بانکی عمل می‌کند.</li>
+          </ul>
+        </div>
+
+        <!-- Layer 4: Green -->
+        <div class="layer-box layer-green">
+          <span class="layer-tag">Layer 04 • Ecosystem Synergy (DeliveryEscrow & RWA)</span>
+          <h3>لایه چهارم: هم‌افزایی اکوسیستم (اسکارو پهپادی و عواید RWA)</h3>
+          <ul>
+            <li><b>تایید تحویل مرسوله با NFC:</b> با نزدیک کردن کارت AERVYNX.One به پهپاد تحویل‌دهنده، امضای رمزنگاری‌شده استاندارد <b>EIP-712</b> تولید شده و قرارداد هوشمند <span class="mono">DeliveryEscrow</span> بلافاصله وجه را آزاد می‌کند.</li>
+            <li><b>توزیع مستقیم عواید RWA:</b> سود حاصل از فعالیت اقتصادی ناوگان پهپادها و خودروهای توکنایزشده مستقیماً به کیف پول متصل به کارت واریز شده و بلافاصله قابل خرج کردن است.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 05: ABOUT US
+    =========================================== -->
+    <section class="doc-view" id="view-about">
+      <span class="eyebrow">چشم‌انداز و فلسفه مهندسی</span>
+      <h1 class="doc-title">درباره <em>Aervnyx</em></h1>
+      <p class="doc-lead">
+        Aervnyx یک زیرساخت فناوری مالی و لجستیک غیرمتمرکز است که شکاف میان دارایی‌های فیزیکی دنیای واقعی و مالکیت دیجیتال بر بستر بلاکچین را از میان برمی‌دارد.
+      </p>
+
+      <h2 class="section-h2">ماموریت سازمانی ما</h2>
+      <p>
+        ما بر این باوریم که نسل بعدی بلاکچین تنها در صورتی به پذیرش عمومی می‌رسد که امنیت در سطح سخت‌افزاری، تجربه کاربری بدون پیچیدگی (حذف عبارت بازیابی و کارمزدهای پیچیده گس) و اتصال واقعی به زنجیره تامین فیزیکی را در یک محصول واحد گرد هم آورد.
+      </p>
+      <p>
+        از ناوگان پهپادهای خودران گرفته تا خزانه‌داری امن ZeroVault و کارت هوشمند AERVYNX.One، تمامی ماژول‌های ما بر پایه اصل «شفافیت و کنترل در سطح معماری» (Security as Architecture) طراحی شده‌اند.
+      </p>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <small>رویکرد امنیتی</small>
+          <strong>Zero-Trust Hardware</strong>
+        </div>
+        <div class="spec-card">
+          <small>حوزه تمرکز</small>
+          <strong>RWA & Autonomous Logistics</strong>
+        </div>
+        <div class="spec-card">
+          <small>استاندارد هویتی</small>
+          <strong>zk-DID (.one Domains)</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         VIEW 06: FAQ
+    =========================================== -->
+    <section class="doc-view" id="view-faq">
+      <span class="eyebrow">پاسخ به پرسش‌های فنی و حقوقی</span>
+      <h1 class="doc-title">سوالات متداول <em>(FAQ)</em></h1>
+      <p class="doc-lead">
+        پاسخ به کلیدی‌ترین سوالات درباره امنیت سخت‌افزاری، مکانیزم تسویه دوگانه و نحوه کارکرد قراردادهای هوشمند Aervnyx.
+      </p>
+
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item open">
+          <button type="button" class="faq-q">
+            <span>۱. آیا کلید خصوصی در زمان استفاده از کارت AERVYNX.One قابل استخراج است؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            خیر. کلید خصوصی در درون تراشه امنیتی استاندارد EAL6+ تولید و نگهداری می‌شود و هیچ دستوری برای خواندن یا خارج کردن آن وجود ندارد. تراشه صرفاً پیام تراکنش را دریافت کرده و خروجی امضاشده (EIP-712) را از طریق NFC بازمی‌گرداند.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-q">
+            <span>۲. در صورت مفقود شدن کارت فیزیکی، دارایی‌ها چگونه بدون کلمات بازیابی برمی‌گردند؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            کارت از الگوریتم تقسیم راز شامیر (Shamir's Secret Sharing) میان کارت‌های پشتیبان جفت‌شده به همراه قابلیت بازیابی اجتماعی/ماژولار در حساب هوشمند ERC-4337 بهره می‌برد. بنابراین بدون نیاز به نوشتن عبارت بازیابی روی کاغذ، می‌توانید دسترسی حساب هوشمند خود را به کارت جدید منتقل کنید.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-q">
+            <span>۳. مدل تسویه خط اعتباری در شبکه‌های بانکی داخلی چگونه با قوانین منطبق است؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            در این مدل، هیچ رمزارزی به صورت مستقیم به حساب پذیرنده فروشگاهی واریز نمی‌شود. کاربر دارایی دیجیتال خود را در صرافی همکار (BitBank) به عنوان وثیقه قرار می‌دهد و یک خط اعتباری فیات دریافت می‌کند. تراکنش فروشگاهی ۱۰۰٪ با ارز فیات و از طریق سوئیچ بانکی رسمی تسویه می‌شود و تسویه وثیقه در پشت‌صحنه انجام می‌گیرد.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-q">
+            <span>۴. تایید تحویل مرسوله پهپادی (DeliveryEscrow) چگونه کار می‌کند؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            هنگامی که پهپاد بسته را به مقصد می‌رساند، گیرنده کارت AERVYNX.One خود را به ماژول NFC پهپاد نزدیک می‌کند. کارت با استفاده از هویت zk-DID یک امضای رمزنگاری‌شده معتبر تولید می‌کند که روی شبکه DotOne ثبت شده و به صورت خودکار مبلغ قفل‌شده در قرارداد اسکارو را آزاد می‌نماید.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-q">
+            <span>۵. آیا برای پرداخت با کارت باید حتماً ارز بومی DOTO برای کارمزد گس داشته باشیم؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            خیر. به لطف ماژول Paymaster در معماری ERC-4337 شبکه DotOne، کارمزد بسیار ناچیز شبکه به صورت خودکار از همان توکنی که در حال خرج کردن آن هستید کسر می‌شود.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTTOM PAGINATION -->
+    <div class="doc-pager">
+      <button type="button" class="pager-btn" id="prev-btn">→ بخش قبلی</button>
+      <button type="button" class="pager-btn" id="next-btn">بخش بعدی ←</button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* =====================================================
+   AERVNYX DOCS PORTAL — INTERACTIVE CONTROLLER
+   Handles 6-view SPA routing, Hamburger drawer, FAQ, and Copy
+===================================================== */
+(function initDocsPortal() {
+  const viewsOrder = ["home", "start", "github", "whitepaper", "about", "faq"];
+  const navButtons = [...document.querySelectorAll(".nav-btn[data-target]")];
+  const views = [...document.querySelectorAll(".doc-view")];
+  const burgerBtn = document.getElementById("burger-btn");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+
+  let currentView = "home";
+
+  // Switch active view by key
+  function activateView(targetKey, pushHash = true) {
+    if (!viewsOrder.includes(targetKey)) targetKey = "home";
+    currentView = targetKey;
+
+    navButtons.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.target === targetKey);
+    });
+
+    views.forEach(v => {
+      v.classList.toggle("active", v.id === "view-" + targetKey);
+    });
+
+    // Update bottom pagination buttons
+    const idx = viewsOrder.indexOf(targetKey);
+    prevBtn.style.visibility = idx > 0 ? "visible" : "hidden";
+    nextBtn.style.visibility = idx < viewsOrder.length - 1 ? "visible" : "hidden";
+
+    // Close mobile drawer after selection
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (pushHash) {
+      history.replaceState(null, "", "#" + targetKey);
+    }
+  }
+
+  // Toggle mobile/tablet right drawer
+  function setMenuOpen(open) {
+    document.body.classList.toggle("menu-open", open);
+    burgerBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  burgerBtn.addEventListener("click", () => {
+    setMenuOpen(!document.body.classList.contains("menu-open"));
+  });
+
+  backdrop.addEventListener("click", () => setMenuOpen(false));
+
+  // Bind sidebar menu clicks
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => activateView(btn.dataset.target));
+  });
+
+  // Bind quick portal cards on Home view
+  document.querySelectorAll("[data-goto]").forEach(card => {
+    card.addEventListener("click", () => activateView(card.dataset.goto));
+  });
+
+  // Bind Prev / Next buttons
+  prevBtn.addEventListener("click", () => {
+    const idx = viewsOrder.indexOf(currentView);
+    if (idx > 0) activateView(viewsOrder[idx - 1]);
+  });
+  nextBtn.addEventListener("click", () => {
+    const idx = viewsOrder.indexOf(currentView);
+    if (idx < viewsOrder.length - 1) activateView(viewsOrder[idx + 1]);
+  });
+
+  // FAQ Accordion logic
+  document.querySelectorAll(".faq-q").forEach(qBtn => {
+    qBtn.addEventListener("click", () => {
+      const item = qBtn.closest(".faq-item");
+      item.classList.toggle("open");
+    });
+  });
+
+  // Copy to clipboard logic for code blocks
+  document.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const raw = btn.dataset.copy.replace(/\\n/g, "\n");
+      navigator.clipboard?.writeText(raw);
+      const orig = btn.textContent;
+      btn.textContent = "کپی شد ✓";
+      setTimeout(() => { btn.textContent = orig; }, 1800);
+    });
+  });
+
+  // Load initial view from URL hash if present
+  const initialHash = location.hash.replace("#", "");
+  activateView(initialHash || "home", false);
+})();
+</script>
+</body>
+</html>
