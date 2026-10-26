@@ -45,8 +45,8 @@ const CONFIG = {
   ],
   // NAVIGATION: [label, target]
  
-  nav: [["Home", "#home"], ["Products", "#products"], ["Ecosystem", "#ecosystem"], ["Tokenization", "#how"], ["Technology", "#technology"], ["Roadmap", "#roadmap"], ["Team", "#team"], ["Whitepaper", "whitepaper.html"], ["About", "#about"]],
-roadmap: [
+  nav: [["Home", "#home"], ["Products", "#products"], ["Technology", "#technology"], ["Roadmap", "#roadmap"], ["Team", "#team"], ["Whitepaper", "whitepaper.html"], ["About", "#about"], ["Pitch Deck", "#pitchdeck"]],
+  roadmap: [
     { icon: "flag", title: "Genesis & Architecture", time: "Phase 1 - 3 Months", text: "Initial ecosystem setup, conceptual design, and core infrastructure development." },
     { icon: "rocket", title: "Testnet Launch", time: "Phase 2 - 6 Months", text: "Beta release of ZeroVault, smart contract deployment, and initial security audits." },
     { icon: "globe", title: "Global Expansion", time: "Phase 3 - 4 Months", text: "Global market entry, real-world asset integration, and scaling the drone fleet." },
@@ -891,83 +891,4 @@ function cardTokenDisintegrate() {
   $$("i[data-i]").forEach(e => (e.innerHTML = svg(e.dataset.i)));
   skyline(); loadAssets(); nav(); reveals(); cardParallax(); drone(); roadmapScroll(); headerActions(); cardTokenDisintegrate();
 })();
-/*mouse effect*/
 
-function cursorTrail() {
-  const canvas = document.createElement("canvas");
-  canvas.className = "cursor-fx";
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
-
-  let W = (canvas.width = window.innerWidth);
-  let H = (canvas.height = window.innerHeight);
-
-  addEventListener("resize", () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  });
-
-  let mouse = { x: W / 2, y: H / 2 };
-  const particles = [];
-
-  addEventListener("mousemove", (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    
-    for (let i = 0; i < 4; i++) {
-      particles.push({
-        x: mouse.x + (Math.random() - 0.5) * 6,
-        y: mouse.y + (Math.random() - 0.5) * 6,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -Math.random() * 0.5 - 0.2,
-        size: Math.random() * 3 + 2,
-        maxSize: Math.random() * 12 + 8,
-        life: 1,
-        decay: Math.random() * 0.018 + 0.012,
-        rot: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.05,
-        shade: Math.floor(Math.random() * 45 + 35)
-      });
-    }
-  });
-
-  const animate = () => {
-    ctx.clearRect(0, 0, W, H);
-
-    for (let i = particles.length - 1; i >= 0; i--) {
-      let p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.size += (p.maxSize - p.size) * 0.05;
-      p.life -= p.decay;
-      p.rot += p.rotSpeed;
-
-      if (p.life <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-
-      let g = ctx.createRadialGradient(0, 0, 0, 0, 0, p.size);
-      let alpha = p.life * 0.35;
-      g.addColorStop(0, `rgba(${p.shade}, ${p.shade}, ${p.shade}, ${alpha})`);
-      g.addColorStop(0.4, `rgba(${p.shade - 10}, ${p.shade - 10}, ${p.shade - 10}, ${alpha * 0.6})`);
-      g.addColorStop(1, `rgba(${p.shade - 20}, ${p.shade - 20}, ${p.shade - 20}, 0)`);
-
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(0, 0, p.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    requestAnimationFrame(animate);
-  };
-
-  animate();
-}
-
-cursorTrail();
