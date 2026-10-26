@@ -90,6 +90,69 @@ em{font-style:normal;color:var(--color-accent)}
 .burger::before{top:18px}.burger::after{top:25px}
 .nav.open .burger::before{transform:translateY(3.5px) rotate(45deg)}
 .nav.open .burger::after{transform:translateY(-3.5px) rotate(-45deg)}
+/* Header Language Switcher & Cyberpunk Wallet Button */
+.menu__cta { display: flex; align-items: center; gap: 10px; }
+
+.btn-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color var(--duration-fast), background var(--duration-fast), transform var(--duration-fast);
+}
+.btn-lang:hover {
+  border-color: var(--color-border-active);
+  background: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+.btn-lang .i {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-accent);
+  transition: transform var(--duration-normal) var(--ease-premium);
+}
+.btn-lang:hover .i {
+  transform: rotate(25deg);
+}
+.btn-lang .lang-code.active {
+  color: var(--color-text);
+}
+.btn-lang .lang-sep {
+  opacity: 0.35;
+}
+
+.btn--wallet {
+  position: relative;
+  min-height: 44px;
+  padding: 0 22px;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #c94700 100%);
+  border: 1px solid rgba(255, 140, 66, 0.45);
+  box-shadow: 0 4px 20px rgba(236, 88, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.btn--wallet:hover {
+  box-shadow: 0 8px 28px rgba(236, 88, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.btn--wallet .i {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  transition: transform var(--duration-fast);
+}
+.btn--wallet:hover .i {
+  transform: scale(1.1) rotate(-6deg);
+}
 
 /* ---------- HERO ---------- */
 .hero{min-height:min(100svh,900px);display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 130px;overflow:hidden;isolation:isolate}
@@ -279,47 +342,229 @@ em{font-style:normal;color:var(--color-accent)}
 .toast{position:fixed;left:50%;bottom:24px;z-index:90;max-width:min(92vw,460px);padding:14px 20px;border:1px solid var(--color-border-active);border-radius:var(--radius-md);background:var(--color-bg);font-size:14px;box-shadow:var(--shadow-card);opacity:0;pointer-events:none;transform:translate(-50%,20px);transition:opacity var(--duration-normal),transform var(--duration-normal) var(--ease-premium)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ---------- ROADMAP ---------- */
-.rm__head { text-align: center; margin-bottom: 64px; display: flex; flex-direction: column; align-items: center; }
+/* ---------- ROADMAP (FIXED CENTER + ORBITAL ENERGY VORTEX) ---------- */
+.rm__head { text-align: center; margin-bottom: 80px; display: flex; flex-direction: column; align-items: center; }
 .rm__head h2, .rm__head .lead { margin-inline: auto; text-align: center; }
-.rm { position: relative; max-width: 1000px; margin: 0 auto; padding: 40px 0; }
-/* Static background line */
-.rm__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--color-border); transform: translateX(-50%); border-radius: 2px; }
-/* Animated glowing scroll line */
-.rm__track { position: absolute; left: 50%; top: 0; width: 2px; height: 0%; background: var(--color-accent); transform: translateX(-50%); border-radius: 2px; box-shadow: 0 0 18px var(--color-accent), 0 0 6px var(--color-accent); transition: height 0.1s ease-out; z-index: 1; }
-/* Items Layout */
-.rm__item { display: grid; grid-template-columns: 1fr 56px 1fr; gap: 40px; align-items: center; margin-bottom: 64px; position: relative; z-index: 2; opacity: 0; transform: translateY(30px); transition: opacity var(--duration-slow), transform var(--duration-slow); transition-delay: calc(var(--k) * 150ms); }
+.rm { position: relative; max-width: 1040px; margin: 0 auto; padding: 40px 0 80px; }
+
+/* Static Background Line (Underneath Nodes) */
+.rm__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Animated Glowing Track (Passes Underneath Solid Nodes) */
+.rm__track {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: var(--color-accent);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 0 20px var(--color-accent), 0 0 8px var(--color-accent);
+  transition: height 0.15s ease-out;
+  z-index: 1;
+}
+
+/* Roadmap Item Layout */
+.rm__item {
+  display: grid;
+  grid-template-columns: 1fr 68px 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 84px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-slow), transform var(--duration-slow);
+  transition-delay: calc(var(--k) * 140ms);
+}
 .rm__item.in { opacity: 1; transform: translateY(0); }
 .rm__item:last-child { margin-bottom: 0; }
-/* Node / Icon Box */
-.rm__node { width: 56px; height: 56px; border: 2px solid var(--color-border); background: var(--color-bg); border-radius: 50%; display: grid; place-items: center; color: var(--color-text-muted); transition: all var(--duration-normal); position: relative; margin: 0 auto; }
-.rm__node .i { width: 24px; height: 24px; }
-.rm__item.in .rm__node { border-color: var(--color-accent); color: var(--color-accent); box-shadow: var(--glow-accent); background: rgba(236,88,0,0.1); }
-/* Content Cards */
-.rm__content { background: var(--color-surface); border: 1px solid var(--color-border); padding: 28px; border-radius: var(--radius-md); transition: transform var(--duration-normal), border-color var(--duration-normal), box-shadow var(--duration-normal); position: relative; }
-.rm__content::before { content: ""; position: absolute; top: 50%; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; transform: translateY(-50%); transition: border-color var(--duration-normal); }
-.rm__item.in .rm__content { border-color: rgba(255,255,255,0.2); }
-.rm__item:hover .rm__content { transform: translateY(-5px); border-color: var(--color-border-active); box-shadow: var(--shadow-card); }
-/* Time Tag */
-.rm__time { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(236,88,0,0.1); color: var(--color-accent); font-size: 13px; font-weight: 600; border-radius: 99px; margin-bottom: 16px; border: 1px solid rgba(236,88,0,0.2); letter-spacing: 0.05em; text-transform: uppercase; }
-.rm__time::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 8px var(--color-accent); }
-.rm__content h3 { font-size: 22px; margin-bottom: 10px; }
-.rm__content p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; }
-/* Alternating Logic (Desktop) */
+
+/* Center Node / Solid Core (Strictly Locked on Center Line) */
+.rm__node {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+  position: relative;
+  margin: 0 auto;
+  z-index: 3;
+  box-shadow: 0 0 0 6px var(--color-bg);
+  transition: border-color var(--duration-normal), color var(--duration-normal), box-shadow var(--duration-normal), transform var(--duration-normal);
+}
+
+/* Inner Plasma Stream Orbiting the Icon (Clockwise) */
+.rm__node::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--color-accent) 75deg,
+    #ffb380 95deg,
+    transparent 115deg,
+    transparent 180deg,
+    var(--color-accent) 255deg,
+    #ffb380 275deg,
+    transparent 295deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  animation: rm-orbit-cw 2.4s linear infinite;
+  transition: opacity var(--duration-normal);
+  pointer-events: none;
+}
+
+/* Outer Cybernetic HUD Ring Orbiting Counter-Clockwise */
+.rm__node::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(236, 88, 0, 0.45);
+  opacity: 0;
+  animation: rm-orbit-ccw 7s linear infinite;
+  transition: opacity var(--duration-normal), inset var(--duration-normal);
+  pointer-events: none;
+}
+
+.rm__node .i {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.6;
+  position: relative;
+  z-index: 4;
+  transition: transform var(--duration-normal), filter var(--duration-normal);
+}
+
+/* Active & Hover States for Orbital Vortex */
+.rm__item.in .rm__node {
+  border-color: rgba(236, 88, 0, 0.45);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 6px var(--color-bg), 0 0 28px rgba(236, 88, 0, 0.28), inset 0 0 16px rgba(236, 88, 0, 0.14);
+}
+.rm__item.in .rm__node::before,
+.rm__item.in .rm__node::after {
+  opacity: 1;
+}
+.rm__item:hover .rm__node {
+  transform: scale(1.08);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 6px var(--color-bg), 0 0 38px rgba(236, 88, 0, 0.55), inset 0 0 22px rgba(236, 88, 0, 0.28);
+}
+.rm__item:hover .rm__node::before {
+  animation-duration: 1.1s;
+}
+.rm__item:hover .rm__node::after {
+  inset: -15px;
+  border-color: var(--color-accent);
+  animation-duration: 3s;
+}
+.rm__item:hover .rm__node .i {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 8px var(--color-accent));
+}
+
+@keyframes rm-orbit-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes rm-orbit-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Glassmorphic Content Box */
+.rm__content {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px;
+  border-radius: var(--radius-md);
+  transition: transform var(--duration-normal), border-color var(--duration-normal), box-shadow var(--duration-normal);
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.rm__content::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  transform: translateY(-50%);
+  transition: border-color var(--duration-normal);
+}
+.rm__item.in .rm__content { border-color: rgba(255, 255, 255, 0.15); }
+.rm__item:hover .rm__content {
+  transform: translateY(-6px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 40px rgba(236, 88, 0, 0.15);
+}
+
+/* Time Tag Badge */
+.rm__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(236, 88, 0, 0.1);
+  color: var(--color-accent);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 99px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(236, 88, 0, 0.25);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 12px rgba(236, 88, 0, 0.05);
+}
+.rm__time::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+}
+
+.rm__content h3 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.02em; }
+.rm__content p { font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+
+/* Alternating Layout Logic (Desktop) */
 .rm__item:nth-child(odd) .rm__content { text-align: right; }
-.rm__item:nth-child(odd) .rm__content::before { right: -10px; border-left: 10px solid var(--color-surface); }
-.rm__item:nth-child(odd):hover .rm__content::before { border-left-color: var(--color-surface-hover); }
+.rm__item:nth-child(odd) .rm__content::before { right: -11px; border-left: 11px solid rgba(255, 255, 255, 0.08); }
+.rm__item:nth-child(odd):hover .rm__content::before { border-left-color: var(--color-accent); }
 .rm__item:nth-child(even) { direction: rtl; }
 .rm__item:nth-child(even) > * { direction: ltr; }
 .rm__item:nth-child(even) .rm__content { text-align: left; }
-.rm__item:nth-child(even) .rm__content::before { left: -10px; border-right: 10px solid var(--color-surface); }
-.rm__item:nth-child(even):hover .rm__content::before { border-right-color: var(--color-surface-hover); }
-/* Winding Float Animation */
-.rm__item:nth-child(odd).in .rm__node { animation: rm-sway-l 6s ease-in-out infinite alternate; }
-.rm__item:nth-child(even).in .rm__node { animation: rm-sway-r 6s ease-in-out infinite alternate; }
-@keyframes rm-sway-l { 0% { transform: translateX(0); } 100% { transform: translateX(-6px); } }
-@keyframes rm-sway-r { 0% { transform: translateX(0); } 100% { transform: translateX(6px); } }
-
+.rm__item:nth-child(even) .rm__content::before { left: -11px; border-right: 11px solid rgba(255, 255, 255, 0.08); }
+.rm__item:nth-child(even):hover .rm__content::before { border-right-color: var(--color-accent); }
 /* ---------- RESPONSIVE: laptop / tablet ---------- */
 @media (max-width:1100px){
   .cards{grid-template-columns:repeat(2,1fr)}
@@ -331,7 +576,633 @@ em{font-style:normal;color:var(--color-accent)}
   .foot__grid{grid-template-columns:repeat(3,1fr)}
   .foot__brand,.foot__news{grid-column:1/-1}
   .team__grid { grid-template-columns: repeat(2, 1fr); }
+  .about__box { grid-template-columns: 1fr; }
 }
+/* ---------- CARD DISINTEGRATION INTO TOKENS (HOVER FX) ---------- */
+.holo-scene {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 360px; /* Increased height so top/bottom tags never overlap the card */
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+}
+
+.holo-node--tl { top: 4px; left: -6px; animation-delay: 0s; }
+.holo-node--tr { top: 4px; right: -6px; animation-delay: 0.8s; }
+.holo-node--bl { bottom: 4px; left: -6px; animation-delay: 1.6s; }
+.holo-node--br { bottom: 4px; right: -6px; animation-delay: 2.4s; }
+
+.holo-particles {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Smooth transitions for card & beams during disintegration */
+.cyber-card,
+.holo-beam,
+.holo-ring {
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Vaporize state triggered when hovering the scene */
+.holo-scene.is-vaporized .cyber-card {
+  opacity: 0;
+  transform: scale(0.84) rotateX(22deg) rotateY(15deg);
+  filter: blur(12px) brightness(2.5);
+  pointer-events: none;
+}
+
+.holo-scene.is-vaporized .holo-beam {
+  opacity: 0.15;
+}
+
+.holo-scene.is-vaporized .holo-ring--mid {
+  transform: scale(1.12);
+  border-color: rgba(0, 150, 255, 0.55);
+}
+
+/* ---------- ABOUT SECTION (MINIMALIST GLASSMORPHIC) ---------- */
+.about__box {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(32px, 5vw, 64px);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--duration-normal), box-shadow var(--duration-normal);
+}
+.about__box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 50%, rgba(236, 88, 0, 0.1), transparent 60%);
+  pointer-events: none;
+}
+.about__box:hover {
+  border-color: rgba(236, 88, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.about__desc {
+  margin-top: 16px;
+  color: var(--color-text-secondary);
+  font-size: 15.5px;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+/* 3 Minimalist Pillars inside About */
+.about__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+.about__pillar {
+  padding-left: 14px;
+  border-left: 2px solid var(--color-accent);
+}
+.about__pillar b {
+  display: block;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+.about__pillar span {
+  display: block;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- RIGHT-SIDE 3D HOLOGRAPHIC CARD & ECOSYSTEM REACTOR ---------- */
+.about__vis {
+  display: grid;
+  place-items: center;
+  perspective: 1100px;
+}
+
+.holo-scene {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 320px;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Overlay Canvas for 3D Tokens & Flying Drones on Hover */
+.holo-particles {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Ambient Reactor Backlight */
+.holo-glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 88, 0, 0.28) 0%, rgba(0, 150, 255, 0.1) 45%, transparent 72%);
+  filter: blur(18px);
+  animation: holo-breathe 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* 3D Orbital Rings */
+.holo-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.48s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.42s;
+}
+.holo-ring--outer {
+  width: 330px;
+  height: 330px;
+  border: 1px dashed rgba(236, 88, 0, 0.35);
+  box-shadow: inset 0 0 24px rgba(236, 88, 0, 0.08);
+  animation: holo-spin-cw 22s linear infinite;
+}
+.holo-ring--mid {
+  width: 265px;
+  height: 265px;
+  border: 1px solid rgba(0, 150, 255, 0.22);
+  border-top-color: var(--color-accent);
+  border-bottom-color: rgba(0, 255, 128, 0.6);
+  animation: holo-spin-ccw 11s linear infinite;
+}
+
+/* Laser Energy Beams Feeding the Card */
+.holo-beam {
+  position: absolute;
+  width: 130px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  z-index: 1;
+  transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.holo-beam::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-accent), #fff);
+  box-shadow: 0 0 10px var(--color-accent);
+  animation: beam-shoot 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.holo-beam--tl { top: 68px; left: 24px; transform: rotate(28deg); }
+.holo-beam--tr { top: 68px; right: 24px; transform: rotate(152deg); }
+.holo-beam--tr::after { animation-delay: 0.55s; }
+.holo-beam--bl { bottom: 68px; left: 24px; transform: rotate(-28deg); }
+.holo-beam--bl::after { animation-delay: 1.1s; }
+.holo-beam--br { bottom: 68px; right: 24px; transform: rotate(-152deg); }
+.holo-beam--br::after { animation-delay: 1.65s; }
+
+/* 4 Ecosystem Telemetry Nodes */
+.holo-node {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+  background: rgba(4, 10, 18, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 99px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  animation: node-bob 3.5s ease-in-out infinite alternate;
+}
+.holo-node--tl { top: 12px; left: 0; animation-delay: 0s; }
+.holo-node--tr { top: 12px; right: 0; animation-delay: 0.8s; }
+.holo-node--bl { bottom: 12px; left: 0; animation-delay: 1.6s; }
+.holo-node--br { bottom: 12px; right: 0; animation-delay: 2.4s; }
+
+/* Blinking Node LEDs */
+.node-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.node-led--orange { background: #EC5800; box-shadow: 0 0 10px #EC5800; animation: led-blink 1.4s infinite; }
+.node-led--green  { background: #00FF80; box-shadow: 0 0 10px #00FF80; animation: led-blink 1.1s infinite 0.3s; }
+.node-led--blue   { background: #0096FF; box-shadow: 0 0 10px #0096FF; animation: led-blink 1.6s infinite 0.6s; }
+.node-led--red    { background: #FF2828; box-shadow: 0 0 10px #FF2828; animation: led-blink 1.2s infinite 0.9s; }
+
+/* ---------- THE 3D MATTE-OBSIDIAN AERVNYX CARD ---------- */
+.cyber-card {
+  position: relative;
+  width: 332px;
+  height: 208px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 45%, rgba(236, 88, 0, 0.25) 100%);
+  padding: 1px;
+  box-shadow:
+    -12px 18px 42px rgba(0, 0, 0, 0.85),
+    -4px 0 24px rgba(236, 88, 0, 0.32),
+    0 20px 48px rgba(0, 0, 0, 0.75);
+  z-index: 4;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  animation: card-levitate 5.5s ease-in-out infinite;
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+/* Glowing Molten Orange Rim on Left Edge */
+.cyber-card__rim {
+  position: absolute;
+  left: 0;
+  top: 6%;
+  bottom: 6%;
+  width: 3px;
+  background: linear-gradient(180deg, transparent 0%, #FF7722 25%, #FFFFFF 50%, #EC5800 80%, transparent 100%);
+  box-shadow: 0 0 14px 2px #EC5800, 0 0 28px 4px rgba(236, 88, 0, 0.65);
+  z-index: 5;
+  pointer-events: none;
+  animation: rim-pulse 2.8s ease-in-out infinite alternate;
+}
+
+/* Subtle Matte Metallic Sheen Sweep */
+.cyber-card__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 46%,
+    rgba(236, 88, 0, 0.08) 50%,
+    transparent 68%
+  );
+  transform: translateX(-130%);
+  animation: card-sweep 5s ease-in-out infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Matte Obsidian Anodized Inner Surface */
+.cyber-card__in {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(236, 88, 0, 0.14), transparent 42%),
+    radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.06), transparent 50%),
+    linear-gradient(135deg, #141820 0%, #0B0E13 48%, #07090D 100%);
+  padding: 20px 22px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Giant Sculpted Right-Side "A" Monogram */
+.cyber-card__monogram {
+  position: absolute;
+  right: -26px;
+  bottom: -20px;
+  width: 215px;
+  height: 198px;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(-2px -2px 4px rgba(0, 0, 0, 0.85));
+}
+.cyber-card__monogram .mono-bevel {
+  filter: drop-shadow(0 0 6px #EC5800) drop-shadow(0 0 14px rgba(236, 88, 0, 0.8));
+  animation: bevel-glow 2.6s ease-in-out infinite alternate;
+}
+
+/* Top-Left Brand Header */
+.cyber-card__top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+}
+.cyber-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.cyber-card__brand .brand-mark {
+  width: 25px;
+  height: 22px;
+  filter: drop-shadow(0 0 8px rgba(236, 88, 0, 0.55));
+}
+.cyber-card__brand span {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #F5F7FA;
+}
+
+/* Middle-Left: Orange Slit Indicator + Realistic Brushed Metallic EMV Chip */
+.cyber-card__mid {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 6px;
+}
+.chip-led {
+  width: 2px;
+  height: 18px;
+  border-radius: 2px;
+  background: #FF6A1A;
+  box-shadow: 0 0 8px #EC5800, 0 0 14px #EC5800;
+  animation: led-blink 1.8s ease-in-out infinite;
+}
+.emv-chip {
+  width: 44px;
+  height: 33px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #D8CFC2 0%, #9E9486 48%, #CFC5B7 75%, #787065 100%);
+  border: 1px solid rgba(255, 245, 230, 0.45);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.65);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5px;
+  padding: 3px;
+  position: relative;
+}
+.emv-pad {
+  border: 1px solid rgba(45, 38, 30, 0.48);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.08));
+}
+.emv-pad--center {
+  grid-row: span 2;
+  border-radius: 2px;
+}
+
+/* Bottom Row: Left Micro-Captions & Right Contactless Waves */
+.cyber-card__bot {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.cyber-card__captions {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.cyber-card__captions span {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(215, 222, 232, 0.62);
+  text-transform: uppercase;
+}
+
+/* Bottom-Right Contactless NFC Icon */
+.cyber-nfc {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: rgba(215, 222, 232, 0.58);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.cyber-nfc .nfc-w1 { animation: nfc-metal-ping 2.2s infinite 0s; }
+.cyber-nfc .nfc-w2 { animation: nfc-metal-ping 2.2s infinite 0.25s; }
+.cyber-nfc .nfc-w3 { animation: nfc-metal-ping 2.2s infinite 0.5s; }
+.cyber-nfc .nfc-w4 { animation: nfc-metal-ping 2.2s infinite 0.75s; }
+
+/* Disintegration State Triggered on Hover */
+.holo-scene.is-vaporized .cyber-card {
+  opacity: 0;
+  transform: scale(0.84) rotateX(22deg) rotateY(15deg);
+  filter: blur(12px) brightness(2.5);
+  pointer-events: none;
+}
+.holo-scene.is-vaporized .holo-beam {
+  opacity: 0.15;
+}
+.holo-scene.is-vaporized .holo-ring--mid {
+  transform: scale(1.12);
+  border-color: rgba(0, 150, 255, 0.55);
+}
+
+/* ---------- KEYFRAMES FOR CARD & REACTOR SCENE ---------- */
+@keyframes card-levitate {
+  0%, 100% { transform: rotateX(10deg) rotateY(-12deg) rotateZ(1.5deg) translateY(0); }
+  50% { transform: rotateX(5deg) rotateY(10deg) rotateZ(-1deg) translateY(-10px); }
+}
+
+
+/* ---------- KEYFRAMES FOR HOLOGRAPHIC CARD SCENE ---------- */
+@keyframes card-levitate {
+  0%, 100% { transform: rotateX(12deg) rotateY(-14deg) rotateZ(2deg) translateY(0); }
+  50% { transform: rotateX(6deg) rotateY(12deg) rotateZ(-1.5deg) translateY(-12px); }
+}
+@keyframes card-sweep {
+  0%, 25% { transform: translateX(-130%); }
+  75%, 100% { transform: translateX(130%); }
+}
+@keyframes led-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(0.82); }
+}
+@keyframes chip-pulse {
+  0% { box-shadow: 0 0 8px rgba(236, 88, 0, 0.3); filter: brightness(0.95); }
+  100% { box-shadow: 0 0 22px rgba(236, 88, 0, 0.85); filter: brightness(1.18); }
+}
+@keyframes nfc-ping {
+  0%, 100% { opacity: 0.2; stroke: rgba(255, 255, 255, 0.35); }
+  50% { opacity: 1; stroke: #00FF80; filter: drop-shadow(0 0 6px #00FF80); }
+}
+@keyframes beam-shoot {
+  0% { left: -45%; opacity: 0; }
+  40% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+@keyframes node-bob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+@keyframes holo-spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes holo-spin-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes holo-breathe {
+  0% { transform: scale(0.92); opacity: 0.65; }
+  100% { transform: scale(1.12); opacity: 1; }
+}
+/* Floating Telemetry Tags around the Core */
+.about__tag {
+  position: absolute;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  background: rgba(1, 11, 19, 0.85);
+  border: 1px solid var(--color-border);
+  border-radius: 99px;
+  z-index: 3;
+  transition: border-color var(--duration-normal), color var(--duration-normal);
+}
+.about__box:hover .about__tag {
+  border-color: rgba(236, 88, 0, 0.45);
+  color: var(--color-text);
+}
+.about__tag--tl { top: 18px; left: -10px; }
+.about__tag--tr { top: 18px; right: -10px; }
+.about__tag--bl { bottom: 18px; left: -10px; }
+.about__tag--br { bottom: 18px; right: -10px; }
+
+@keyframes about-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.06); opacity: 1; border-color: rgba(236, 88, 0, 0.35); }
+}
+@keyframes about-float {
+  0% { transform: translateY(4px); }
+  100% { transform: translateY(-6px); }
+}
+
+/* ---------- PITCH DECK CTA BOX (GLASSMORPHIC) ---------- */
+.deck-sec {
+  padding-top: 100px; /* Reduced gap since it sits right below About */
+  padding-bottom: 20px;
+}
+.deck-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 42px 50px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--duration-normal), border-color var(--duration-normal), box-shadow var(--duration-normal);
+}
+.deck-box__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 50%, rgba(236, 88, 0, 0.12), transparent 45%),
+              radial-gradient(circle at 0% 0%, rgba(0, 150, 255, 0.08), transparent 40%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity var(--duration-normal);
+}
+.deck-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(236, 88, 0, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(236, 88, 0, 0.15);
+}
+.deck-box:hover .deck-box__bg {
+  opacity: 1;
+}
+
+.deck-txt {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.deck-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  background: rgba(1, 11, 19, 0.6);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+}
+.deck-txt h3 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+.deck-txt p {
+  color: var(--color-text-secondary);
+  font-size: 15.5px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.deck-action {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.btn--deck {
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #09131E 0%, #02080E 100%);
+  border: 1px solid rgba(236, 88, 0, 0.45);
+  color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(236, 88, 0, 0.15), inset 0 0 12px rgba(236, 88, 0, 0.05);
+}
+.btn--deck:hover {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(236, 88, 0, 0.35);
+}
+.btn--deck:hover .i {
+  stroke: #fff;
+}
+
+
+
+
 /* ---------- RESPONSIVE: mobile nav ---------- */
 @media (max-width:960px){
   .burger{display:block}
@@ -369,15 +1240,16 @@ em{font-style:normal;color:var(--color-accent)}
   .step__top .i{display:none}
   .foot__grid{grid-template-columns:repeat(2,1fr)}
   .foot__bot{flex-direction:column}
-  /* Mobile Roadmap */
-  .rm__line, .rm__track { left: 28px; transform: none; }
-  .rm__item { grid-template-columns: 56px 1fr; gap: 24px; margin-bottom: 40px; }
+  .about__pillars { grid-template-columns: 1fr; }
+  .deck-box { flex-direction: column; align-items: flex-start; padding: 32px; gap: 24px; }
+/* Mobile Roadmap Override */
+  .rm__line, .rm__track { left: 34px; transform: translateX(-50%); }
+  .rm__item { grid-template-columns: 68px 1fr; gap: 24px; margin-bottom: 56px; }
   .rm__item:nth-child(even) { direction: ltr; }
   .rm__empty { display: none; }
   .rm__item:nth-child(odd) .rm__content, .rm__item:nth-child(even) .rm__content { text-align: left; }
-  .rm__item:nth-child(odd) .rm__content::before, .rm__item:nth-child(even) .rm__content::before { left: -10px; right: auto; border-left: none; border-right: 10px solid var(--color-surface); }
-  .rm__item:nth-child(odd).in .rm__node, .rm__item:nth-child(even).in .rm__node { animation: none; }
-  .team__grid { grid-template-columns: 1fr; }
+  .rm__item:nth-child(odd) .rm__content::before, .rm__item:nth-child(even) .rm__content::before { left: -11px; right: auto; border-left: none; border-right: 11px solid rgba(255, 255, 255, 0.08); }
+  .rm__item:nth-child(odd):hover .rm__content::before, .rm__item:nth-child(even):hover .rm__content::before { border-right-color: var(--color-accent); }
 }
 
 
@@ -537,3 +1409,120 @@ em{font-style:normal;color:var(--color-accent)}
 /* Staggered Scroll Reveal Animation */
 .team__card.rv { opacity: 0; transform: translateY(50px); transition: opacity var(--duration-slow), transform var(--duration-slow); transition-delay: calc(var(--k) * 100ms); }
 .team__card.rv.in { opacity: 1; transform: translateY(0); }
+
+/* =====================================================
+   SECTION 09.5: FLY-ACROSS AVIATION PHYSICS
+================================================= */
+.aviation-sec { padding-bottom: 120px; }
+.av-head { text-align: center; margin-bottom: 50px; }
+.av-head h2 { font-size: clamp(28px, 4vw, 48px); max-width: 900px; margin: 0 auto; line-height: 1.15; letter-spacing: -0.02em; }
+.av-head h2 em { color: var(--color-accent); font-style: normal; }
+
+/* The Deep Sky Window */
+/* The Deep Sky Window - NOW FULLY TRANSPARENT */
+.sky-stage {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+/* High Speed Wind lines moving backwards */
+.sky-atmosphere {
+  position: absolute; inset: -50%;
+  background: repeating-linear-gradient(110deg, transparent, transparent 150px, rgba(0, 150, 255, 0.04) 150px, rgba(0, 150, 255, 0.04) 153px);
+  animation: windRush 2s linear infinite;
+}
+
+/* Base Floating Rig (Moves from Bottom-Left to Top-Right) */
+.flight-rig {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(850px, 90vw);
+  z-index: 10;
+  pointer-events: none;
+  /* 14 seconds loop: Fly in, soar, fly out, repeat */
+  animation: flyAcross 14s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+/* Micro-Turbulence (Wing Jitter inside the moving rig) */
+.turbulence-box {
+  position: relative; width: 100%; height: 100%;
+  animation: heavyTurbulence 0.18s linear infinite alternate;
+}
+
+/* The Image Blending */
+.plane-img {
+  width: 100%; display: block;
+  /* Removes black bg & creates vivid glow */
+  mix-blend-mode: screen; 
+  filter: contrast(1.15) brightness(1.2) drop-shadow(0 40px 60px rgba(0, 150, 255, 0.15));
+}
+
+/* Aircraft Lighting System (Positioned specifically for your image) */
+.plane-light { position: absolute; border-radius: 50%; z-index: 5; }
+.beacon-top { top: 32%; left: 41%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite; }
+.beacon-bottom { bottom: 33%; left: 34%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite 0.7s; }
+.strobe-wing { bottom: 34%; right: 9%; width: 8px; height: 8px; background: #fff; box-shadow: 0 0 40px 15px #fff; animation: strobeFlash 0.1s infinite alternate; }
+
+/* Core Engine Glows */
+.engine-glow { position: absolute; border-radius: 50%; filter: blur(14px); z-index: 2; mix-blend-mode: screen; }
+.left-engine { bottom: 32%; left: 16%; width: 50px; height: 35px; background: rgba(236, 88, 0, 0.9); animation: enginePulse 0.1s infinite alternate; transform: rotate(-15deg); }
+.right-engine { bottom: 42%; left: 45%; width: 40px; height: 25px; background: rgba(236, 88, 0, 0.7); animation: enginePulse 0.1s infinite alternate-reverse; transform: rotate(-15deg); }
+
+/* Particle Emitter Anchors */
+.exhaust-anchor { position: absolute; width: 1px; height: 1px; z-index: -1; }
+#anchor-engine-main { bottom: 35%; left: 17%; }
+#anchor-engine-tail { top: 38%; left: 56%; }
+
+/* JS Particle Styling (Appended to sky-stage, not the plane) */
+.cyber-dust {
+  position: absolute; 
+  background: var(--dust-c);
+  box-shadow: 0 0 15px var(--dust-c);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* --- PHYSICS KEYFRAMES --- */
+@keyframes windRush {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-200px, 100px); }
+}
+@keyframes heavyTurbulence {
+  from { transform: translateY(-2px) translateX(-1px) rotate(-0.3deg); }
+  to { transform: translateY(2px) translateX(1px) rotate(0.3deg); }
+}
+@keyframes beaconFlash {
+  0%, 40% { opacity: 0; transform: scale(0.2); }
+  50%, 100% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes strobeFlash {
+  0% { opacity: 0; } 100% { opacity: 1; }
+}
+@keyframes enginePulse {
+  0% { opacity: 0.8; transform: scale(0.9) rotate(-15deg); }
+  100% { opacity: 1; transform: scale(1.1) rotate(-15deg); }
+}
+@keyframes shootDust {
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; filter: blur(5px); }
+}
+
+/* The Grand Flight Trajectory */
+@keyframes flyAcross {
+  0%   { transform: translate(-100vw, 40vh) scale(0.65) rotate(5deg); opacity: 0; filter: blur(6px); }
+  10%  { opacity: 1; filter: blur(0); }
+  45%  { transform: translate(-50%, -48%) scale(1) rotate(0deg); } /* Center Stage */
+  85%  { opacity: 1; filter: blur(0); }
+  100% { transform: translate(100vw, -50vh) scale(1.25) rotate(-5deg); opacity: 0; filter: blur(6px); }
+}
+
+@media (max-width: 900px) {
+  .sky-stage { height: 400px; }
+  .flight-rig { width: 120vw; }
+}

@@ -12,12 +12,17 @@
    Keep the property names. A missing or empty image shows the
    built-in illustrated fallback — nothing breaks.
 ===================================================== */
-const AERVNYX_ASSETS = {
-  heroBackground:    "assets/hero6-city-drone.PNG",    // HERO: skyline + drone + autonomous vehicle (wide, 2400×1350)
+
+  const AERVNYX_ASSETS = {
+  heroBackground:    "assets/hero7-city-drone.png",    // HERO: skyline + drone + autonomous vehicle (wide, 2400×1350)
   tokenizedDrones:   "assets/tokenized-drones3.png",   // CARD 1: delivery drone (16:10, 1200×750)
   tokenizedVehicles: "assets/tokenized-vehicles3.png", // CARD 2: premium vehicle (16:10, 1200×750)
   zeroVault:         "assets/zerovault4.png",          // CARD 3: digital treasury vault (16:10, 1200×750)
-  escrowDelivery:    "assets/escrow-delivery3.PNG",    // CARD 4: parcel / verification interface (16:10, 1200×750)
+  escrowDelivery:    "assets/escrow-delivery4.PNG",    // CARD 4: parcel / verification interface (16:10, 1200×750)
+  nftAviation:       "assets/nft-aviation.PNG",        // CARD 5: NFT airline tickets & BNPL aviation (16:10, 1200×750)
+  cryptoBankCard:    "assets/escrow-delivery3.PNG",    // CARD 6: direct wallet-to-POS bank card (16:10, 1200×750)
+  nftMarketplace:    "assets/nft-marketplace.png",     // CARD 7: NFT marketplace & installment tier NFTs (16:10, 1200×750)
+  droneArcade:       "assets/drone-arcade.PNG",        // CARD 8: 2D drone fighter arcade game (16:10, 1200×750)
   howItWorks:        "assets/how-it-works.webp",       // HOW IT WORKS: animated drone (1400×876, transparent)
   ecosystemGlobe:    "assets/ecosystem-globe.webp",    // ECOSYSTEM: optional faint globe behind the layer diagram (square, 1200×1200)
   finalCTA:          "assets/final-cta.webp"           // FINAL CTA: cinematic city / infrastructure (wide, 2400×1200)
@@ -40,15 +45,16 @@ const CONFIG = {
   ],
   // NAVIGATION: [label, target]
  
-  nav: [["Home", "#home"], ["Products", "#products"], ["Ecosystem", "#ecosystem"], ["Tokenization", "#how"], ["Technology", "#technology"], ["Roadmap", "#roadmap"], ["Team", "#team"], ["Whitepaper", "whitepaper.html"], ["About", "#about"]],
+  nav: [["Home", "#home"], ["Products", "#products"], ["Technology", "#technology"], ["Roadmap", "#roadmap"], ["Team", "#team"], ["Whitepaper", "whitepaper.html"], ["About", "#about"], ["Pitch Deck", "#pitchdeck"]],
   roadmap: [
     { icon: "flag", title: "Genesis & Architecture", time: "Phase 1 - 3 Months", text: "Initial ecosystem setup, conceptual design, and core infrastructure development." },
     { icon: "rocket", title: "Testnet Launch", time: "Phase 2 - 6 Months", text: "Beta release of ZeroVault, smart contract deployment, and initial security audits." },
     { icon: "globe", title: "Global Expansion", time: "Phase 3 - 4 Months", text: "Global market entry, real-world asset integration, and scaling the drone fleet." },
-    { icon: "shield", title: "Full Autonomy", time: "Phase 4 - Ongoing", text: "Complete decentralization, DAO governance activation, and autonomous operations." }
+    { icon: "card", title: "Direct POS Card & BNPL NFTs", time: "Phase 4 - 5 Months", text: "Launch of the direct wallet-to-POS bank card, NFT airline ticketing with installment tiers, and the 2D Drone Arcade." },
+    { icon: "shield", title: "Full Autonomy", time: "Phase 5 - Ongoing", text: "Complete decentralization, DAO governance activation, and autonomous operations." }
   ],
 
-  // PRODUCT CARDS (asset = key of AERVNYX_ASSETS, icon = key of ICON below)
+ // PRODUCT CARDS (8 cards across 2 rows of 4)
   products: [
     { asset: "tokenizedDrones", icon: "drone", label: "Aerial logistics", title: "Tokenized Drones", href: "#ecosystem",
       text: "Explore legally structured participation in drone-fleet economics, subject to the applicable terms." },
@@ -57,7 +63,15 @@ const CONFIG = {
     { asset: "zeroVault", icon: "vault", label: "Treasury security", title: "ZeroVault", href: "#technology",
       text: "Explore modular treasury security, role-based access, timelocks, emergency pausing, and controlled execution." },
     { asset: "escrowDelivery", icon: "box", label: "Verified delivery", title: "Escrow & Delivery", href: "#technology",
-      text: "Explore escrow workflows designed to release funds according to defined conditions and authenticated evidence." }
+      text: "Explore escrow workflows designed to release funds according to defined conditions and authenticated evidence." },
+    { asset: "nftAviation", icon: "plane", label: "Web3 aviation", title: "NFT Flight Tickets", href: "#ecosystem",
+      text: "Book airline tickets minted as on-chain NFTs. Unlock native token discounts and installment payments by holding eligible tier NFTs." },
+    { asset: "cryptoBankCard", icon: "card", label: "Instant POS settlement", title: "Direct Wallet Card", href: "#technology",
+      text: "Spend the real-time fiat value of your tokens at physical POS terminals via a bank card wired directly to your Web3 wallet." },
+    { asset: "nftMarketplace", icon: "market", label: "Utility & BNPL NFTs", title: "NFT Marketplace", href: "#ecosystem",
+      text: "Trade ecosystem assets and exclusive Credit-Tier NFTs that grant wallet holders instant buy-now-pay-later installment privileges." },
+    { asset: "droneArcade", icon: "gamepad", label: "Play-to-earn arcade", title: "2D Drone Arcade", href: "#ecosystem",
+      text: "Pilot combat drones in a classic 2D aerial shooter. Score points to unlock store discount vouchers and exclusive reward NFTs." }
   ],
 
   // METRICS STRIP — labels only. Add value:"…" text only for real, verified figures.
@@ -138,6 +152,10 @@ const ICON = {
   wallet: "M4 7h15a1 1 0 011 1v11H5a1 1 0 01-1-1zM4 7l12-3v3M16 13h2",
   logo: "M4 20L12 4l8 16h-4l-4-9-4 9z",
   flag: "M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7",
+  plane: "M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z",
+  card: "M3 5h18a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V7a2 2 0 012-2zM1 10h22M6 15h4M14 15h2",
+  market: "M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0",
+  gamepad: "M6 12h4M8 10v4M15 13h.01M18 11h.01M17.32 5H6.68a4 4 0 00-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 003 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 019.828 16h4.344a2 2 0 011.414.586L17 18c.5.5 1 1 2 1a3 3 0 003-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0017.32 5z",
   rocket: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5m5.5-8.5l-2-2m-5.5 8.5l-2-2m10.5-5.5a8.9 8.9 0 00-6.4 2.5l-4.2 4.2c-1.1 1.1-1.1 2.9 0 4l2.1 2.1c1.1 1.1 2.9 1.1 4 0l4.2-4.2a8.9 8.9 0 002.5-6.4V4h-3.7z",
 };
 
@@ -365,91 +383,512 @@ function roadmapScroll() {
     track.style.height = (progress * 100) + "%";
   }, { passive: true });
 }
+
+/* ---------- HEADER ACTIONS: WALLET & LANGUAGE SWITCHER ---------- */
+function headerActions() {
+  const walletBtn = $("[data-wallet]");
+  const langBtn = $("[data-lang]");
+
+  if (walletBtn) {
+    walletBtn.addEventListener("click", () => {
+      toast("Web3 Wallet integration on DotOne Smart Chain (Chain ID: 505) will be enabled at launch.");
+    });
+  }
+
+  if (langBtn) {
+    langBtn.addEventListener("click", () => {
+      const codes = $$(".lang-code", langBtn);
+      codes.forEach(c => c.classList.toggle("active"));
+      toast("Persian (FA) language pack is currently under preparation.");
+    });
+  }
+}
+
+
+/* ---------- HOLO CARD DISINTEGRATION INTO 3D TOKENS & FLYING DRONES ---------- */
+function cardTokenDisintegrate() {
+  const scene = $(".holo-scene");
+  const card = $(".cyber-card", scene);
+  if (!scene || !card) return;
+
+  // Create overlay canvas for 3D tokens and autonomous flying drones
+  let canvas = $(".holo-particles", scene);
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    canvas.className = "holo-particles";
+    scene.appendChild(canvas);
+  }
+  const ctx = canvas.getContext("2d");
+
+  let W = 0, H = 0, dpr = 1;
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth;
+    H = canvas.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  // Brand Cybernetic Palette: Neon Orange & Cyber Blue
+  const PALETTE = [
+    { main: "#EC5800", light: "#FFB078", dark: "#3A1500", glow: "rgba(236, 88, 0, 0.6)", rgb: "236, 88, 0" },
+    { main: "#0096FF", light: "#80D0FF", dark: "#002244", glow: "rgba(0, 150, 255, 0.6)", rgb: "0, 150, 255" }
+  ];
+
+  let hovered = false;
+  let animId = null;
+  let shockwave = 0;
+  const mouse = { x: 0, y: 0, active: false };
+  const entities = [];
+
+  // Spawn ONLY varied-size Tokens and varied-size Flying Drones (Zero dust dots)
+  function spawnSwarm() {
+    entities.length = 0;
+    const cx = W / 2;
+    const cy = H / 2;
+    const cardW = 280;
+    const cardH = 170;
+
+    // 1. Spawn 24 Multi-Scale 3D Spinning Aervnyx Tokens (Small, Medium, Large)
+    const tokenSizes = [
+      7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5,
+      11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15,
+      16.5, 17.5, 18.5, 19.5, 20.5, 21, 16, 18
+    ];
+
+    tokenSizes.forEach((baseRadius, i) => {
+      const ox = cx + (Math.random() - 0.5) * cardW;
+      const oy = cy + (Math.random() - 0.5) * cardH;
+      const angle = Math.atan2(oy - cy, ox - cx) + (Math.random() - 0.5) * 0.5;
+      const color = PALETTE[i % 2];
+
+      entities.push({
+        type: "token",
+        ox, oy,
+        x: ox, y: oy,
+        z: 0,
+        vx: Math.cos(angle) * (4 + Math.random() * 5),
+        vy: Math.sin(angle) * (4 + Math.random() * 5),
+        orbitAngle: angle,
+        orbitRx: 48 + Math.random() * 118,
+        orbitRy: 32 + Math.random() * 78,
+        orbitTilt: (Math.random() - 0.5) * 0.85,
+        orbitSpeed: (0.012 + Math.random() * 0.016) * (i % 2 === 0 ? 1 : -1),
+        baseRadius,
+        radius: baseRadius,
+        rotY: Math.random() * Math.PI * 2,
+        rotYSpeed: 0.045 + Math.random() * 0.055,
+        rotZ: (Math.random() - 0.5) * 0.45,
+        color,
+        alpha: 0
+      });
+    });
+
+    // 2. Spawn 14 Multi-Scale Autonomous Flying Drones (Micro, Tactical, Heavy Cargo)
+    const droneScales = [
+      0.52, 0.58, 0.65, 0.72, 0.78,
+      0.88, 0.95, 1.02, 1.08, 1.15,
+      1.24, 1.32, 1.40, 0.82
+    ];
+
+    droneScales.forEach((baseScale, i) => {
+      const ox = cx + (Math.random() - 0.5) * cardW * 0.9;
+      const oy = cy + (Math.random() - 0.5) * cardH * 0.9;
+      const angle = (i / droneScales.length) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+      const color = PALETTE[(i + 1) % 2];
+
+      entities.push({
+        type: "drone",
+        ox, oy,
+        x: ox, y: oy,
+        z: 0,
+        vx: Math.cos(angle) * (5 + Math.random() * 4),
+        vy: Math.sin(angle) * (5 + Math.random() * 4),
+        orbitAngle: angle,
+        orbitRx: 65 + Math.random() * 110,
+        orbitRy: 42 + Math.random() * 68,
+        orbitTilt: (Math.random() - 0.5) * 0.7,
+        orbitSpeed: (0.016 + Math.random() * 0.014) * (i % 2 === 0 ? 1 : -1),
+        wavePhase: Math.random() * Math.PI * 2,
+        baseScale,
+        scale: baseScale,
+        bankAngle: 0,
+        rotorPhase: Math.random() * Math.PI * 2,
+        ledPhase: Math.random() * Math.PI * 2,
+        trail: [],
+        color,
+        alpha: 0
+      });
+    });
+  }
+
+  // Render a 3D Spinning Aervnyx Coin Token
+  function drawToken(t) {
+    ctx.save();
+    ctx.translate(t.x, t.y);
+    ctx.rotate(t.rotZ);
+
+    const flip = Math.cos(t.rotY);
+    const scaleX = Math.sign(flip || 1) * Math.max(0.2, Math.abs(flip));
+    const r = t.radius;
+
+    // Outer neon glow
+    ctx.shadowColor = t.color.glow;
+    ctx.shadowBlur = 12;
+
+    // 3D Coin metallic thickness edge
+    ctx.beginPath();
+    ctx.ellipse(flip * (r * 0.16), 0, r * Math.abs(scaleX), r, 0, 0, Math.PI * 2);
+    ctx.fillStyle = t.color.main;
+    ctx.globalAlpha = t.alpha * 0.9;
+    ctx.fill();
+
+    // Scale horizontally for 3D spin illusion
+    ctx.scale(scaleX, 1);
+
+    // Coin dark cybernetic face
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI * 2);
+    ctx.fillStyle = "#040B14";
+    ctx.globalAlpha = t.alpha * 0.96;
+    ctx.fill();
+    ctx.lineWidth = Math.max(1.2, r * 0.12);
+    ctx.strokeStyle = t.color.light;
+    ctx.stroke();
+
+    // Inner precision ring
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.74, 0, Math.PI * 2);
+    ctx.lineWidth = Math.max(0.7, r * 0.06);
+    ctx.strokeStyle = t.color.main;
+    ctx.stroke();
+
+    // Aervnyx "A" Monogram Logo in center
+    const s = r * 0.48;
+    ctx.beginPath();
+    ctx.moveTo(0, -s);
+    ctx.lineTo(s * 0.88, s * 0.85);
+    ctx.lineTo(s * 0.36, s * 0.85);
+    ctx.lineTo(0, s * 0.05);
+    ctx.lineTo(-s * 0.36, s * 0.85);
+    ctx.lineTo(-s * 0.88, s * 0.85);
+    ctx.closePath();
+    ctx.fillStyle = t.color.light;
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  // Render an Autonomous 3D Cybernetic Quadcopter Drone in Flight
+  function drawDrone(d) {
+    // 1. Draw smooth propulsion flight trail behind the drone
+    if (d.trail.length > 1) {
+      ctx.save();
+      for (let i = 0; i < d.trail.length - 1; i++) {
+        const p0 = d.trail[i];
+        const p1 = d.trail[i + 1];
+        const ratio = (i + 1) / d.trail.length;
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(p1.x, p1.y);
+        ctx.strokeStyle = `rgba(${d.color.rgb}, ${ratio * d.alpha * 0.42})`;
+        ctx.lineWidth = ratio * 3.2 * d.scale;
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    ctx.save();
+    ctx.translate(d.x, d.y);
+    ctx.rotate(d.bankAngle);
+    ctx.scale(d.scale, d.scale);
+    ctx.globalAlpha = d.alpha;
+
+    // Ambient thruster downwash glow under the drone
+    const downwash = ctx.createRadialGradient(0, 4, 1, 0, 6, 20);
+    downwash.addColorStop(0, `rgba(${d.color.rgb}, 0.45)`);
+    downwash.addColorStop(1, `rgba(${d.color.rgb}, 0)`);
+    ctx.fillStyle = downwash;
+    ctx.beginPath();
+    ctx.arc(0, 4, 20, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. Carbon X-Frame Arms (Front-Left, Front-Right, Rear-Left, Rear-Right)
+    const arms = [
+      { x: -19, y: -5, rx: 8.5, ry: 2.8 },
+      { x:  19, y: -5, rx: 8.5, ry: 2.8 },
+      { x: -13, y: -11, rx: 6.8, ry: 2.2 },
+      { x:  13, y: -11, rx: 6.8, ry: 2.2 }
+    ];
+
+    ctx.strokeStyle = "#8CA0B8";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    arms.forEach(a => {
+      ctx.beginPath();
+      ctx.moveTo(0, -3);
+      ctx.lineTo(a.x, a.y);
+      ctx.stroke();
+    });
+
+    // 3. High-Speed Spinning Rotors & Motor Pods
+    arms.forEach((a, idx) => {
+      // Rotor outer blur disc
+      ctx.save();
+      ctx.translate(a.x, a.y - 2);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, a.rx, a.ry, 0, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${d.color.rgb}, 0.18)`;
+      ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = d.color.light;
+      ctx.stroke();
+
+      // Spinning blade streaks
+      const bladeSpan = a.rx * Math.cos(d.rotorPhase + idx * 1.1);
+      ctx.beginPath();
+      ctx.moveTo(-bladeSpan, 0);
+      ctx.lineTo(bladeSpan, 0);
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+      ctx.restore();
+
+      // Motor pod cylinder
+      ctx.fillStyle = "#081320";
+      ctx.strokeStyle = d.color.main;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    });
+
+    // 4. Suspended Tokenized Cargo Pod underneath the Drone
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+    ctx.lineWidth = 1.1;
+    ctx.beginPath();
+    ctx.moveTo(-4, 2);
+    ctx.lineTo(-3, 8);
+    ctx.moveTo(4, 2);
+    ctx.lineTo(3, 8);
+    ctx.stroke();
+
+    // Cargo Box with glowing Aervnyx core
+    ctx.fillStyle = "#040A12";
+    ctx.strokeStyle = d.color.main;
+    ctx.lineWidth = 1.3;
+    ctx.beginPath();
+    ctx.roundRect(-6.5, 7, 13, 9, 2.5);
+    ctx.fill();
+    ctx.stroke();
+
+    // Tiny Aervnyx "A" emblem on the drone's cargo pod
+    ctx.fillStyle = d.color.light;
+    ctx.beginPath();
+    ctx.moveTo(0, 8.8);
+    ctx.lineTo(3.2, 14.5);
+    ctx.lineTo(1.2, 14.5);
+    ctx.lineTo(0, 11.8);
+    ctx.lineTo(-1.2, 14.5);
+    ctx.lineTo(-3.2, 14.5);
+    ctx.closePath();
+    ctx.fill();
+
+    // 5. Aerodynamic Central Drone Fuselage (Hull)
+    ctx.shadowColor = d.color.glow;
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = "#091524";
+    ctx.strokeStyle = d.color.light;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -9);
+    ctx.lineTo(11, -3);
+    ctx.lineTo(7, 3);
+    ctx.lineTo(-7, 3);
+    ctx.lineTo(-11, -3);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Glowing Cybernetic Visor / Front Sensor Strip
+    ctx.strokeStyle = d.color.main;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-5, -2.5);
+    ctx.lineTo(5, -2.5);
+    ctx.stroke();
+
+    // Blinking Navigation Strobe LED on top of fuselage
+    const ledBlink = 0.5 + 0.5 * Math.sin(d.ledPhase);
+    ctx.fillStyle = ledBlink > 0.55 ? "#00FF80" : d.color.light;
+    ctx.beginPath();
+    ctx.arc(0, -6, 1.7, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function renderLoop() {
+    ctx.clearRect(0, 0, W, H);
+    const cx = W / 2;
+    const cy = H / 2;
+    let activeCount = 0;
+
+    // Expanding energy shockwave on initial card shatter
+    if (shockwave > 0 && shockwave < 1) {
+      shockwave += 0.038;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, shockwave * 185, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(236, 88, 0, ${(1 - shockwave) * 0.65})`;
+      ctx.lineWidth = 2.8 * (1 - shockwave);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Update physics for all tokens and drones
+    for (let i = 0; i < entities.length; i++) {
+      const e = entities[i];
+
+      if (hovered) {
+        e.orbitAngle += e.orbitSpeed;
+
+        // Calculate 3D tilted elliptical orbit coordinates
+        const cosA = Math.cos(e.orbitAngle);
+        const sinA = Math.sin(e.orbitAngle);
+        const cosT = Math.cos(e.orbitTilt);
+        const sinT = Math.sin(e.orbitTilt);
+
+        let tx = cx + (cosA * e.orbitRx * cosT - sinA * e.orbitRy * sinT);
+        let ty = cy + (cosA * e.orbitRx * sinT + sinA * e.orbitRy * cosT);
+
+        // Add agile figure-8 vertical wave for flying drones
+        if (e.type === "drone") {
+          e.wavePhase += 0.045;
+          ty += Math.sin(e.wavePhase) * 14;
+        }
+
+        // Depth value z (-1 back to +1 front) for realistic 3D size scaling
+        e.z = sinA;
+        const depthFactor = 1 + e.z * 0.28;
+
+        const prevX = e.x;
+        const prevY = e.y;
+
+        // Smooth transition from initial burst into orbital flight
+        e.x += e.vx + (tx - e.x) * 0.085;
+        e.y += e.vy + (ty - e.y) * 0.085;
+        e.vx *= 0.88;
+        e.vy *= 0.88;
+
+        // Interactive cursor magnetic repulsion
+        if (mouse.active) {
+          const mdx = e.x - mouse.x;
+          const mdy = e.y - mouse.y;
+          const mDist = Math.hypot(mdx, mdy);
+          if (mDist < 95 && mDist > 1) {
+            const push = ((95 - mDist) / 95) * 5.2;
+            e.x += (mdx / mDist) * push;
+            e.y += (mdy / mDist) * push;
+          }
+        }
+
+        // Type-specific animations
+        if (e.type === "token") {
+          e.rotY += e.rotYSpeed;
+          e.radius = e.baseRadius * depthFactor;
+        } else {
+          e.rotorPhase += 0.65;
+          e.ledPhase += 0.14;
+          e.scale = e.baseScale * depthFactor;
+
+          // Bank/tilt the drone naturally into its horizontal flight velocity
+          const moveDx = e.x - prevX;
+          const targetBank = Math.max(-0.48, Math.min(0.48, moveDx * 0.09));
+          e.bankAngle += (targetBank - e.bankAngle) * 0.15;
+
+          // Record flight trail coordinates
+          e.trail.push({ x: e.x, y: e.y });
+          if (e.trail.length > 9) e.trail.shift();
+        }
+
+        e.alpha = Math.min(1, e.alpha + 0.09);
+        activeCount++;
+      } else {
+        // Reassemble tokens and drones smoothly back into the card footprint
+        const dx = e.ox - e.x;
+        const dy = e.oy - e.y;
+        e.x += dx * 0.17;
+        e.y += dy * 0.17;
+
+        if (e.type === "token") {
+          e.rotY += e.rotYSpeed;
+        } else {
+          e.rotorPhase += 0.65;
+          e.bankAngle *= 0.85;
+          if (e.trail.length > 0) e.trail.shift();
+        }
+
+        if (Math.hypot(dx, dy) < 22) {
+          e.alpha *= 0.8;
+        }
+        if (e.alpha > 0.03) activeCount++;
+      }
+    }
+
+    // Sort by 3D depth (z) so foreground drones & large tokens pass in front of background ones
+    const sorted = entities.slice().sort((a, b) => a.z - b.z);
+    for (let i = 0; i < sorted.length; i++) {
+      const item = sorted[i];
+      if (item.alpha > 0.02) {
+        if (item.type === "token") drawToken(item);
+        else drawDrone(item);
+      }
+    }
+
+    if (activeCount > 0 || hovered) {
+      animId = requestAnimationFrame(renderLoop);
+    } else {
+      ctx.clearRect(0, 0, W, H);
+      animId = null;
+    }
+  }
+
+  scene.addEventListener("mouseenter", () => {
+    resize();
+    spawnSwarm();
+    hovered = true;
+    shockwave = 0.01;
+    scene.classList.add("is-vaporized");
+    if (!animId) animId = requestAnimationFrame(renderLoop);
+  });
+
+  scene.addEventListener("mousemove", e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.active = true;
+  });
+
+  scene.addEventListener("mouseleave", () => {
+    hovered = false;
+    mouse.active = false;
+    setTimeout(() => {
+      if (!hovered) scene.classList.remove("is-vaporized");
+    }, 220);
+  });
+}
 /* ---------- INIT ---------- */
 /* ---------- INIT ---------- */
 (function init() {
   document.documentElement.style.setProperty("--speed", CONFIG.motion.speed);
   render(); diagram(); bindLayers();
   $$("i[data-i]").forEach(e => (e.innerHTML = svg(e.dataset.i)));
-  skyline(); loadAssets(); nav(); reveals(); cardParallax(); drone(); roadmapScroll();
+  skyline(); loadAssets(); nav(); reveals(); cardParallax(); drone(); roadmapScroll(); headerActions(); cardTokenDisintegrate();
 })();
-/*mouse effect*/
 
-function cursorTrail() {
-  const canvas = document.createElement("canvas");
-  canvas.className = "cursor-fx";
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
-
-  let W = (canvas.width = window.innerWidth);
-  let H = (canvas.height = window.innerHeight);
-
-  addEventListener("resize", () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  });
-
-  let mouse = { x: W / 2, y: H / 2 };
-  const particles = [];
-
-  addEventListener("mousemove", (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    
-    for (let i = 0; i < 4; i++) {
-      particles.push({
-        x: mouse.x + (Math.random() - 0.5) * 6,
-        y: mouse.y + (Math.random() - 0.5) * 6,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -Math.random() * 0.5 - 0.2,
-        size: Math.random() * 3 + 2,
-        maxSize: Math.random() * 12 + 8,
-        life: 1,
-        decay: Math.random() * 0.018 + 0.012,
-        rot: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.05,
-        shade: Math.floor(Math.random() * 45 + 35)
-      });
-    }
-  });
-
-  const animate = () => {
-    ctx.clearRect(0, 0, W, H);
-
-    for (let i = particles.length - 1; i >= 0; i--) {
-      let p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.size += (p.maxSize - p.size) * 0.05;
-      p.life -= p.decay;
-      p.rot += p.rotSpeed;
-
-      if (p.life <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-
-      let g = ctx.createRadialGradient(0, 0, 0, 0, 0, p.size);
-      let alpha = p.life * 0.35;
-      g.addColorStop(0, `rgba(${p.shade}, ${p.shade}, ${p.shade}, ${alpha})`);
-      g.addColorStop(0.4, `rgba(${p.shade - 10}, ${p.shade - 10}, ${p.shade - 10}, ${alpha * 0.6})`);
-      g.addColorStop(1, `rgba(${p.shade - 20}, ${p.shade - 20}, ${p.shade - 20}, 0)`);
-
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(0, 0, p.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    requestAnimationFrame(animate);
-  };
-
-  animate();
-}
-
-cursorTrail();
