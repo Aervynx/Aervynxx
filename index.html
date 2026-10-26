@@ -22,9 +22,18 @@
   <a class="logo" href="#home" aria-label="Aervnyx home"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M3 28 16 3l13 25h-6.5L16 14.5 9.5 28z"/></svg>Aervnyx</a>
   <nav class="menu" id="menu" aria-label="Primary">
    <ul id="links"></ul>
+   <!-- Header Action Buttons: Language Switcher & Wallet Connect -->
    <div class="menu__cta">
-    <button class="btn btn--ghost" type="button" data-wallet>Connect Wallet</button>
-    <a class="btn" href="#ecosystem">Explore Ecosystem <i data-i="arrow"></i></a>
+    <button class="btn-lang" type="button" data-lang aria-label="Switch language">
+     <i data-i="globe"></i>
+     <span class="lang-code active">EN</span>
+     <span class="lang-sep">/</span>
+     <span class="lang-code">FA</span>
+    </button>
+    <button class="btn btn--wallet" type="button" data-wallet>
+     <i data-i="wallet"></i>
+     <span>Connect Wallet</span>
+    </button>
    </div>
   </nav>
   <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"></button>
@@ -208,10 +217,154 @@
 </section>
 
 <!-- ================================================
+     SECTION 10: ABOUT US (FULL TEXT + 3D HOLO CARD)
+================================================= -->
+<section class="wrap sec" id="about" data-nav>
+ <div class="about__box rv">
+  <!-- Left Column: Institutional About Text & 3 Pillars -->
+  <div class="about__txt">
+   <span class="eyebrow">About Aervnyx</span>
+   <h2>Bridging Physical Reality with <em>Autonomous Finance.</em></h2>
+   <p class="lead">Aervnyx is a next-generation Web3 ecosystem engineered to connect real-world assets, autonomous logistics, and everyday retail commerce under a single verifiable infrastructure.</p>
+   <p class="about__desc">From tokenized drone and vehicle fleets secured by ZeroVault to NFT airline ticketing with buy-now-pay-later installment tiers, direct wallet-to-POS bank cards, and play-to-earn aerial gaming, we transform digital ownership into tangible real-world utility.</p>
+   <div class="about__pillars">
+    <div class="about__pillar">
+     <b>RWA &amp; Logistics</b>
+     <span>Tokenized drones, vehicles, and verified escrow delivery.</span>
+    </div>
+    <div class="about__pillar">
+     <b>Direct POS &amp; BNPL</b>
+     <span>Instant fiat card settlement and installment-tier NFTs.</span>
+    </div>
+    <div class="about__pillar">
+     <b>ZeroVault Core</b>
+     <span>Role-based treasury controls, timelocks, and arcade rewards.</span>
+    </div>
+   </div>
+  </div>
+
+  <!-- Right Column: 3D Cybernetic Ecosystem-to-Card Fusion Animation -->
+  <div class="about__vis" aria-hidden="true">
+   <div class="holo-scene">
+    <!-- Ambient Core Glow & Orbital Rings -->
+    <div class="holo-glow"></div>
+    <div class="holo-ring holo-ring--outer"></div>
+    <div class="holo-ring holo-ring--mid"></div>
+
+    <!-- Energy Data Beams Feeding Into The Card -->
+    <div class="holo-beam holo-beam--tl"></div>
+    <div class="holo-beam holo-beam--tr"></div>
+    <div class="holo-beam holo-beam--bl"></div>
+    <div class="holo-beam holo-beam--br"></div>
+
+    <!-- 4 Ecosystem Nodes with Blinking Status LEDs -->
+    <div class="holo-node holo-node--tl">
+     <i class="node-led node-led--orange"></i>
+     <span>RWA FLEETS</span>
+    </div>
+    <div class="holo-node holo-node--tr">
+     <i class="node-led node-led--green"></i>
+     <span>POS TERMINAL</span>
+    </div>
+    <div class="holo-node holo-node--bl">
+     <i class="node-led node-led--blue"></i>
+     <span>BNPL NFTs</span>
+    </div>
+    <div class="holo-node holo-node--br">
+     <i class="node-led node-led--red"></i>
+     <span>2D ARCADE</span>
+    </div>
+
+    <!-- Floating 3D Matte-Obsidian Aervnyx Card -->
+    <div class="cyber-card">
+     <!-- Left Edge Orange Rim Light & Surface Specular Sheen -->
+     <div class="cyber-card__rim"></div>
+     <div class="cyber-card__shine"></div>
+
+     <div class="cyber-card__in">
+      <!-- Giant Sculpted Aervnyx "A" Monogram Carved into Right Side -->
+      <svg class="cyber-card__monogram" viewBox="0 0 240 220" aria-hidden="true">
+       <defs>
+        <!-- Recessed Dark Matte Surface Gradient -->
+        <linearGradient id="mono-fill" x1="0" y1="0" x2="1" y2="1">
+         <stop offset="0%" stop-color="#05070A"/>
+         <stop offset="55%" stop-color="#0B0F17"/>
+         <stop offset="100%" stop-color="#121824"/>
+        </linearGradient>
+        <!-- Molten Orange Edge Glow Gradient -->
+        <linearGradient id="mono-glow" x1="0" y1="1" x2="0.85" y2="0">
+         <stop offset="0%" stop-color="#FF5500" stop-opacity="0.95"/>
+         <stop offset="45%" stop-color="#FF9944" stop-opacity="1"/>
+         <stop offset="85%" stop-color="#EC5800" stop-opacity="0.35"/>
+         <stop offset="100%" stop-color="#EC5800" stop-opacity="0"/>
+        </linearGradient>
+       </defs>
+
+       <!-- Main Recessed "A" Body (Matches Aervnyx Logo Geometry) -->
+       <path class="mono-body" fill="url(#mono-fill)" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"
+        d="M132 18 L156 18 L236 198 L194 198 L175 152 L113 152 L94 198 L52 198 Z
+           M144 68 L124 120 L164 120 Z" fill-rule="evenodd"/>
+
+       <!-- Glowing Orange Laser Bevel Along Left Slope & Crossbar -->
+       <path class="mono-bevel" fill="none" stroke="url(#mono-glow)" stroke-width="2.6" stroke-linecap="round"
+        d="M52 198 L132 18 M113 152 L175 152 M124 120 L144 68"/>
+      </svg>
+
+      <!-- Card Top-Left: Official Aervnyx Emblem & Wordmark -->
+      <div class="cyber-card__top">
+       <div class="cyber-card__brand">
+        <svg class="brand-mark" viewBox="0 0 36 32" aria-hidden="true">
+         <path fill="#EC5800" d="M15.2 2h5.6L34 30h-6.6l-3-6.8H11.6L8.6 30H2L15.2 2zm2.8 8.4L14.2 18h7.6L18 10.4z"/>
+         <path fill="#FF8533" d="M8.5 21.2h19l-1.8-3.6H10.3z"/>
+        </svg>
+        <span>Aervnyx</span>
+       </div>
+      </div>
+
+      <!-- Card Middle-Left: Vertical Orange Indicator + Realistic Metallic EMV Chip -->
+      <div class="cyber-card__mid">
+       <i class="chip-led"></i>
+       <div class="emv-chip">
+        <span class="emv-pad"></span>
+        <span class="emv-pad emv-pad--center"></span>
+        <span class="emv-pad"></span>
+        <span class="emv-pad"></span>
+        <span class="emv-pad"></span>
+       </div>
+      </div>
+
+      <!-- Card Bottom: Micro-Typography Left + Contactless NFC Right -->
+      <div class="cyber-card__bot">
+       <div class="cyber-card__captions">
+        <span>TOKENIZED ASSETS</span>
+        <span>GLOBAL ACCESS</span>
+       </div>
+       <svg class="cyber-nfc" viewBox="0 0 24 24" aria-hidden="true">
+        <path class="nfc-w1" d="M7.5 15.5a5 5 0 0 0 0-7"/>
+        <path class="nfc-w2" d="M11 18a8.5 8.5 0 0 0 0-12"/>
+        <path class="nfc-w3" d="M14.5 20.5a12 12 0 0 0 0-17"/>
+        <path class="nfc-w4" d="M18 23a15.5 15.5 0 0 0 0-22"/>
+       </svg>
+      </div>
+     </div>
+    </div>
+    </div> <!-- closes .cyber-card__in -->
+    </div> <!-- closes .cyber-card -->
+   </div> <!-- closes .holo-scene -->
+  </div> <!-- closes .about__vis -->
+ </div> <!-- closes .about__box -->
+</section> <!-- closes #about section -->
+
+<!-- ================================================
+     SECTION 11: FINAL CTA
+================================================= -->
+<section class="cta" id="cta">
+    
+<!-- ================================================
      SECTION 08: FINAL CTA
      EDIT: heading, copy, buttons. Image: AERVNYX_ASSETS.finalCTA.
 ================================================= -->
-<section class="cta" id="cta">
+<!-- <section class="cta" id="cta">
  <div class="cta__bg" data-asset="finalCTA" data-alt="" aria-hidden="true"></div>
  <div class="wrap rv">
   <h2>The Future of Real-World Ownership Starts Here.</h2>
@@ -219,14 +372,14 @@
   <div class="ctas"><a class="btn" href="#ecosystem">Explore the Ecosystem <i data-i="arrow"></i></a><a class="btn btn--ghost" href="#technology">Explore Technology</a></div>
  </div>
 </section>
-</main>
+</main> -->
 
 <!-- ================================================
      SECTION 09: FOOTER
      EDIT: link groups + socials → CONFIG.footer / CONFIG.social.
      Newsletter backend → CONFIG.newsletterEndpoint.
 ================================================= -->
-<footer class="foot" id="about">
+<footer class="foot" id="footer">
  <div class="wrap">
   <div class="foot__grid">
    <div class="foot__brand">
