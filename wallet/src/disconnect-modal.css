@@ -1,0 +1,54 @@
+.dm-backdrop{
+  position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:rgba(2,3,6,.62);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  animation:dm-fade .18s ease-out;
+}
+.dm-card{
+  position:relative;width:100%;max-width:420px;box-sizing:border-box;
+  padding:30px 28px 26px;text-align:center;color:#fff;font-family:inherit;
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(18,19,26,.97),rgba(10,11,16,.97));
+  border:1px solid rgba(236,88,0,.65);
+  box-shadow:
+    0 0 0 1px rgba(255,140,50,.12),
+    0 0 22px rgba(236,88,0,.40),
+    0 0 60px rgba(236,88,0,.18),
+    inset 0 0 36px rgba(236,88,0,.07),
+    0 30px 70px rgba(0,0,0,.6);
+  animation:dm-pop .22s cubic-bezier(.2,.9,.3,1.2);
+}
+.dm-icon{
+  width:60px;height:60px;margin:0 auto 18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:#ff5a6a;background:rgba(255,60,80,.10);
+  border:1px solid rgba(255,70,90,.35);
+}
+.dm-icon svg{width:26px;height:26px}
+.dm-title{margin:0 0 10px;font-size:22px;font-weight:700;letter-spacing:.2px}
+.dm-text{margin:0 auto;max-width:330px;font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.58)}
+.dm-addr{
+  display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:7px 12px;
+  font-size:13px;font-weight:600;color:rgba(255,255,255,.85);cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:10px;
+  transition:border-color .15s,background .15s;font-family:inherit;
+}
+.dm-addr:hover{border-color:rgba(236,88,0,.6);background:rgba(236,88,0,.10)}
+.dm-addr svg{width:14px;height:14px;opacity:.75}
+.dm-actions{display:flex;gap:12px;margin-top:24px}
+.dm-btn{
+  flex:1;height:52px;border-radius:14px;font-size:16px;font-weight:700;font-family:inherit;
+  color:#fff;cursor:pointer;transition:transform .12s,box-shadow .2s,background .15s,border-color .15s;
+}
+.dm-btn:active{transform:scale(.98)}
+.dm-btn--cancel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12)}
+.dm-btn--cancel:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
+.dm-btn--danger{
+  background:linear-gradient(180deg,#f0121f,#d4000d);border:0;
+  box-shadow:0 8px 26px rgba(230,0,20,.38);
+}
+.dm-btn--danger:hover{box-shadow:0 8px 34px rgba(255,20,40,.55)}
+@keyframes dm-fade{from{opacity:0}to{opacity:1}}
+@keyframes dm-pop{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+@media (max-width:480px){.dm-card{padding:26px 20px 22px}.dm-title{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.dm-backdrop,.dm-card{animation:none}}

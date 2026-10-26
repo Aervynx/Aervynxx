@@ -6,7 +6,9 @@
 <title>Aervnyx — Physical Assets. Digital Ownership.</title>
 <meta name="description" content="Aervnyx connects real-world assets with blockchain infrastructure, tokenized ownership, secure treasury controls, and intelligent commerce.">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="js/wallet.css">
 <script src="js/main.js" defer></script>
+<script src="js/wallet.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -30,10 +32,8 @@
      <span class="lang-sep">/</span>
      <span class="lang-code">FA</span>
     </button>
-    <button class="btn btn--wallet" type="button" data-wallet>
-     <i data-i="wallet"></i>
-     <span>Connect Wallet</span>
-    </button>
+    <!-- Wallet Connect: RainbowKit mounts the button here (js/wallet.js) -->
+    <div id="wallet-root" style="display:contents"></div>
    </div>
   </nav>
   <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"></button>

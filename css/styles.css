@@ -1410,3 +1410,119 @@ em{font-style:normal;color:var(--color-accent)}
 .team__card.rv { opacity: 0; transform: translateY(50px); transition: opacity var(--duration-slow), transform var(--duration-slow); transition-delay: calc(var(--k) * 100ms); }
 .team__card.rv.in { opacity: 1; transform: translateY(0); }
 
+/* =====================================================
+   SECTION 09.5: FLY-ACROSS AVIATION PHYSICS
+================================================= */
+.aviation-sec { padding-bottom: 120px; }
+.av-head { text-align: center; margin-bottom: 50px; }
+.av-head h2 { font-size: clamp(28px, 4vw, 48px); max-width: 900px; margin: 0 auto; line-height: 1.15; letter-spacing: -0.02em; }
+.av-head h2 em { color: var(--color-accent); font-style: normal; }
+
+/* The Deep Sky Window */
+/* The Deep Sky Window - NOW FULLY TRANSPARENT */
+.sky-stage {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+/* High Speed Wind lines moving backwards */
+.sky-atmosphere {
+  position: absolute; inset: -50%;
+  background: repeating-linear-gradient(110deg, transparent, transparent 150px, rgba(0, 150, 255, 0.04) 150px, rgba(0, 150, 255, 0.04) 153px);
+  animation: windRush 2s linear infinite;
+}
+
+/* Base Floating Rig (Moves from Bottom-Left to Top-Right) */
+.flight-rig {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(850px, 90vw);
+  z-index: 10;
+  pointer-events: none;
+  /* 14 seconds loop: Fly in, soar, fly out, repeat */
+  animation: flyAcross 14s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+/* Micro-Turbulence (Wing Jitter inside the moving rig) */
+.turbulence-box {
+  position: relative; width: 100%; height: 100%;
+  animation: heavyTurbulence 0.18s linear infinite alternate;
+}
+
+/* The Image Blending */
+.plane-img {
+  width: 100%; display: block;
+  /* Removes black bg & creates vivid glow */
+  mix-blend-mode: screen; 
+  filter: contrast(1.15) brightness(1.2) drop-shadow(0 40px 60px rgba(0, 150, 255, 0.15));
+}
+
+/* Aircraft Lighting System (Positioned specifically for your image) */
+.plane-light { position: absolute; border-radius: 50%; z-index: 5; }
+.beacon-top { top: 32%; left: 41%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite; }
+.beacon-bottom { bottom: 33%; left: 34%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite 0.7s; }
+.strobe-wing { bottom: 34%; right: 9%; width: 8px; height: 8px; background: #fff; box-shadow: 0 0 40px 15px #fff; animation: strobeFlash 0.1s infinite alternate; }
+
+/* Core Engine Glows */
+.engine-glow { position: absolute; border-radius: 50%; filter: blur(14px); z-index: 2; mix-blend-mode: screen; }
+.left-engine { bottom: 32%; left: 16%; width: 50px; height: 35px; background: rgba(236, 88, 0, 0.9); animation: enginePulse 0.1s infinite alternate; transform: rotate(-15deg); }
+.right-engine { bottom: 42%; left: 45%; width: 40px; height: 25px; background: rgba(236, 88, 0, 0.7); animation: enginePulse 0.1s infinite alternate-reverse; transform: rotate(-15deg); }
+
+/* Particle Emitter Anchors */
+.exhaust-anchor { position: absolute; width: 1px; height: 1px; z-index: -1; }
+#anchor-engine-main { bottom: 35%; left: 17%; }
+#anchor-engine-tail { top: 38%; left: 56%; }
+
+/* JS Particle Styling (Appended to sky-stage, not the plane) */
+.cyber-dust {
+  position: absolute; 
+  background: var(--dust-c);
+  box-shadow: 0 0 15px var(--dust-c);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* --- PHYSICS KEYFRAMES --- */
+@keyframes windRush {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-200px, 100px); }
+}
+@keyframes heavyTurbulence {
+  from { transform: translateY(-2px) translateX(-1px) rotate(-0.3deg); }
+  to { transform: translateY(2px) translateX(1px) rotate(0.3deg); }
+}
+@keyframes beaconFlash {
+  0%, 40% { opacity: 0; transform: scale(0.2); }
+  50%, 100% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes strobeFlash {
+  0% { opacity: 0; } 100% { opacity: 1; }
+}
+@keyframes enginePulse {
+  0% { opacity: 0.8; transform: scale(0.9) rotate(-15deg); }
+  100% { opacity: 1; transform: scale(1.1) rotate(-15deg); }
+}
+@keyframes shootDust {
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; filter: blur(5px); }
+}
+
+/* The Grand Flight Trajectory */
+@keyframes flyAcross {
+  0%   { transform: translate(-100vw, 40vh) scale(0.65) rotate(5deg); opacity: 0; filter: blur(6px); }
+  10%  { opacity: 1; filter: blur(0); }
+  45%  { transform: translate(-50%, -48%) scale(1) rotate(0deg); } /* Center Stage */
+  85%  { opacity: 1; filter: blur(0); }
+  100% { transform: translate(100vw, -50vh) scale(1.25) rotate(-5deg); opacity: 0; filter: blur(6px); }
+}
+
+@media (max-width: 900px) {
+  .sky-stage { height: 400px; }
+  .flight-rig { width: 120vw; }
+}
