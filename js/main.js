@@ -384,16 +384,9 @@ function roadmapScroll() {
   }, { passive: true });
 }
 
-/* ---------- HEADER ACTIONS: WALLET & LANGUAGE SWITCHER ---------- */
+/* ---------- HEADER ACTIONS: LANGUAGE SWITCHER (wallet is handled by js/wallet.js) ---------- */
 function headerActions() {
-  const walletBtn = $("[data-wallet]");
   const langBtn = $("[data-lang]");
-
-  if (walletBtn) {
-    walletBtn.addEventListener("click", () => {
-      toast("Web3 Wallet integration on DotOne Smart Chain (Chain ID: 505) will be enabled at launch.");
-    });
-  }
 
   if (langBtn) {
     langBtn.addEventListener("click", () => {
