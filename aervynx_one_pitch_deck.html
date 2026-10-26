@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AERVYNX.ONE — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- اتصال فونت‌های انگلیسی و فونت استاندارد فارسی Vazirmatn -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#010B13;
+  --o:#EC5800;
+  --b:#0096FF;
+  --r:#FF3D57;
+  --gn:#27D17F;
+  --t:#fff;
+  --m:rgba(255,255,255,.62);
+  --g:rgba(255,255,255,.025);
+  --l:rgba(255,255,255,.1);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font-en: Inter, "Segoe UI", system-ui, sans-serif;
+  --font-fa: Vazirmatn, Tahoma, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--t);font:400 18px/1.5 var(--font-en);overflow:hidden}
+
+/* تطبیق خودکار فونت و جهت در حالت فارسی */
+html[dir="rtl"], html[dir="rtl"] body{
+  font-family: var(--font-fa);
+}
+
+.mono,.chip,.top,.nav{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+html[dir="rtl"] .mono{font-family:"JetBrains Mono", var(--font-fa), monospace}
+i{font-style:normal}
+
+.stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;overflow:hidden;background:var(--bg);transform:translate(-50%,-50%)}
+.bg{position:absolute;inset:0;background:radial-gradient(620px 420px at 88% 8%,rgba(236,88,0,.2),transparent 70%),radial-gradient(540px 440px at 4% 98%,rgba(0,150,255,.15),transparent 70%);animation:drift 20s ease-in-out infinite alternate}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--l) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,var(--l) 1px,transparent 1px) 0 0/64px 64px;opacity:.3;-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent)}
+
+/* استایل هدر بالا همراه با دکمه تغییر زبان */
+.top{position:absolute;left:80px;right:80px;top:26px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--m);z-index:10}
+.top-left{display:flex;align-items:center;gap:16px}
+.top b{color:var(--t);font-weight:600;letter-spacing:.08em;font-size:14px}
+.top i,.mono i{color:var(--o)}
+
+/* دکمه شیشه‌ای سوئیچر زبان (Globe Toggle) */
+.lang-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--l);
+  color:var(--t);
+  padding:4px 12px;
+  border-radius:99px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  transition:all .2s var(--ease);
+  backdrop-filter:blur(8px);
+}
+.lang-btn:hover{
+  border-color:var(--o);
+  background:rgba(236,88,0,0.12);
+  transform:translateY(-1px);
+}
+
+.nav{position:absolute;left:80px;right:80px;bottom:26px;display:flex;align-items:center;gap:18px;z-index:5;font-size:12px;color:var(--m)}
+.bar{flex:1;height:2px;background:var(--l);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--o),var(--b));transition:width .8s var(--ease)}
+.nav button{width:36px;height:36px;border-radius:50%;border:1px solid var(--l);background:var(--g);color:var(--t);cursor:pointer;transition:border-color .2s}
+.nav button:hover,.nav button:focus-visible{border-color:var(--o);outline:0}
+
+/* اسلایدها و انیمیشن‌ها */
+.sl{position:absolute;inset:0;padding:70px 80px 70px;display:grid;align-content:center;opacity:0;visibility:hidden;transform:scale(.985);transition:opacity .7s var(--ease),transform .9s var(--ease),visibility 0s .7s}
+.sl.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.a{opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.on .a{opacity:1;transform:none;transition-delay:calc(var(--i)*70ms + .15s)}
+.g2{grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+h1{font-size:120px;line-height:.92;font-weight:700;letter-spacing:-.055em}
+h1 i{color:var(--o)}
+h2{font-size:54px;line-height:1.08;font-weight:600;letter-spacing:-.035em;max-width:16ch}
+h2 span{color:var(--m)}
+.sub{color:var(--m);font-size:20px;max-width:36ch;margin-top:22px}
+.fine{margin-top:22px;font-size:12px;color:var(--m);opacity:.7;max-width:70ch}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-block;padding:7px 14px;border:1px solid var(--l);border-radius:99px;font-size:12px;color:var(--m);background:var(--g)}
+.hot{border-color:var(--o);color:var(--t);box-shadow:0 0 24px rgba(236,88,0,.25)}
+.card{position:relative;overflow:hidden;padding:30px;border:1px solid var(--l);border-radius:22px;background:var(--g);backdrop-filter:blur(14px)}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(300px 170px at 0 0,rgba(236,88,0,.14),transparent);pointer-events:none}
+.card h3{font-size:25px;letter-spacing:-.02em;margin:16px 0 8px}
+.card p{color:var(--m);font-size:16px;position:relative}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:38px}
+.btn{display:inline-block;padding:15px 30px;border-radius:99px;background:var(--o);color:#fff;font-weight:600;text-decoration:none;box-shadow:0 10px 40px rgba(236,88,0,.4);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+
+/* تطبیق چیدمان و حاشیه‌ها در حالت فارسی (RTL Fixes) */
+html[dir="rtl"] .steps li{padding:13px 56px 13px 0}
+html[dir="rtl"] .steps li::before{left:auto;right:0}
+html[dir="rtl"] .lg li{padding:15px 32px 15px 0}
+html[dir="rtl"] .lg li::before{left:auto;right:0}
+html[dir="rtl"] .perks li{padding-left:0;padding-right:26px}
+html[dir="rtl"] .perks li::before{left:auto;right:0}
+html[dir="rtl"] .road li::before{left:auto;right:0}
+html[dir="rtl"] h2{letter-spacing:0}
+html[dir="rtl"] h1{letter-spacing:0}
+
+/* المان‌ها و انیمیشن‌های اختصاصی */
+.drone{opacity:0;transition:opacity 1.2s .3s;animation:fly 9s ease-in-out infinite;filter:drop-shadow(0 30px 60px rgba(236,88,0,.22))}
+.on .drone{opacity:1}
+.big{position:absolute;right:-30px;top:190px;width:680px}
+html[dir="rtl"] .big{right:auto;left:-30px}
+.ring{position:absolute;border:1px dashed rgba(236,88,0,.35);border-radius:50%;animation:spin 60s linear infinite}
+.r2{border-color:rgba(0,150,255,.25);animation-direction:reverse;animation-duration:90s}
+
+.flow{display:grid;grid-template-columns:1fr 130px 1fr;align-items:center}
+.col{display:grid;gap:18px;justify-items:center}
+.dim .chip{border-style:dashed;opacity:.5}
+.hub{position:relative;width:110px;height:110px;margin:auto;border-radius:50%;display:grid;place-items:center;font:700 44px Inter;border:1px solid var(--o);background:radial-gradient(circle,rgba(236,88,0,.35),transparent 70%);animation:pulse 3s ease-in-out infinite}
+.hub::before,.hub::after{content:"";position:absolute;top:50%;height:1px;width:90px}
+.hub::before{right:100%;background:repeating-linear-gradient(90deg,var(--l) 0 6px,transparent 6px 12px)}
+.hub::after{left:100%;background:linear-gradient(90deg,var(--o),transparent)}
+
+.stk{height:480px;display:grid;place-items:center;perspective:1400px}
+.stack{position:relative;width:360px;height:360px;transform-style:preserve-3d;transform:rotateX(62deg) rotateZ(-38deg)}
+.stack i{position:absolute;inset:0;border:1.5px solid var(--c);border-radius:22px;background:color-mix(in srgb,var(--c) 14%,transparent);box-shadow:0 0 40px color-mix(in srgb,var(--c) 40%,transparent);transform:translateZ(calc(var(--z)*74px));transition:transform 1.4s var(--ease) .3s}
+.sl:not(.on) .stack i{transform:translateZ(0)}
+.lg{margin-top:30px}
+.lg li{position:relative;list-style:none;padding:15px 0 15px 32px;border-bottom:1px solid var(--l)}
+.lg li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 14px var(--c)}
+.lg b{display:block;font-size:20px;font-weight:600}.lg span{color:var(--m);font-size:15px}
+
+.pipe{display:flex;align-items:center;gap:14px;margin-top:34px;font:500 13px "JetBrains Mono",monospace;color:var(--m)}
+.pipe i{position:relative;flex:1;height:1px;overflow:hidden;background:linear-gradient(90deg,var(--o),var(--b))}
+.pipe i::after{content:"";position:absolute;top:-1px;left:0;width:30px;height:3px;background:#fff;filter:blur(2px);animation:run 2.4s linear infinite}
+
+.rel{position:relative}.mid{position:relative;width:100%}
+.nfc{position:absolute;left:55%;top:68%;width:0;height:0}
+.nfc i{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border:2px solid var(--o);border-radius:50%;opacity:0;animation:ping 3s ease-out infinite}
+.nfc i:nth-child(2){animation-delay:1s}.nfc i:nth-child(3){animation-delay:2s}
+.steps{margin-top:26px;counter-reset:s}
+.steps li{counter-increment:s;position:relative;list-style:none;padding:13px 0 13px 56px;border-bottom:1px solid var(--l)}
+.steps li::before{content:"0" counter(s);position:absolute;left:0;top:15px;font:500 14px "JetBrains Mono",monospace;color:var(--o)}
+.steps b{display:block;font-size:19px;font-weight:600}.steps span{color:var(--m);font-size:15px}
+
+.holo,.cc{transform:perspective(700px) rotateY(-16deg) rotateX(6deg);animation:tilt 6s ease-in-out infinite alternate;overflow:hidden;position:relative}
+.holo{height:150px;width:230px;margin:22px auto;border-radius:16px;border:1px solid var(--l);background:linear-gradient(135deg,rgba(236,88,0,.4),rgba(0,150,255,.3))}
+.holo::after,.cc::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);animation:shine 5s infinite}
+.inst{display:flex;align-items:flex-end;gap:14px;height:150px;margin:22px 0}
+.inst i{flex:1;height:var(--h);border-radius:10px;background:linear-gradient(0deg,rgba(236,88,0,.12),var(--o))}
+
+.screen{position:relative;height:340px;overflow:hidden;border-radius:22px;border:1px solid var(--l);background:linear-gradient(var(--l) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--l) 1px,transparent 1px) 0 0/40px 40px,var(--g)}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px);pointer-events:none}
+.hud{position:absolute;top:16px;left:20px;z-index:2;font:500 12px "JetBrains Mono",monospace;color:var(--m)}.hud b{display:block;font-size:34px;color:#fff}
+html[dir="rtl"] .hud{left:auto;right:20px}
+.sm{position:absolute;left:30px;top:38%;width:190px;animation:bob 2.6s ease-in-out infinite}
+html[dir="rtl"] .sm{left:auto;right:30px}
+.ob{position:absolute;right:-60px;top:var(--y);width:28px;height:90px;border:1.5px solid var(--o);border-radius:6px;background:rgba(236,88,0,.15);animation:ob 3.6s linear infinite;animation-delay:var(--d)}
+html[dir="rtl"] .ob{right:auto;left:-60px}
+.pipe2 .chip:not(:last-child)::after{content:"→";margin-left:12px;color:var(--o)}
+html[dir="rtl"] .pipe2 .chip:not(:last-child)::after{content:"←";margin-left:0;margin-right:12px}
+
+.pass{display:grid;grid-template-columns:1.5fr 1fr;margin-top:38px;border:1px solid var(--l);border-radius:24px;background:var(--g);overflow:hidden}
+.route{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:40px;border-right:1px dashed var(--l)}
+html[dir="rtl"] .route{border-right:none;border-left:1px dashed var(--l)}
+.route b{font:500 14px "JetBrains Mono",monospace;color:var(--m)}.route svg{flex:1;overflow:visible}
+.perks{display:grid;gap:14px;padding:40px;align-content:center}
+.perks li{position:relative;list-style:none;padding-left:26px}
+.perks li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:50%;background:var(--o);box-shadow:0 0 12px var(--o)}
+
+.cc{width:440px;height:276px;margin:auto;border-radius:24px;border:1px solid var(--l);background:linear-gradient(135deg,rgba(236,88,0,.35),transparent 45%),linear-gradient(315deg,rgba(0,150,255,.25),transparent 50%),var(--bg);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px rgba(236,88,0,.18)}
+.cc>*{position:absolute}
+.cc b{left:28px;top:26px;font-size:18px;letter-spacing:.1em}.cc em{right:28px;top:28px;font:500 12px "JetBrains Mono",monospace;color:var(--m)}
+.cc .ic{left:28px;top:96px;width:54px;height:40px;border-radius:8px;background:linear-gradient(135deg,rgba(255,255,255,.55),var(--o))}
+.cc .num{left:28px;bottom:28px;letter-spacing:.22em;color:var(--m)}
+
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px;position:relative}
+.road::before{content:"";position:absolute;top:6px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--o),var(--b))}
+.road li{position:relative;list-style:none;padding-top:30px}
+.road li::before{content:"";position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--o)}
+.road b{display:block;font-weight:600}.road span{color:var(--m);font-size:14px;line-height:1.5}
+
+@keyframes drift{to{transform:scale(1.12) translate(-1.5%,1.5%)}}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(-1deg)}50%{transform:translate(-10px,-22px) rotate(1.2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{box-shadow:0 0 50px rgba(236,88,0,.5)}}
+@keyframes ping{0%{transform:scale(.3);opacity:.9}100%{transform:scale(3);opacity:0}}
+@keyframes run{to{left:100%}}
+@keyframes tilt{to{transform:perspective(700px) rotateY(16deg) rotateX(-4deg)}}
+@keyframes shine{55%,100%{transform:translateX(120%)}}
+@keyframes bob{50%{transform:translateY(-18px)}}
+@keyframes ob{to{transform:translateX(-760px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+<div class="bg"></div>
+
+<!-- هدر اصلی همراه با عنوان، دکمه سوئیچر زبان (Globe Button) و لیبل اسلاید -->
+<header class="top">
+  <div class="top-left">
+    <b>AERVYNX<i>.ONE</i></b>
+    <button id="langToggle" class="lang-btn" aria-label="Toggle Language">
+      🌐 <span id="langTxt">FA</span>
+    </button>
+  </div>
+  <span id="lab">Vision</span>
+</header>
+
+<!-- ===== SLIDE 1 · VISION ===== -->
+<section class="sl" data-t="Vision" data-t-fa="چشم‌انداز">
+ <div class="ring" style="width:560px;height:560px;right:30px;top:132px"></div>
+ <div class="ring r2" style="width:760px;height:760px;right:-70px;top:32px"></div>
+ <img class="drone big" alt="Aervynx delivery drone">
+ <div style="position:relative;z-index:2">
+  <p class="a mono" style="color:var(--m);font-size:14px;margin-bottom:26px" 
+     data-en="DotOne Smart Chain, Chain ID 505" 
+     data-fa="شبکه هوشمند دات‌وان (Chain ID: 505)">DotOne Smart Chain, Chain ID 505</p>
+  <h1 class="a">AERVYNX<br><i>.ONE</i></h1>
+  <p class="sub a" 
+     data-en="Real-world assets, financed trustlessly. One L1, one utility token." 
+     data-fa="اقتصاد برنامه‌پذیر برای زیرساخت‌های فیزیکی؛ امن، هوشمند و یکپارچه.">Real-world assets, financed trustlessly. One L1, one utility token.</p>
+  <div class="row a">
+   <span class="chip hot" data-en="L1 EVM" data-fa="لایه اول EVM">L1 EVM</span>
+   <span class="chip" data-en="DOTO utility token" data-fa="توکن کاربردی DOTO">DOTO utility token</span>
+   <span class="chip" data-en="Integrated smart infrastructure" data-fa="زیرساخت فیزیکی هوشمند">Integrated smart infrastructure</span>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 2 · PROBLEM AND SOLUTION ===== -->
+<section class="sl g2" data-t="Problem and solution" data-t-fa="مسئله و راهکار">
+ <div>
+  <h2 class="a">
+   <span data-en="Physical assets live in silos. " data-fa="دارایی‌های فیزیکی در سیلوها محبوسند. ">Physical assets live in silos. </span>
+   <span style="color:var(--m)" data-en="We connect them to trustless finance." data-fa="ما آنها را به تسویه غیرمتمرکز متصل می‌کنیم.">We connect them to trustless finance.</span>
+  </h2>
+  <p class="sub a" 
+     data-en="Drones, vehicles and travel run on disconnected rails. AERVYNX.ONE bridges them on one chain." 
+     data-fa="لجستیک پهپادی، ناوگان خودرویی و بلیت‌های پرواز روی ریل‌های جداگانه کار می‌کنند؛ AERVYNX.ONE همه را روی یک زنجیره متصل می‌کند.">Drones, vehicles and travel run on disconnected rails. AERVYNX.ONE bridges them on one chain.</p>
+ </div>
+ <div class="flow a">
+  <div class="col dim">
+   <span class="chip" data-en="Drones" data-fa="پهپادها">Drones</span>
+   <span class="chip" data-en="Vehicles" data-fa="خودروها">Vehicles</span>
+   <span class="chip" data-en="Travel" data-fa="پروازها">Travel</span>
+  </div>
+  <div class="hub">A</div>
+  <div class="col">
+   <span class="chip hot" data-en="Escrow" data-fa="امانت هوشمند (Escrow)">Escrow</span>
+   <span class="chip hot" data-en="Tokenization" data-fa="توکنایز دارایی (RWA)">Tokenization</span>
+   <span class="chip hot" data-en="BNPL" data-fa="خرید اقساطی (BNPL)">BNPL</span>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 3 · ARCHITECTURE ===== -->
+<section class="sl g2" data-t="Architecture" data-t-fa="معماری چهارلایه">
+ <div>
+  <h2 class="a">
+   <span data-en="Four layers. " data-fa="چهار لایه مستقل. ">Four layers. </span>
+   <span style="color:var(--m)" data-en="One stack, end to end." data-fa="یک ساختار یکپارچه سرتاسری.">One stack, end to end.</span>
+  </h2>
+  <ul class="lg">
+   <li class="a" style="--c:var(--b)">
+    <b data-en="Application layer" data-fa="لایه کاربری و اپلیکیشن">Application layer</b>
+    <span data-en="Marketplace, travel and card dApps" data-fa="مارکت‌پلیس، بلیت پروازها و دپ‌های کارتی">Marketplace, travel and card dApps</span>
+   </li>
+   <li class="a" style="--c:var(--o)">
+    <b data-en="Asset layer" data-fa="لایه دارایی‌های فیزیکی">Asset layer</b>
+    <span data-en="Drones, vehicles and flights" data-fa="ناوگان پهپادی، خودروها و بلیت‌های پرواز">Drones, vehicles and flights</span>
+   </li>
+   <li class="a" style="--c:var(--r)">
+    <b data-en="Blockchain layer" data-fa="لایه بلاک‌چین و اجماع">Blockchain layer</b>
+    <span data-en="DotOne Smart Chain, Chain ID 505" data-fa="شبکه هوشمند دات‌وان (Chain ID: 505)">DotOne Smart Chain, Chain ID 505</span>
+   </li>
+   <li class="a" style="--c:var(--gn)">
+    <b data-en="Security and EAL6+ hardware" data-fa="لایه امنیت و سخت‌افزار EAL6+">Security and EAL6+ hardware</b>
+    <span data-en="Cold storage and NFC secure element" data-fa="ذخیره‌سازی سرد و تراشه امنیتی NFC">Cold storage and NFC secure element</span>
+   </li>
+  </ul>
+ </div>
+ <div class="stk a">
+  <div class="stack">
+   <i style="--z:0;--c:var(--gn)"></i>
+   <i style="--z:1;--c:var(--r)"></i>
+   <i style="--z:2;--c:var(--o)"></i>
+   <i style="--z:3;--c:var(--b)"></i>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 4 · RWA TOKENIZATION ===== -->
+<section class="sl" data-t="RWA tokenization" data-t-fa="توکنایز دارایی‌های واقعی">
+ <h2 class="a" style="max-width:22ch">
+  <span data-en="Fleets and vehicles, " data-fa="ناوگان‌ها و خودروها، ">Fleets and vehicles, </span>
+  <span style="color:var(--m)" data-en="fractionally owned." data-fa="مالکیت کسری و سودآور.">fractionally owned.</span>
+ </h2>
+ <div class="two">
+  <div class="card a">
+   <span class="chip" data-en="Drones" data-fa="پهپادها">Drones</span>
+   <h3 data-en="Fleet profit pools" data-fa="استخرهای سود ناوگان">Fleet profit pools</h3>
+   <p data-en="Autonomous fleet revenue flows into on-chain pools and is distributed pro rata to token holders." 
+      data-fa="درآمد ناوگان‌های خودکار به استخرهای آن‌چین واریز شده و به نسبت سهم میان دارندگان توکن توزیع می‌شود.">Autonomous fleet revenue flows into on-chain pools and is distributed pro rata to token holders.</p>
+  </div>
+  <div class="card a">
+   <span class="chip" data-en="Vehicles" data-fa="خودروها">Vehicles</span>
+   <h3 data-en="Fractional ownership via SPVs" data-fa="مالکیت کسری از طریق SPV">Fractional ownership via SPVs</h3>
+   <p data-en="Each vehicle sits in a dedicated SPV. Tokens represent defined interests in that entity." 
+      data-fa="هر خودرو در یک نهاد واسط حقوقی (SPV) اختصاصی قرار می‌گیرد و توکن‌ها نشان‌دهنده منافع معین در آن نهاد هستند.">Each vehicle sits in a dedicated SPV. Tokens represent defined interests in that entity.</p>
+  </div>
+ </div>
+ <div class="pipe a">
+  <span data-en="Asset" data-fa="دارایی فیزیکی">Asset</span><i></i>
+  <span data-en="SPV" data-fa="نهاد حقوقی (SPV)">SPV</span><i></i>
+  <span data-en="Token" data-fa="توکن">Token</span><i></i>
+  <span data-en="Profit pool" data-fa="استخر توزیع سود">Profit pool</span>
+ </div>
+ <p class="fine a" 
+    data-en="Illustrative structure. Subject to legal structuring and applicable regulation; a token alone is not legal title." 
+    data-fa="ساختار به صورت تصویری است. منوط به ساختاربندی حقوقی و قوانین حاکم؛ توکن به تنهایی سند مالکیت رسمی نیست.">Illustrative structure. Subject to legal structuring and applicable regulation; a token alone is not legal title.</p>
+</section>
+
+<!-- ===== SLIDE 5 · LOGISTICS AND ESCROW ===== -->
+<section class="sl g2" data-t="Logistics and escrow" data-t-fa="لجستیک و امانت هوشمند">
+ <div class="rel">
+  <div class="nfc"><i></i><i></i><i></i></div>
+  <img class="drone mid" alt="Aervynx delivery drone with NFC module">
+ </div>
+ <div>
+  <h2 class="a">
+   <span data-en="Funds move when proof does. " data-fa="تسویه مالی تنها با ارائه اثبات فیزیکی. ">Funds move when proof does. </span>
+   <span style="color:var(--m)" data-en="DeliveryEscrow." data-fa="قرارداد هوشمند DeliveryEscrow.">DeliveryEscrow.</span>
+  </h2>
+  <ol class="steps">
+   <li class="a">
+    <b data-en="Fund" data-fa="قفل وجه (Fund)">Fund</b>
+    <span data-en="The buyer locks payment in a Solidity escrow contract." 
+          data-fa="خریدار مبلغ پرداخت را در قرارداد اسکروی سالیدیتی قفل می‌کند.">The buyer locks payment in a Solidity escrow contract.</span>
+   </li>
+   <li class="a">
+    <b data-en="Handshake" data-fa="ارتباط سخت‌افزاری (Handshake)">Handshake</b>
+    <span data-en="An NFC EAL6+ secure element confirms pickup on the drone." 
+          data-fa="تراشه امنیتی EAL6+ مبتنی بر NFC تحویل بسته به پهپاد را تایید می‌کند.">An NFC EAL6+ secure element confirms pickup on the drone.</span>
+   </li>
+   <li class="a">
+    <b data-en="Attest" data-fa="اثبات آن‌چین (Attest)">Attest</b>
+    <span data-en="Delivery proof is signed on-chain with EIP-712." 
+          data-fa="مدرک تحویل کالا با استاندارد داده‌های امضاشده EIP-712 روی زنجیره ثبت می‌شود.">Delivery proof is signed on-chain with EIP-712.</span>
+   </li>
+   <li class="a">
+    <b data-en="Release" data-fa="آزادسازی خودکار (Release)">Release</b>
+    <span data-en="The contract settles automatically." 
+          data-fa="قرارداد هوشمند وجه را به صورت خودکار و بدون واسطه تسویه می‌کند.">The contract settles automatically.</span>
+   </li>
+  </ol>
+  <div class="row a" style="margin-top:22px">
+   <span class="chip" data-en="Solidity" data-fa="سالیدیتی">Solidity</span>
+   <span class="chip" data-en="Foundry-tested" data-fa="تست‌شده با Foundry">Foundry-tested</span>
+   <span class="chip" data-en="NFC EAL6+" data-fa="سخت‌افزار NFC EAL6+">NFC EAL6+</span>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 6 · MARKETPLACE AND BNPL ===== -->
+<section class="sl" data-t="Marketplace and BNPL" data-t-fa="مارکت‌پلیس و خرید اقساطی">
+ <h2 class="a" style="max-width:20ch">
+  <span data-en="Rent it. Own it. " data-fa="اجاره کنید. مالک شوید. ">Rent it. Own it. </span>
+  <span style="color:var(--m)" data-en="Pay later." data-fa="قسطی بپردازید.">Pay later.</span>
+ </h2>
+ <div class="two">
+  <div class="card a">
+   <span class="chip" data-en="Rentable utility NFTs" data-fa="توکن‌های کاربردی قابل اجاره">Rentable utility NFTs</span>
+   <div class="holo"></div>
+   <p data-en="Time-boxed usage rights for assets, tickets and perks, rentable without transferring ownership (ERC-4907)." 
+      data-fa="حقوق استفاده زمان‌بندی‌شده برای دارایی‌ها، بلیت‌ها و مزایا، قابل اجاره بدون نیاز به انتقال مالکیت اصلی (استاندارد ERC-4907).">Time-boxed usage rights for assets, tickets and perks, rentable without transferring ownership (ERC-4907).</p>
+  </div>
+  <div class="card a">
+   <span class="chip" data-en="Cross-wallet BNPL" data-fa="خرید اقساطی بین‌والتی (BNPL)">Cross-wallet BNPL</span>
+   <div class="inst">
+    <i style="--h:100%"></i>
+    <i style="--h:72%"></i>
+    <i style="--h:46%"></i>
+    <i style="--h:22%"></i>
+   </div>
+   <p data-en="Installment credit lines that follow the user across linked wallets." 
+      data-fa="خطوط اعتباری خرید اقساطی که در کیف‌پول‌های متصل کاربر همراه او هستند.">Installment credit lines that follow the user across linked wallets.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 7 · PLAY TO DISCOUNT ===== -->
+<section class="sl g2" id="s7" data-t="Play to discount" data-t-fa="بازی و پاداش تخفیف" style="grid-template-columns:1.15fr 1fr">
+ <div class="screen a">
+  <div class="hud">
+   <span data-en="SCORE" data-fa="امتیاز">SCORE</span>
+   <b id="score">0</b>
+  </div>
+  <img class="drone sm" alt="Aervynx arcade drone">
+  <i class="ob" style="--y:16%;--d:0s"></i>
+  <i class="ob" style="--y:56%;--d:1.3s"></i>
+  <i class="ob" style="--y:76%;--d:2.4s"></i>
+ </div>
+ <div>
+  <h2 class="a">
+   <span data-en="Play. Score. " data-fa="بازی کنید. رکورد بزنید. ">Play. Score. </span>
+   <span style="color:var(--m)" data-en="Save." data-fa="تخفیف بگیرید.">Save.</span>
+  </h2>
+  <div class="row pipe2 a">
+   <span class="chip hot" data-en="Score" data-fa="امتیاز بازی">Score</span>
+   <span class="chip hot" data-en="Voucher" data-fa="واچر تخفیف">Voucher</span>
+   <span class="chip hot" data-en="Discount" data-fa="تخفیف خرید">Discount</span>
+  </div>
+  <p class="sub a" 
+     data-en="A 2D drone arcade turns high scores into marketplace discount vouchers." 
+     data-fa="یک بازی آرکید دوبعدی پهپادی که امتیازات بالا را به کوپن‌های تخفیف در مارکت‌پلیس تبدیل می‌کند.">A 2D drone arcade turns high scores into marketplace discount vouchers.</p>
+ </div>
+</section>
+
+<!-- ===== SLIDE 8 · AIR TRAVEL AND DOTO ===== -->
+<section class="sl" data-t="Air travel and DOTO" data-t-fa="گردشگری هوایی و DOTO">
+ <h2 class="a" style="max-width:20ch">
+  <span data-en="Flights as NFTs. " data-fa="بلیت پرواز به عنوان NFT. ">Flights as NFTs. </span>
+  <span style="color:var(--m)" data-en="Paid in DOTO." data-fa="تسویه مستقیم با DOTO.">Paid in DOTO.</span>
+ </h2>
+ <div class="pass a">
+  <div class="route">
+   <b class="mono" data-en="From" data-fa="مبدأ">From</b>
+   <svg viewBox="0 0 400 110" height="110">
+    <path d="M0 100Q200 -60 400 100" fill="none" stroke="rgba(255,255,255,.22)" stroke-dasharray="6 8"/>
+    <circle r="6" fill="#EC5800">
+     <animateMotion dur="4s" repeatCount="indefinite" path="M0 100Q200 -60 400 100"/>
+    </circle>
+   </svg>
+   <b class="mono" data-en="To" data-fa="مقصد">To</b>
+  </div>
+  <ul class="perks">
+   <li data-en="Bulk-purchased flight tickets as NFTs" 
+       data-fa="خرید عمده بلیت‌های پرواز در قالب NFT">Bulk-purchased flight tickets as NFTs</li>
+   <li data-en="DOTO token discounts" 
+       data-fa="تخفیف‌های ویژه با پرداخت توکن DOTO">DOTO token discounts</li>
+   <li data-en="BNPL eligibility" 
+       data-fa="امکان خرید اقساطی بلیت‌ها (BNPL)">BNPL eligibility</li>
+  </ul>
+ </div>
+</section>
+
+<!-- ===== SLIDE 9 · CARD AND BITBANK ===== -->
+<section class="sl g2" data-t="Card and BitBank" data-t-fa="کارت هوشمند و بیت‌بانک">
+ <div>
+  <h2 class="a">
+   <span data-en="Secure like hardware. " data-fa="امنیت به استواری سخت‌افزار. ">Secure like hardware. </span>
+   <span style="color:var(--m)" data-en="Spend like cash." data-fa="خرج روزمره به راحتی پول نقد.">Spend like cash.</span>
+  </h2>
+  <ul class="lg">
+   <li class="a" style="--c:var(--gn)">
+    <b data-en="EAL6+ hardware cold storage" data-fa="ذخیره‌سازی سرد سخت‌افزاری با استاندارد EAL6+">EAL6+ hardware cold storage</b>
+    <span data-en="Keys stay inside the secure element." 
+          data-fa="کلیدهای خصوصی در محیط امن چیپست سخت‌افزاری محافظت می‌شوند.">Keys stay inside the secure element.</span>
+   </li>
+   <li class="a" style="--c:var(--b)">
+    <b data-en="ERC-4337 account abstraction" data-fa="انتزاع حساب هوشمند (ERC-4337)">ERC-4337 account abstraction</b>
+    <span data-en="Smart accounts with EIP-712 signed approvals." 
+          data-fa="حساب‌های هوشمند با تاییدیه امضاهای آن‌چین استاندارد EIP-712.">Smart accounts with EIP-712 signed approvals.</span>
+   </li>
+   <li class="a" style="--c:var(--o)">
+    <b data-en="Dual-mode fiat settlement" data-fa="تسویه دوراهی شتاب و فیات">Dual-mode fiat settlement</b>
+    <span data-en="BaaS rails plus the BitBank Shetab credit-line bridge." 
+          data-fa="ریل‌های بانکداری ابری همراه با پل خط اعتباری بیت‌بانک متصل به شبکه شتاب.">BaaS rails plus the BitBank Shetab credit-line bridge.</span>
+   </li>
+  </ul>
+ </div>
+ <div class="a">
+  <div class="cc">
+   <b class="mono">AERVYNX<i>.ONE</i></b>
+   <em>EAL6+ NFC</em>
+   <span class="ic"></span>
+   <span class="num mono">•••• •••• •••• ••••</span>
+  </div>
+ </div>
+</section>
+
+<!-- ===== SLIDE 10 · MARKET OPPORTUNITY ===== -->
+<section class="sl g2" data-t="Market Opportunity" data-t-fa="اندازه و فرصت بازار">
+ <div>
+  <h2 class="a">
+   <span data-en="A massive intersection. " data-fa="تقاطعی بی‌نظیر از بازارها. ">A massive intersection. </span>
+   <span style="color:var(--m)" data-en="Built for exponential scale." data-fa="طراحی‌شده برای مقیاس‌پذیری تصاعدی.">Built for exponential scale.</span>
+  </h2>
+  <ul class="lg" style="margin-top:22px">
+   <li class="a" style="--c:var(--b)">
+    <b class="mono">TAM: $16.1T</b>
+    <span data-en="Global tokenized illiquid & RWA market by 2030 (BCG / Citi benchmark)." 
+          data-fa="ارزش جهانی بازار توکنایز دارایی‌های فیزیکی و مالی تا سال ۲۰۳۰ (گزارش BCG و Citi).">Global tokenized illiquid & RWA market by 2030 (BCG / Citi benchmark).</span>
+   </li>
+   <li class="a" style="--c:var(--o)">
+    <b class="mono">SAM: $4.8B</b>
+    <span data-en="Regional micro-logistics, retail POS card volume, and charter travel." 
+          data-fa="حجم بازار لجستیک خرد، تراکنش‌های کارت‌های پایانه‌ای و خدمات سفر منطقه‌ای.">Regional micro-logistics, retail POS card volume, and charter travel.</span>
+   </li>
+   <li class="a" style="--c:var(--gn)">
+    <b class="mono">SOM: $18M+</b>
+    <span data-en="24-month DotOne target: 10,000 active cards & 500 fleet assets." 
+          data-fa="هدف ۲۴ ماهه اکوسیستم دات‌وان: ۱۰,۰۰۰ کارت فعال و ۵۰۰ دارایی ناوگانی توکنایزشده.">24-month DotOne target: 10,000 active cards & 500 fleet assets.</span>
+   </li>
+  </ul>
+ </div>
+ <div class="a" style="display:flex;justify-content:center;align-items:center;position:relative">
+  <svg viewBox="0 0 360 360" width="340" height="340" style="overflow:visible">
+   <!-- TAM Ring -->
+   <circle cx="180" cy="180" r="160" fill="none" stroke="rgba(0,150,255,0.18)" stroke-width="2" stroke-dasharray="6 6"/>
+   <circle cx="180" cy="180" r="160" fill="rgba(0,150,255,0.03)"/>
+   <text x="180" y="38" fill="var(--b)" font-size="12" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="1">TAM · $16.1T</text>
+   
+   <!-- SAM Ring -->
+   <circle cx="180" cy="180" r="110" fill="none" stroke="rgba(236,88,0,0.3)" stroke-width="2"/>
+   <circle cx="180" cy="180" r="110" fill="rgba(236,88,0,0.06)"/>
+   <text x="180" y="88" fill="var(--o)" font-size="12" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="1">SAM · $4.8B</text>
+   
+   <!-- SOM Ring & Center Pulse -->
+   <circle cx="180" cy="180" r="58" fill="none" stroke="var(--gn)" stroke-width="2.5" style="box-shadow:0 0 20px var(--gn)"/>
+   <circle cx="180" cy="180" r="58" fill="rgba(39,209,127,0.15)"/>
+   <text x="180" y="176" fill="#fff" font-size="14" font-weight="700" font-family="'Inter', sans-serif" text-anchor="middle">SOM</text>
+   <text x="180" y="196" fill="var(--gn)" font-size="13" font-family="'JetBrains Mono', monospace" font-weight="600" text-anchor="middle">$18M+</text>
+   
+   <!-- Radar Scanning Needle -->
+   <line x1="180" y1="180" x2="180" y2="20" stroke="url(#radarGlow)" stroke-width="1.5">
+    <animateTransform attributeName="transform" type="rotate" from="0 180 180" to="360 180 180" dur="12s" repeatCount="indefinite"/>
+   </line>
+   <defs>
+    <linearGradient id="radarGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+     <stop offset="0%" stop-color="transparent"/>
+     <stop offset="100%" stop-color="var(--o)"/>
+    </linearGradient>
+   </defs>
+  </svg>
+ </div>
+</section>
+
+<!-- ===== SLIDE 11 · VALUE PROPOSITION ===== -->
+<section class="sl" data-t="Value Proposition" data-t-fa="ارزش پیشنهادی و مزیت رقابتی">
+ <h2 class="a" style="max-width:24ch">
+  <span data-en="Unfair Advantage. " data-fa="مزیت رقابتی بنیادین. ">Unfair Advantage. </span>
+  <span style="color:var(--m)" data-en="Triple-sided value engine." data-fa="موتور ارزش‌آفرینی سه‌جانبه.">Triple-sided value engine.</span>
+ </h2>
+ <div class="two a" style="grid-template-columns:repeat(3, 1fr);gap:18px;margin-top:30px">
+  <!-- Side 1: Retail Users -->
+  <div class="card" style="padding:24px">
+   <span class="chip hot" data-en="Retail Users" data-fa="مصرف‌کننده نهایی">Retail Users</span>
+   <h3 style="font-size:20px;margin:14px 0 8px" data-en="Direct Spend & BNPL" data-fa="خرج مستقیم کریپتو و BNPL">Direct Spend & BNPL</h3>
+   <p style="font-size:14px;line-height:1.6" 
+      data-en="Spend non-custodial crypto directly on Shetab POS terminals with instant zero-interest installment options." 
+      data-fa="خرج مستقیم دارایی‌های دیجیتال روی پایانه‌های شتاب با امنیت نگهداری سرد و خط اعتباری اقساطی آنی.">Spend non-custodial crypto directly on Shetab POS terminals with instant zero-interest installment options.</p>
+  </div>
+  <!-- Side 2: RWA Investors -->
+  <div class="card" style="padding:24px">
+   <span class="chip" style="border-color:var(--gn);color:var(--t)" data-en="RWA Investors" data-fa="سرمایه‌گذاران RWA">RWA Investors</span>
+   <h3 style="font-size:20px;margin:14px 0 8px" data-en="Liquid Yield Pools" data-fa="نقدشوندگی و بازده پایدار">Liquid Yield Pools</h3>
+   <p style="font-size:14px;line-height:1.6" 
+      data-en="Fractional ownership of operational drone and vehicle fleets with transparent on-chain monthly cashflow." 
+      data-fa="مالکیت کسری در ناوگان‌های عملیاتی پهپادی و خودرویی همراه با جریان سود ماهانه و شفاف روی زنجیره.">Fractional ownership of operational drone and vehicle fleets with transparent on-chain monthly cashflow.</p>
+  </div>
+  <!-- Side 3: Merchants & Logistics -->
+  <div class="card" style="padding:24px">
+   <span class="chip" style="border-color:var(--b);color:var(--t)" data-en="Merchants & Fleets" data-fa="پذیرندگان و ناوگان‌ها">Merchants & Fleets</span>
+   <h3 style="font-size:20px;margin:14px 0 8px" data-en="Zero-Fraud Escrow" data-fa="حذف ریسک کلاهبرداری تحویل">Zero-Fraud Escrow</h3>
+   <p style="font-size:14px;line-height:1.6" 
+      data-en="Guaranteed settlement with hardware NFC handshakes and EIP-712 proofs, eliminating chargeback fraud." 
+      data-fa="تسویه تضمین‌شده از طریق تاییدیه سخت‌افزاری NFC و امضای EIP-712 بدون ریسک تقلب یا بازگشت وجه.">Guaranteed settlement with hardware NFC handshakes and EIP-712 proofs, eliminating chargeback fraud.</p>
+  </div>
+ </div>
+ <div class="row a" style="margin-top:24px">
+  <span class="chip" data-en="Self-Custody" data-fa="حضانت کامل کاربر">Self-Custody</span>
+  <span class="chip" data-en="Real Physical Moat" data-fa="سد دفاعی فیزیکی و سخت‌افزاری">Real Physical Moat</span>
+  <span class="chip" data-en="Zero Financial Friction" data-fa="حذف اصطکاک پرداخت">Zero Financial Friction</span>
+ </div>
+</section>
+
+<!-- ===== SLIDE 12 · COMPETITIVE LANDSCAPE ===== -->
+<section class="sl" data-t="Competitive Matrix" data-t-fa="ماتریس رقبا">
+ <h2 class="a" style="max-width:24ch">
+  <span data-en="Where others stop, " data-fa="جایی که دیگران متوقف می‌شوند، ">Where others stop, </span>
+  <span style="color:var(--m)" data-en="AERVYNX connects." data-fa="پروتکل ما متصل می‌کند.">AERVYNX connects.</span>
+ </h2>
+ <div class="card a" style="margin-top:26px;padding:16px 24px;overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:13px;text-align:center">
+   <thead>
+    <tr style="border-bottom:1px solid var(--l);color:var(--m)">
+     <th style="padding:12px 8px;text-align:left" data-en="Feature / Dimension" data-fa="قابلیت / ویژگی">Feature / Dimension</th>
+     <th style="padding:12px 8px" data-en="DigiCard" data-fa="دیجی‌کارت">DigiCard</th>
+     <th style="padding:12px 8px" data-en="MofidCard" data-fa="مفیدکارت">MofidCard</th>
+     <th style="padding:12px 8px" data-en="Gnosis / Tangem" data-fa="تانجم / گنوسیس">Gnosis / Tangem</th>
+     <th style="padding:12px 8px;color:var(--o);font-weight:700">AERVYNX.ONE</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+     <td style="padding:10px 8px;text-align:left;font-weight:600" data-en="EAL6+ Cold Hardware Card" data-fa="کارت ذخیره‌سازی سرد EAL6+">EAL6+ Cold Hardware Card</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--gn)">✓</td>
+     <td style="color:var(--o);font-weight:700">✓ (EAL6+ NFC)</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+     <td style="padding:10px 8px;text-align:left;font-weight:600" data-en="Shetab + Web3 Dual Settlement" data-fa="تسویه هم‌زمان شتاب و رمزارز">Shetab + Web3 Dual Settlement</td>
+     <td style="color:var(--gn)">✓ (Fiat Only)</td>
+     <td style="color:var(--gn)">✓ (Fiat Only)</td>
+     <td style="color:var(--r)">✕ (Visa/MC)</td>
+     <td style="color:var(--o);font-weight:700">✓ (BitBank Rail)</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+     <td style="padding:10px 8px;text-align:left;font-weight:600" data-en="Cross-Wallet On-Chain BNPL" data-fa="خرید اقساطی آن‌چین (BNPL)">Cross-Wallet On-Chain BNPL</td>
+     <td style="color:var(--r)">✕ (Centralized)</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--o);font-weight:700">✓ (Smart Lines)</td>
+    </tr>
+    <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+     <td style="padding:10px 8px;text-align:left;font-weight:600" data-en="Autonomous DeliveryEscrow" data-fa="امانت هوشمند تحویل پهپادی">Autonomous DeliveryEscrow</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--o);font-weight:700">✓ (EIP-712 Proof)</td>
+    </tr>
+    <tr>
+     <td style="padding:10px 8px;text-align:left;font-weight:600" data-en="Real Fleet RWA Yield Pools" data-fa="استخر توزیع سود ناوگان فیزیکی">Real Fleet RWA Yield Pools</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--r)">✕ (Stock Fund)</td>
+     <td style="color:var(--r)">✕</td>
+     <td style="color:var(--o);font-weight:700">✓ (DOTO Staking)</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<!-- ===== SLIDE 13 · TOKENOMICS & DOTO UTILITY ===== -->
+<section class="sl g2" data-t="Tokenomics" data-t-fa="اقتصاد توکن و کاربردها" style="grid-template-columns:1fr 1.1fr;gap:40px">
+ <div>
+  <h2 class="a" style="font-size:48px">
+   <span>DOTO. </span>
+   <span style="color:var(--m)" data-en="The economic heartbeat." data-fa="ضربان اقتصادی دارایی‌های فیزیکی.">The economic heartbeat.</span>
+  </h2>
+  <div style="display:flex;align-items:center;gap:24px;margin-top:24px" class="a">
+   <!-- SVG Donut Chart -->
+   <svg viewBox="0 0 160 160" width="130" height="130" style="transform:rotate(-90deg)">
+    <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="22"/>
+    <!-- Ecosystem & Fleets 35% -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="var(--o)" stroke-width="22" stroke-dasharray="131.9 377" stroke-dashoffset="0"/>
+    <!-- Team & Core 20% -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="var(--b)" stroke-width="22" stroke-dasharray="75.4 377" stroke-dashoffset="-131.9"/>
+    <!-- Seed / DotOne Ventures 15% -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="var(--gn)" stroke-width="22" stroke-dasharray="56.5 377" stroke-dashoffset="-207.3"/>
+    <!-- Liquidity & MM 15% -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="#FFD000" stroke-width="22" stroke-dasharray="56.5 377" stroke-dashoffset="-263.8"/>
+    <!-- Treasury 10% & Community 5% -->
+    <circle cx="80" cy="80" r="60" fill="none" stroke="var(--r)" stroke-width="22" stroke-dasharray="56.5 377" stroke-dashoffset="-320.3"/>
+   </svg>
+   <div style="font-size:12px;display:grid;gap:6px">
+    <div style="display:flex;align-items:center;gap:8px"><i style="width:8px;height:8px;border-radius:50%;background:var(--o)"></i><span data-en="Ecosystem & Fleets: 35%" data-fa="اکوسیستم و ناوگان: ۳۵٪">Ecosystem & Fleets: 35%</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><i style="width:8px;height:8px;border-radius:50%;background:var(--b)"></i><span data-en="Team & Founders: 20%" data-fa="بنیان‌گذاران و تیم: ۲۰٪">Team & Founders: 20%</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><i style="width:8px;height:8px;border-radius:50%;background:var(--gn)"></i><span data-en="DotOne Ventures: 15%" data-fa="دات‌وان ونچرز (بذری): ۱۵٪">DotOne Ventures: 15%</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><i style="width:8px;height:8px;border-radius:50%;background:#FFD000"></i><span data-en="Liquidity & BitBank: 15%" data-fa="نقدشوندگی و بیت‌بانک: ۱۵٪">Liquidity & BitBank: 15%</span></div>
+    <div style="display:flex;align-items:center;gap:8px"><i style="width:8px;height:8px;border-radius:50%;background:var(--r)"></i><span data-en="Treasury & Airdrop: 15%" data-fa="خزانه‌داری و پاداش: ۱۵٪">Treasury & Airdrop: 15%</span></div>
+   </div>
+  </div>
+ </div>
+ <div>
+  <ul class="lg a" style="margin-top:0">
+   <li style="--c:var(--b);padding:10px 0 10px 28px">
+    <b data-en="Gas & Fee Discounts" data-fa="تخفیف کارمزد و سوخت شبکه">Gas & Fee Discounts</b>
+    <span data-en="Used for protocol settlement discounts across DotOne Chain 505." data-fa="تخفیف در تسویه تراکنش‌ها روی لایه اول دات‌وان (Chain ID 505).">Used for protocol settlement discounts across DotOne Chain 505.</span>
+   </li>
+   <li style="--c:var(--o);padding:10px 0 10px 28px">
+    <b data-en="DeliveryEscrow Staking" data-fa="وثیقه‌گذاری اسکروی تحویل">DeliveryEscrow Staking</b>
+    <span data-en="Operators stake DOTO as collateral to accept high-value physical cargo." data-fa="اپراتورهای ناوگان جهت دریافت مأموریت‌های باری باارزش، DOTO را وثیقه می‌کنند.">Operators stake DOTO as collateral to accept high-value physical cargo.</span>
+   </li>
+   <li style="--c:var(--gn);padding:10px 0 10px 28px">
+    <b data-en="Fleet Yield Rewards" data-fa="پاداش استیکینگ و سود ناوگان">Fleet Yield Rewards</b>
+    <span data-en="Staking yield boosted by operational logistics and rental cash flows." data-fa="تقویت سود هولدرها از جریان نقدینگی واقعی اجاره و حمل بار فیزیکی.">Staking yield boosted by operational logistics and rental cash flows.</span>
+   </li>
+   <li style="--c:#FFD000;padding:10px 0 10px 28px">
+    <b data-en="BNPL Collateral Anchor" data-fa="لنگر اعتباری خرید اقساطی">BNPL Collateral Anchor</b>
+    <span data-en="Unlocks zero-collateral installment limits for AERVYNX Card holders." data-fa="افزایش سقف خطوط اعتباری خرید اقساطی برای دارندگان کارت فیزیکی.">Unlocks zero-collateral installment limits for AERVYNX Card holders.</span>
+   </li>
+  </ul>
+ </div>
+</section>
+
+<!-- ===== SLIDE 14 · CORE TEAM & LEADERSHIP ===== -->
+<section class="sl" data-t="Team & Leadership" data-t-fa="تیم اصلی و رهبری">
+ <h2 class="a" style="max-width:24ch">
+  <span data-en="Experienced Builders. " data-fa="توسعه‌دهندگان باسابقه. ">Experienced Builders. </span>
+  <span style="color:var(--m)" data-en="Engineers & operators." data-fa="متخصصان بلاک‌چین و سیستم‌های مقیاس‌پذیر.">Engineers & operators.</span>
+ </h2>
+ <div class="a" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:26px">
+  
+  <!-- 1. Ali Nasirloo -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(236,88,0,.15);border:1.5px solid var(--o);display:grid;place-items:center;font-weight:700;color:var(--o)">AN</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="Ali Nasirloo" data-fa="علی نصیرلو">Ali Nasirloo</b>
+     <span style="font-size:12px;color:var(--o)" data-en="Founder & Blockchain Architect" data-fa="بنیان‌گذار و معمار بلاک‌چین">Founder & Blockchain Architect</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Specializing in DotOne L1 smart contract infrastructure and on-chain protocol mechanics." 
+      data-fa="متخصص زیرساخت قراردادهای هوشمند لایه اول دات‌وان و سازوکارهای آن‌چین پروتکل.">Specializing in DotOne L1 smart contract infrastructure and on-chain protocol mechanics.</p>
+  </div>
+
+  <!-- 2. Mohammad Hossein Ghiasvand -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(0,150,255,.15);border:1.5px solid var(--b);display:grid;place-items:center;font-weight:700;color:var(--b)">MG</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="M. H. Ghiasvand" data-fa="محمدحسین غیاثوند">M. H. Ghiasvand</b>
+     <span style="font-size:12px;color:var(--b)" data-en="Founder & EVM Core Engineer" data-fa="بنیان‌گذار و مهندس ارشد EVM">Founder & EVM Core Engineer</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Focusing on EVM compatibility, RWA tokenization standards, and security hardening." 
+      data-fa="تمرکز بر سازگاری EVM، استانداردهای توکنایز دارایی‌های واقعی (RWA) و ارتقای امنیت.">Focusing on EVM compatibility, RWA tokenization standards, and security hardening.</p>
+  </div>
+
+  <!-- 3. Parsa Abolhasani Rad -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(39,209,127,.15);border:1.5px solid var(--gn);display:grid;place-items:center;font-weight:700;color:var(--gn)">PA</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="Parsa Abolhasani Rad" data-fa="پارسا ابوالحسنی راد">Parsa Abolhasani Rad</b>
+     <span style="font-size:12px;color:var(--gn)" data-en="Co-Founder & Solutions Architect" data-fa="هم‌بنیان‌گذار و معمار ارشد راهکار">Co-Founder & Solutions Architect</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Leading full-stack system architecture, ERC-4337, EIP-712 proofs, and hardware integration." 
+      data-fa="رهبری معماری فول‌استک، انتزاع حساب ERC-4337، اثبات‌های EIP-712 و یکپارچه‌سازی سخت‌افزار.">Leading full-stack system architecture, ERC-4337, EIP-712 proofs, and hardware integration.</p>
+  </div>
+
+  <!-- 4. Marzieh Saqeb Alizadeh -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,208,0,.15);border:1.5px solid #FFD000;display:grid;place-items:center;font-weight:700;color:#FFD000">MS</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="Marzieh Saqeb Alizadeh" data-fa="مرضیه ثاقب علیزاده">Marzieh Saqeb Alizadeh</b>
+     <span style="font-size:12px;color:#FFD000" data-en="Operations & Project Manager" data-fa="مدیر پروژه و عملیات">Operations & Project Manager</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Managing agile execution, product roadmap delivery, and ecosystem team alignment." 
+      data-fa="مدیریت اسپرینت‌های چابک، تحویل نقشه راه محصول و هم‌راستایی تیم‌های اکوسیستم.">Managing agile execution, product roadmap delivery, and ecosystem team alignment.</p>
+  </div>
+
+  <!-- 5. Milad Kalhor -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(0,150,255,.15);border:1.5px solid var(--b);display:grid;place-items:center;font-weight:700;color:var(--b)">MK</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="Milad Kalhor" data-fa="میلاد کلهر">Milad Kalhor</b>
+     <span style="font-size:12px;color:var(--b)" data-en="Senior Full-Stack Engineer" data-fa="مهندس ارشد فول‌استک">Senior Full-Stack Engineer</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Developing resilient backend microservices, BitBank Shetab rails, and fleet APIs." 
+      data-fa="توسعه میکروسرویس‌های بک‌اند، اتصال ریل‌های شتاب بیت‌بانک و رابط‌های ناوگان فیزیکی.">Developing resilient backend microservices, BitBank Shetab rails, and fleet APIs.</p>
+  </div>
+
+  <!-- 6. Abolfazl Vaeedian -->
+  <div class="card" style="padding:18px 20px">
+   <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,61,87,.15);border:1.5px solid var(--r);display:grid;place-items:center;font-weight:700;color:var(--r)">AV</div>
+    <div>
+     <b style="display:block;font-size:16px" data-en="Abolfazl Vaeedian" data-fa="ابوالفضل واعدیان">Abolfazl Vaeedian</b>
+     <span style="font-size:12px;color:var(--r)" data-en="Lead Frontend & Game Engine" data-fa="توسعه‌دهنده ارشد فرانت‌اند و بازی">Lead Frontend & Game Engine</span>
+    </div>
+   </div>
+   <p style="font-size:12px;margin-top:10px;line-height:1.5;color:var(--m)" 
+      data-en="Crafting responsive Web3 interfaces, wallet adapters, and the 2D arcade mini-app engine." 
+      data-fa="طراحی رابط‌های کاربری وب۳، اتصال کیف‌پول‌ها و موتور بازی دوبعدی آرکید.">Crafting responsive Web3 interfaces, wallet adapters, and the 2D arcade mini-app engine.</p>
+  </div>
+
+ </div>
+</section>
+
+<!-- ===== SLIDE 15 · DOTONE HOLDING SYNERGIES ===== -->
+<section class="sl g2" data-t="DotOne Synergies" data-t-fa="هم‌افزایی هلدینگ دات‌وان" style="grid-template-columns:1.1fr 1fr;gap:40px">
+ <div>
+  <h2 class="a" style="font-size:46px">
+   <span data-en="Built for DotOne. " data-fa="طراحی برای دات‌وان. ">Built for DotOne. </span>
+   <span style="color:var(--m)" data-en="The physical adoption gateway." data-fa="دروازه ورود به اقتصاد فیزیکی.">The physical adoption gateway.</span>
+  </h2>
+  <p class="sub a" style="font-size:18px;margin-top:16px"
+     data-en="AERVYNX serves as the flagship consumer gateway for DotOne Chain 505, transforming abstract L1 consensus into physical daily utility."
+     data-fa="پروتکل AERVYNX پرچمدار ورود کاربر واقعی به شبکه لایه اول دات‌وان (Chain 505) است و اجماع آن‌چین را به ابزاری ملموس در زندگی روزمره بدل می‌سازد.">AERVYNX serves as the flagship consumer gateway for DotOne Chain 505, transforming abstract L1 consensus into physical daily utility.</p>
+  <div class="row a" style="margin-top:24px">
+   <span class="chip hot" data-en="L1 Gas Sink" data-fa="مصرف‌کننده مستمر گس">L1 Gas Sink</span>
+   <span class="chip" data-en="Zero-CAC Hardware" data-fa="کاهش هزینه جذب کاربر (CAC)">Zero-CAC Hardware</span>
+   <span class="chip" data-en="Native Bridge" data-fa="پل نقدینگی شتاب و بانکی">Native Bridge</span>
+  </div>
+ </div>
+ <div>
+  <ul class="lg a" style="margin-top:0">
+   <li style="--c:var(--b);padding:12px 0 12px 28px">
+    <b data-en="High-Velocity Transaction Burn" data-fa="تراکنش مستمر و مصرف سوخت شبکه">High-Velocity Transaction Burn</b>
+    <span data-en="Every drone delivery, card swipe, and flight booking executes on DotOne Chain, generating sustained L1 gas volume." 
+          data-fa="هر پرواز پهپاد، تراکنش کارتی و بلیت پرواز روی شبکه دات‌وان تسویه شده و جریان مداوم مصرف گس ایجاد می‌کند.">Every drone delivery, card swipe, and flight booking executes on DotOne Chain, generating sustained L1 gas volume.</span>
+   </li>
+   <li style="--c:var(--gn);padding:12px 0 12px 28px">
+    <b data-en="Physical-to-Web3 Funnel" data-fa="قیف جذب کاربر از دنیای فیزیکی">Physical-to-Web3 Funnel</b>
+    <span data-en="Hardware EAL6+ cards onboard non-crypto users directly through familiar POS terminals and BNPL installments." 
+          data-fa="کارت‌های سخت‌افزاری کاربران سنتی را از طریق دستگاه‌های پوز آشنا و خطوط اعتباری خرید قسطی وارد وب۳ می‌کنند.">Hardware EAL6+ cards onboard non-crypto users directly through familiar POS terminals and BNPL installments.</span>
+   </li>
+   <li style="--c:var(--o);padding:12px 0 12px 28px">
+    <b data-en="Cross-Subsidiary Liquidity" data-fa="هم‌افزایی شرکت‌های تابعه هلدینگ">Cross-Subsidiary Liquidity</b>
+    <span data-en="Synergizes seamlessly with BitBank liquidity pools, travel agencies, and provincial logistics hubs." 
+          data-fa="هم‌افزایی مستقیم با استخرهای نقدینگی بیت‌بانک، آژانس‌های هواپیمایی و هاب‌های لجستیک استانی.">Synergizes seamlessly with BitBank liquidity pools, travel agencies, and provincial logistics hubs.</span>
+   </li>
+  </ul>
+ </div>
+</section>
+
+<!-- ===== SLIDE 16 · BUSINESS MODEL ===== -->
+<section class="sl" data-t="Business Model" data-t-fa="مدل کسب‌وکار و درآمدی">
+ <h2 class="a" style="max-width:24ch">
+  <span data-en="Monetizing Movement. " data-fa="کسب درآمد از جریان ارزش. ">Monetizing Movement. </span>
+  <span style="color:var(--m)" data-en="Diversified, cash-flowing rails." data-fa="جریان‌های نقدینگی چندگانه و پایدار.">Diversified, cash-flowing rails.</span>
+ </h2>
+ <div class="two a" style="grid-template-columns:repeat(2, 1fr);gap:20px;margin-top:28px">
+  
+  <!-- Revenue Stream 1 -->
+  <div class="card" style="padding:22px 26px">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="chip hot" data-en="Logistics & Escrow" data-fa="لجستیک و امانت">Logistics & Escrow</span>
+    <b class="mono" style="color:var(--o);font-size:16px">1.5% – 2.5%</b>
+   </div>
+   <h3 style="font-size:19px;margin:14px 0 8px" data-en="DeliveryEscrow Clearing" data-fa="کارمزد تسویه DeliveryEscrow">DeliveryEscrow Clearing</h3>
+   <p style="font-size:13px;line-height:1.6;color:var(--m)" 
+      data-en="Micro-fees levied on autonomous cargo handshakes, proof-of-delivery attestations, and fleet insurance pools." 
+      data-fa="کارمزد خرد از تسویه تاییدیه تحویل بار، قراردادهای اثبات EIP-712 و استخرهای بیمه خودکار ناوگان.">Micro-fees levied on autonomous cargo handshakes, proof-of-delivery attestations, and fleet insurance pools.</p>
+  </div>
+
+  <!-- Revenue Stream 2 -->
+  <div class="card" style="padding:22px 26px">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="chip" style="border-color:var(--b);color:var(--t)" data-en="Hardware & Cards" data-fa="کارت و پایانه‌ها">Hardware & Cards</span>
+    <b class="mono" style="color:var(--b);font-size:16px">$12 + 0.8%</b>
+   </div>
+   <h3 style="font-size:19px;margin:14px 0 8px" data-en="AERVYNX.One Issuance & Interchange" data-fa="صدور کارت و کارمزد تراکنش">AERVYNX.One Issuance & Interchange</h3>
+   <p style="font-size:13px;line-height:1.6;color:var(--m)" 
+      data-en="Hardware card sales margin combined with POS interchange spreads from BitBank Shetab liquidations." 
+      data-fa="حاشیه سود فروش کارت‌های فیزیکی EAL6+ همراه با اسپرد کارمزد تراکنش‌های پایانه‌ای شبکه شتاب.">Hardware card sales margin combined with POS interchange spreads from BitBank Shetab liquidations.</p>
+  </div>
+
+  <!-- Revenue Stream 3 -->
+  <div class="card" style="padding:22px 26px">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="chip" style="border-color:var(--gn);color:var(--t)" data-en="Credit & BNPL" data-fa="اعتبار و اقساط">Credit & BNPL</span>
+    <b class="mono" style="color:var(--gn);font-size:16px">2.0% – 4.5% Spread</b>
+   </div>
+   <h3 style="font-size:19px;margin:14px 0 8px" data-en="BNPL Financing Spread" data-fa="اسپرد تأمین مالی اقساطی">BNPL Financing Spread</h3>
+   <p style="font-size:13px;line-height:1.6;color:var(--m)" 
+      data-en="Interest-rate differential and merchant origination charges across cross-wallet installment credit lines." 
+      data-fa="مابه‌التفاوت نرخ تأمین مالی و کارمزد مرچنت در ارائه خطوط اعتباری خرید اقساطی متصل به والت‌ها.">Interest-rate differential and merchant origination charges across cross-wallet installment credit lines.</p>
+  </div>
+
+  <!-- Revenue Stream 4 -->
+  <div class="card" style="padding:22px 26px">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="chip" style="border-color:#FFD000;color:var(--t)" data-en="Travel & RWA" data-fa="گردشگری و RWA">Travel & RWA</span>
+    <b class="mono" style="color:#FFD000;font-size:16px">3.0% – 6.0%</b>
+   </div>
+   <h3 style="font-size:19px;margin:14px 0 8px" data-en="Flight NFT & Asset Assetization" data-fa="مارجین پروازها و توکنایز">Flight NFT & Asset Assetization</h3>
+   <p style="font-size:13px;line-height:1.6;color:var(--m)" 
+      data-en="Wholesale air ticket arbitrage, NFT secondary market trading cuts, and SPV asset origination fees." 
+      data-fa="آربیتراژ خرید عمده بلیت‌های پرواز، کارمزد معاملات ثانویه NFTها و هزینه ساختاربندی حقوقی SPVها.">Wholesale air ticket arbitrage, NFT secondary market trading cuts, and SPV asset origination fees.</p>
+  </div>
+
+ </div>
+</section>
+
+<!-- ===== SLIDE 17 · ROADMAP ===== -->
+<section class="sl" data-t="Roadmap" data-t-fa="نقشه راه اجرایی">
+ <div>
+  <h2 class="a" style="max-width:24ch">
+   <span data-en="Execution Timeline. " data-fa="برنامه زمان‌بندی توسعه. ">Execution Timeline. </span>
+   <span style="color:var(--m)" data-en="From core rails to scale." data-fa="از زیرساخت پایه تا گسترش شبکه.">From core rails to scale.</span>
+  </h2>
+  <p class="sub a" style="margin-top:14px;font-size:17px"
+     data-en="A disciplined, four-phase technical expansion bridging on-chain code with real-world infrastructure."
+     data-fa="برنامه چهارمرحله‌ای برای اتصال قراردادهای هوشمند آن‌چین به زیرساخت‌ها و دارایی‌های فیزیکی.">A disciplined, four-phase technical expansion bridging on-chain code with real-world infrastructure.</p>
+ </div>
+ 
+ <ol class="road a" style="margin-top:46px">
+  <li>
+   <b style="color:var(--b)" data-en="Phase 1 · Foundation" data-fa="فاز ۱ · زیرساخت">Phase 1 · Foundation</b>
+   <span data-en="DotOne Chain 505 testnet deployment, core Solidity contracts, Foundry audit suite, and initial tokenomics model." 
+         data-fa="راه‌اندازی تست‌نت دات‌وان ۵۰۵، قراردادهای پایه سالیدیتی، تست‌های امنیتی Foundry و مدلسازی توکنومیکس.">DotOne Chain 505 testnet deployment, core Solidity contracts, Foundry audit suite, and initial tokenomics model.</span>
+  </li>
+  <li>
+   <b style="color:var(--o)" data-en="Phase 2 · Logistics" data-fa="فاز ۲ · لجستیک">Phase 2 · Logistics</b>
+   <span data-en="DeliveryEscrow release, NFC EAL6+ pilot drone handshakes, EIP-712 proofs, and 2D arcade mini-app launch." 
+         data-fa="انتشار قرارداد DeliveryEscrow، تاییدیه تحویل با تراشه NFC EAL6+، امضای EIP-712 و مینی‌اپ آرکید.">DeliveryEscrow release, NFC EAL6+ pilot drone handshakes, EIP-712 proofs, and 2D arcade mini-app launch.</span>
+  </li>
+  <li>
+   <b style="color:var(--gn)" data-en="Phase 3 · Payments" data-fa="فاز ۳ · پرداخت">Phase 3 · Payments</b>
+   <span data-en="AERVYNX.One Card beta rollout, BitBank Shetab rail integration, cross-wallet BNPL engine, and Flight NFTs." 
+         data-fa="عرضه بتای کارت هوشمند، اتصال درگاه شتاب بیت‌بانک، خط اعتباری اقساطی BNPL و توکنایز بلیت پرواز.">AERVYNX.One Card beta rollout, BitBank Shetab rail integration, cross-wallet BNPL engine, and Flight NFTs.</span>
+  </li>
+  <li>
+   <b style="color:#FFD000" data-en="Phase 4 · Expansion" data-fa="فاز ۴ · مقیاس">Phase 4 · Expansion</b>
+   <span data-en="Full SPV vehicle tokenization, regional logistics hubs, institutional RWA pools, and mass card distribution." 
+         data-fa="توکنایز ناوگان خودرویی با نهادهای SPV، هاب‌های باربری منطقه‌ای، استخرهای سازمانی RWA و توزیع عمومی کارت.">Full SPV vehicle tokenization, regional logistics hubs, institutional RWA pools, and mass card distribution.</span>
+  </li>
+ </ol>
+ 
+ <p class="fine a" style="margin-top:36px"
+    data-en="Roadmap and milestones represent current development plans and are subject to security audits, regulatory approvals, and partner integrations." 
+    data-fa="مایلستون‌های نقشه راه بر اساس برنامه اجرایی فعلی تنظیم شده و منوط به ممیزی‌های امنیتی، استانداردهای حقوقی و پیشرفت یکپارچه‌سازی با شرکای تجاری است.">Roadmap and milestones represent current development plans and are subject to security audits, regulatory approvals, and partner integrations.</p>
+</section>
+
+<!-- ===== SLIDE 18 · CLOSE & CONTACT ===== -->
+<section class="sl g2" data-t="Join the Build" data-t-fa="ارتباط و مشارکت" style="grid-template-columns:1.15fr 1fr;gap:44px">
+ <div>
+  <h2 class="a" style="font-size:46px;line-height:1.1">
+   <span data-en="Fuel the Future. " data-fa="به این حرکت بپیوندید. ">Fuel the Future. </span>
+   <span style="color:var(--m)" data-en="Build the physical economy on-chain." data-fa="ساخت اقتصاد برنامه‌پذیر فیزیکی روی بلاک‌چین.">Build the physical economy on-chain.</span>
+  </h2>
+  
+  <p class="sub a" style="font-size:17px;margin-top:16px"
+     data-en="We are opening strategic allocations for DotOne ecosystem builders, institutional fleet operators, and hardware partners."
+     data-fa="ما در حال جذب سرمایه‌گذاران استراتژیک، اپراتورهای ناوگان فیزیکی و شرکای تجاری اکوسیستم دات‌وان برای تحقق این تحول هستیم.">We are opening strategic allocations for DotOne ecosystem builders, institutional fleet operators, and hardware partners.</p>
+  
+  <div class="row a" style="margin-top:28px">
+   <a class="btn" href="mailto:contact@aervynx.one" style="display:inline-flex;align-items:center;gap:10px">
+    <span data-en="Join the Build" data-fa="پیوستن به همکاران پروژه">Join the Build</span>
+    <span style="font-size:16px">→</span>
+   </a>
+  </div>
+ </div>
+
+ <div>
+  <div class="card a" style="padding:26px 30px">
+   <span class="chip hot" data-en="Strategic Round" data-fa="راند جذب سرمایه استراتژیک">Strategic Round</span>
+   
+   <div style="margin:20px 0;display:grid;gap:16px">
+    <div>
+     <span style="font-size:11px;color:var(--m);display:block;text-transform:uppercase;letter-spacing:1px" data-en="Target Raise" data-fa="میزان سرمایه‌پذیری">Target Raise</span>
+     <b class="mono" style="font-size:24px;color:var(--t)">$1.2M <span style="font-size:14px;color:var(--o)">/ Seed Stage</span></b>
+    </div>
+    
+    <div>
+     <span style="font-size:11px;color:var(--m);display:block;text-transform:uppercase;letter-spacing:1px" data-en="Capital Allocation" data-fa="محل مصرف منابع">Capital Allocation</span>
+     <p style="font-size:13px;color:var(--m);margin-top:4px;line-height:1.5"
+        data-en="50% Fleet & Card Hardware · 30% Protocol & Contract Audits · 20% BitBank & Liquidity"
+        data-fa="۵۰٪ سخت‌افزار کارت و پهپاد · ۳۰٪ ممیزی امنیتی و توسعه کد · ۲۰٪ نقدینگی و درگاه بیت‌بانک">50% Fleet & Card Hardware · 30% Protocol & Contract Audits · 20% BitBank & Liquidity</p>
+    </div>
+    
+    <div style="border-top:1px solid var(--l);padding-top:14px;margin-top:4px">
+     <span style="font-size:11px;color:var(--m);display:block;text-transform:uppercase;letter-spacing:1px" data-en="Direct Contact" data-fa="ارتباط مستقیم با تیم">Direct Contact</span>
+     <div style="display:grid;gap:6px;margin-top:8px;font-size:13px" class="mono">
+      <div>🌐 <a href="https://aervynx.one" target="_blank" style="color:var(--b);text-decoration:none">aervynx.one</a></div>
+      <div>✉️ <a href="mailto:contact@aervynx.one" style="color:var(--t);text-decoration:none">contact@aervynx.one</a></div>
+      <div>⚡ <span style="color:var(--m)" data-en="DotOne Smart Chain (ID: 505)" data-fa="شبکه دات‌وان (Chain ID: 505)">DotOne Smart Chain (ID: 505)</span></div>
+     </div>
+    </div>
+   </div>
+   
+  </div>
+ </div>
+</section>
+
+<!-- نوار ناوبری پایین -->
+<nav class="nav">
+  <button id="pv" aria-label="Previous slide">←</button>
+  <div class="bar"><i id="pg"></i></div>
+  <span id="ct">01 / 18</span>
+  <button id="nx" aria-label="Next slide">→</button>
+</nav>
+
+</div> <!-- پایان stage -->
+
+<script id="assets">
+/* تصویر رندر پهپاد به صورت Base64 */
+const DRONE="data:image/webp;base64,UklGRoS+AgBXRUJQVlA4WAoAAAAQAAAAdwUAawMAQUxQSDDrAAABtyAkSKFdIiLaZrPZcCQJYBu3kQADJCXm/x/27lnOETEB48W4Pv6Ja9lfUOVaVUVqPR0RJ3EoOlVjjEcetDKuGmScjlF3JQnh0yaZRQKZKamKYFy0km2bOwlwN5FJFkhkXlhl2aZMQ4d2Z5GkSEVGRFRVrVVFco2xaNsHRKMzWQJRxx5jDNFV4kpU25YFAuhGN0hVXJUSXmvZjB1Id2YVMwWKlxZXmCRXErYBo7O4L6Hiuh2HoxKgAHtnw6haN85tGznnbLiTjAjH47bQc865tQ3SjBchAdtv2zVJxnvbNme7k/EuBGJuv98GN8l37DbQ3Q2LJCOCz0FrVWbCThLxQZnMJBl3x8NlxN3xP+5bkiRLkiTbIiK2+v+PNo+8QfRduzSi/xPg7batqrZt28q+8S2v9P//q4Boa33MvsYaHyL6PwGebduSJEmSpPse9IB9d///XxEAsCFiNrXFMojo/wRQjGRbdttAkrkA+O/de7abf67/k4ZMBxDR/wnwbNuWJEmSJD3oAR703fv/f6UGAQCR2MzdZfmK6P8EeLBt22lt27YKXsLbEv+40gGJztD250T0fwJk2bbdts0F2AvYeeY/V4KUrTiLoJ4+Ivo/Ab4lSbIkSbIt0ftNRO/K//+vdnH3qFqzoAHqIaL/E+DbtiVJkiRJghkAJ5oJ/v9fmYmYRUTFJNhXPET0fwJs27YtOqkU9ZagQHL2mmPM///XsxMitvI5ov8T4Nu2bTutbdvKt1JqlcB2u3X9/79KBgy4jRshjIj+TwAt27bbNhKUKCaEl87850qAlOyq6v6M6P8EUI4kyZEkvQ5PpbuZZzf/vPYcGgoi+j8BXP9/63rokmO3By5BBM9b8pbTsP8wTsNy6Hb/QPQYJIj+4yDzf07cM4Mv/qH+D8ojqwr2E34/+iF9vT0AIWo/9o1/8HX8FSuzQP32DsIvyxL6rvzkj3n8AZH2iJagfjuIn1Q/4QEoKVQK/JZ+OA7BYtWkYb743j0FYWKVKMT37UvOwQqiCYjf2Ge/8PzzWXkrfnf46W88JxhgAgKesUTEFwjybXsaAgTlLeC3dSROSQVRPWaZmGII5jELytTEwP4UT0+ALWvVC/8MOT5ne2rbmm/AX+dX4MlJqLRspfbptwvIwVnNQLXKslJ/jenLAsqDE2aiiatHS4f+EkrUgjo8YWqft2Vq8ZOCCCqggCZnJ8vE5Std6idFPiqYKUHC6QkwNatlpvDFR/2gaW21yvT0VFmalSXyg74ESVt7P1U2FezUpNlKMyvlrS8UE0WtVu1RbBmkp6bU9tQyMzVNEBPKBPOTS7eWgHhmIiRdmWkCKmBJaqrb1uZae56micihWUCs3FNqgKKlrre159me1Z7VszLk7W/yUAQp6dbzrI+iqG5lVj1be7Zl9szKT79ZzsW2bNlW5hRErMhqbdY2jVboH3IsFlyure1ZJb7TsuxDbXuy1bZMRY9NH8XW9qzyVbKpmaa1ema2bFqyDA9OqH3YU/a2ZWU5YWvPs9rWlq1eU8Ezk6hs+2ur2qLUNCvBtj3T1VpbzypNkQOzgELbnmfbWvlByxAR2qxsz1ZbDTCOzrU9e57nrz35TAW1QFAwzYQ909oGiqcmRV9bz/PXs1V8LSCfExew0rXSPDdB6mrP8zxrExABU/kKTTC1ZfXLPCFhJmDbbBW+RE2+FBARpVVqcW7OGlhtNctQVEQB+TpBMFMpPDUFmWVb04hE5OPrB+VrCTk5Ty1XeydpqeLrh5UfNQ7PmupWLdGZya/8CTw+lWLPVMFSTthSmgr2gt/gMUpFlwIYKOdrwVrbpEQ08HgFyNrKNEC+SU9HgmXWUk7aoehKztpqteSsLbS12WELpbbmaQvNtRMXQslh20/KgVuu/6//r/+v/6//r///z7t/u+v6//r/+v/6//r/+v/6//r/+v9hnYeu8y/V/ZJrzmH83//X/9f/1//X/5+WiAAg/+IiAEKI/nuF/uMhETGTqjH/XPm1EZGImZmI8AchEouKOGuN6r+QEBFJTEzF1EwICX8GIIuoPTpr9d8nxDfwlwIiZDV391JquKqpMtP3Q2ZV86feWSPvkH91MBICACIQPicyRpPSX1HGGvWvhCRqHhG11dZrabXUKK7ChN8KSMTMI4aUU/TOymOixjlnzir/yuiOLKyq5qamKsIsauamHrz31jpjtDHaaGMUaetDSt5Zq42WRJEkAD4FIhb1iFJbb2OMaZqnMY3eeysljPk7mVlEzF039ClGp7XE6tYD41IBYHyMwXtnjPwLQyPUaqm1tt5adTdVi9J6a73VWrjklHIOMQYfYoo5s3BJ0TvvnHMpW44kUXwGSMxqFqXVNsY0T8uybuu27+u6LfM0Wpgy43dAVvOI3E/LPE9ZAGDk5YWNs+Bscg5WVf51ganXUqd1mZd5nueptxKljXnZ1mV9nPvovbV6L7XP0XsVzjnlHFOIc+l0JRVbIvlwAIjEwhoRUXsb07Ks23Eex3ns+7bNvRQXuiJVFX4PkLhH7YaFHAAcLA+4cTiVDQAfrfzTwsbWWt3O4zzO49gf17mPZc/7B8DZZ++55jwbe/XWahNh4ZJTXk7LGKOru5JYpmhJAPkoz4mYWE291NrGNC/rPM9zr6EId1mttlKc34KsVlo3sQd4HvBwOpEMgBr8qxKJMi08jzPff3B/1lxz9t5ba5ULn95OyxxzzDm6KlHs2JKI54jEYmZu7q5M8CpHab33FvYOQFaPfoXlGS/leQLk3xRm0J3PPnvNOcfovbKc39b1NJe5zLmzE0uyCT6HL0Ypvfdp6q36OwCJSweeV7yYJPFPykT3PjjnrHXTRMrpvC7rMnvOTuw4DiGR+A7RSp/mZZ5Hq/IOAAiwuLwJJBkekUorwfk/Fsygu5+z915zzt6bCJfTaZ3LOsboKse2YoAgvkeNOi/zPE+jB78HSnijptGXRpK8T2qfU8oRnZHsnwlEnm59Ns5aa87Ze2tVuJRc1mXOOUYlkSyCxHeKWvqYp3kerRgTE79GkuheUdcACMl7tK+T3s9WoreSv0RwdOe99xpr9dlbrSJcSk4xxnCtSiySxHesUWp/rLV47dM0Nbul7DCTr+pIbjjJpUSXR/W2Xh+Y2nxbdXzBsl57r7W2Ko2LcM455RSDc846Z2TTwneOzOruHlHK2PJ6sifp0JN4OUmCgF4YtLT6fnUgQoqxjzHmHPNSrdsbzjy2fZ9aLyXnnFOMMeXgvXfeee+cNfqq6K+SNKYbTyETGDMusm3jHQBJXLS0uvl6cWCd1A7R+RB8SDGllEsttdayTSJ1zMu6rtu2rtu2buuyLPM0eglzdc5a54zW2mh6VIr+z4ox33uKM9kQ22yNvEKuruRp44garw0tZ1y8SiGFlFIprbWxRhvLACxqHlFKraXUp6W2JkSI8H9zEi9tOjIts5cTm+5uySRh+MoeJbw2FLCQwVV8FGEWYRFhFoI/YYHyG259LhoO/zZk8N9Ah++TDYN/VA+ocx2vRQ3/zsZPM6OAf28z+H/hk6AoySIpHiIvr4LYzr4qiZOqqj6/PLDemf92AO3sONWHcxmztvf/8XC3x/gQvP2vR6AkK6lKVY85amz4X09/c4yP3ThO4zD080GS/8lcL6qw/e/HzdU4Hrz1OJb8H85+bHhpqEY+/GF4O5MAEM57Z9h/SoWXhp4eB6RQJlEkfL1a/h/RS0OV6QCDxAiA9peIZpT/8hGRdh+sc3/AAPRahfEVERXH/9HDXKXlW5+is9aYgFISAQHYFB84A6a0Hd8R9aj+xSOw0OLeW0FV4elb9u+7EUCqWmeFlEoJKaR2mC8QVfefh18eMBPrksnictEloBHYllK01hqlldLaGofzAnXkv5AvFV9JIMAdwYcrvD5QLuZ+ZYm4Vb1Xe0CYOlQuxSNaY6w1xlrnfLxAxdHv87VFy7EsybZscsfHeYXIuDLOx5TGZRqHLnqLu2+X74BKhZm5+OARHTrnEK0LIbTvWnD8vbSWclxVXWWLlMUbkLIsiXzt8MqYEFyN4lm13N1WPYFm5SoSw6sP0Xvv0Qfvff1ittACfytAm+w4Vanuqu6kFFviRexR1ZVKbPPlw6FqcSvyXWIkIFPrvdeaY4wxpZxSih6dkYxLpTHX1ntrOfZq+Hthbzuxk65UdVKVJBVBIqUq176ry5JIgEe/ltcVURYAmDa6MkYrr7m8eCMZvBfKYsw5hTRaMfq9mpRk2ZaTOKnu7jHm7Hhfc1jp0VVVtgQQn6bwUlI+ThsbK3DYUGitllpLigGdgm+FUM6HGHzrrSgTq5faaq0lXJjpt0BASLRISrZd1WOOqnhXqViuqqRix8SrSjUAvH6QrQCqJiKjiUimWkvyVnK4yIXS1gffRiu1tLFs+5F5nse+rXMrbiqEv8BH7UlZSqW6K5YSOxYhSkosUQBfVigAEp9seOMq9CyVNbCQcWGMxdZ6H9OeLx7b3IqbEP0O4LFTqViyY1vELYMXliTx0VbODbp6WM6EMhb7NC/7ka/v89TChKl/CKAkxZIIAMJLTpL4sLJvdqKXfYMpo0/rtp93zmPf1rn3Gi5M+0dAShKJ154sfpTjcwN+Q8RWABeCc0JiZiJiZnX3WqNEuKmKKovkP4DXoPwGFffyQiiiJauRkBiJkIiZuJ1x+FXKi0lEdM5tRAT1mCTfIuDn/T+6/A58bs4b8+5fxuN3Sf+lxMEWlZV9s/OL+XuScfG6WekpW78f+Sg7P1V8P1oOtrjK3YxPzRek+VF6eAoPRTPU0T86yyOYh+qelofifflT43FUtsyb9uT2h+Zv7Ykkrn1T7YPn4XB/i/KYHD+4h/zpeL/8bSlj8mXe9PCQPU2NLv5FecXkyrqZ8X9ef0pP1BEpx/tmF/WwP0A9/7YkZ7okHh1l3oDN/5COPy6c6dN4XO673VT/P6S/ryemPBqVZSOZy4jqpvyqNMbjpW/cz6xvar4pDdGEjpeL7SXrvypNVSxEzsrDZK+IVM6PykT/x2dpyjSWQkRkDgDMpIlcsz8qZgojZ7PQXKE2qPP6h8Ul56bio4jLfZTibTmQxPJ4zJWimJUjMnmSkzIDPlrAO5yP6Y/KTLzvrnYgje0HYCO726tpcVbJEc1ipbBsJ/GIVJYEXl9hS7RWd+EhPZD6dLYf6TcwB9L4GvvccCPZI86CpKjDFZU5SCWV1lpKKdg3xlrrMksde82R8BBeSGNkT2PhFlAofAjIE8h17ApldWk84K0Szkv5JhLs1S6EXAfuT0/OvZIOS0o77gSQ4Fn3mlx4ZzlMo5T1mdkAKtWtb14Fxz584JzLVyGUkFIJYax1Polwa32sdQ6ewx1IGqBJcUGXmEEyBe1bavV98YZGAva9Mhc5zDtbTpMHBlwIpZQ2iNY653xA9FiqFJY5x974YnySINll8RIB5A+9agSACAD5jCgXfTrI/34gVa1SLkYFUmpjDXofc8m51Np7a63vgzPx2zyi5JfujWABJOqIN3inf8QjqVwOUN0of8+eX5L/LZAyGxzWZXhlaXYmW2msDzHXNujoUzegPIj6CcherSYGCVrASkVEXbQit5DkPqcGsiLBSe6F/BAPcKPwt/zip/8OSABPDnllW5RZJgTnwoxkfcx90PksaQeQxIOQN+eERBJ971EWZ9SK3lJf1ASeDwdgquScnHP+zMecJG3Lnfq9ov7cfwemGXh6Q8d339QWHfpELZZOt+ySVAEMKnke0ikpy9OwoWpcCM5qA2DytJ3YWdIG1vOizHS5jUXvkOAX+ktKtVL9k2iSz1gFXl03122expxTrYNo0E27lwKnejR9z6rYjQlFtT44KbgYUwjOKmzIFgbngWTK8h3YhrqIdTF3WMb7gyoggT9goM22dFuCv2vEndU+Ym/w83PSvZfQLGc8GmfjB7YfHkUDMuRuGMdpHqc+5xSMGGsEZ+8q4iuAoDxE5zuE0tRU8GWt2p49z9Zmyu+vfOND7oDTz/y/CoFYa5wRoFuXuVauRAQkLrXVJsIikoIxpIwNrnRhQrj0M1fIBADQJ0v/XwgYY0IwLl45ByaEVNoY69A5RLRGG6OVEpy/cM6ZkJx9Yp8Y/E8790zTD/1bpi8TAKoqKiBRJ/vCvcsxZZYqUoVzjM5Y44zxzZgIL56uBXpm5kPTr7L+g1Baaa20VooYY5wxzgEYLOWcwZGMMcaB/c8aNwXol+5/yao6v0HEWmOstUYV4AwLCGBBIqVY19195xhjlpJTyskZZ1wPJr6DDJkAmRkPuX0VgkT3p1HvlNZaG601aWMUfWycL4NOHi3l0ogIduOHSohQfwt/16piAA43iag1AGCcs6qYFXVSxmGaa047n26nlBRTLtYE66oJ0S2FzBS4zISGj/Jt90m/ofo7ShvrrvbutfU+ycS/b6dZcwDuvvpMc2Vtm+YnrH/X5Eq9Y2yyxjjnrI82xGAtikRVTsO0jAUIICI5xcgH11xyDt655H0LYSa8QEQDy+eLwLKjSA8nH1HsMq1+VfUTpRR2NqScc/KKnm2oG/9cI+CVA1FjMMjCe08Es/dJZOn7QV9v3eb2SWJc+5iJ0k8o/EszVZP1/nPUAl6akitAIX5jUgFUoCZ0XZ8cGwPPWXEmw7Ys+2wwcICN03IgIhmccuEUfYyhqrIQ4QUxCgDUh6elaTKkCFQ/4s3mJ32uFJHSShnnnbOaHm0e+KO1lOR9ClUT2R58QC4pgXNOcrjIMTBYTCA9oveKqNHOtcinR5qQ+6Rf+9el8dX8IaMqMG2jLRWjz0LOee76XiCwLe0TaZad1wYsrLW6cBXmWDgXqZJCDKGIiDIxAyACMRMSwnM500p1M7k4XjBWXXxRHB78dG201nfGeh+CN/Tc8FeJw3Ui+EgKntBN1WK7dfNcWihB8U+LML4O+sH2mk37l6TyrrFBbEgxOKNo9ah2uXAmXSJ3klxIRflYSQC6nIp79rltxnWNyiXnlEuXIiK1xBSiibKIEAMwIiIL4tWbEwGmQpfw+k6/qzbGGOe0UnSv0sGf3bMNDsiw0n/icg875ZKaGLD1eTtvvHgO/ZjokAf98r8eRriiap23WjOzVs4CNQYkYPM+nM5DKAAkrAAweSyUOxDH3md24VJKabXWKiIlxVqfqCACERGYAtDXnB0ABevDi35Z7TQ9hoM/OjjF4LQx9Aiz4sgGO1tbA30KRGEWEwIAQ1AhRJaLux8PblKnX7yvwLZy/4vxMmqDmz0LAgXpYsppXIc+T6xu3pxgXUxD1zfdV84hFebWRm919NalpNrVVNWViIhJqDogfNeGc/cTXe3CT9eYQ0rvjojIGUXfJdqR+yra4YgvukQ3NTNBuNzygKhe5u3qcuinQrhMv9ns695LN2BMEz7jVBMYBTCcigKTczfN87ws/TRC/cDGtVMVa4YbblvwsbS+9l6zVYmpqrAKi7IqsnAYIn6vcZpOxfkn8Q0/37VE55xWLgWiTt9UN0B0Ben7D5ao0efKduy0BABAUSZCRADIp11FWYtoX+aWSVzHls8lSXQh6v8VlG8/6hhbSa1SxyZRFTdUxbs0DNECqsb33ThO67LMcz+uuc/JCeDm00ul9LVnb5yUlIVF1TzMTaohwneax519AwF5gSnYfkrGj4+UoOhDRwRcjPNOv3ivbO6j9UmzEhHNkb0CAAYfHb06AElEsBNpQz65m5mJ8NXJxOYZ4v/zYzrMHwW6tyo4poEkDRkhgHxT+fAoxmUduhRC7MdpXuZlHYdMhjyM49zHoEB8y7UFzxxZhdQ8PLyU4hSKgN8HAPp1aHJOnxsK+N7EL7twztIWgNWL++DeoNMPXW01WtgZUwyopYBXtoHD1pK5ZJ4KUPMRvqeoDSFOBe4sTu4/PK7j7+I2ay873r+gkaL1lmoPABrGeTl4bPu6LNOUyG4YpmkehqHvx2Wc5v0t19AyCQEA2GOaehFXuIkAII9JXpYWScF789QPrfip1YqeVZq4nw/qiWh9TebqYC8ThohGDk4LAOA7VosSAQDk7QXYTb5iTFEQrpOOdZD/ydk8fhdIa9AzuH2zEbdgva94GAAubyS5LlM+mOd5WZZ1nedtZeP4jivm4xZVAYCKXRA+AuQRC+i4sVW9N4IXdr3a4UP4/uDorIpY9F378Lqpr7hsGWxnXE+iHl50FHA8MSPcXTMTAE0Q3t3zaYE39kRR08rMqv27prDQT1dHFW6d8deAJgDdheoUD577hczrtvP1Yq3c0ZPLLvxALKrMLKQqTwSB26e9RZITvHSY1Oxj89bE4332HZEy2roYfTC4XROYNb75agc+C4Twtez6Oya4b0Q0aq5ELaKzWnoNbJnkFxgwQCRVEbr1HBHeG5m4LhXh5Z71U1EIc14R3LEf+/qXTGLsvw0tGh/owF1rfc5wAhrOEQAuFUcLWHLY+ZFTQqGRqV1jucrMWgoCirKGqtr7BOS4zMOkbIr2Ndl+eaGj5hl93dzOteasxRdgeWVlNmFO+hfkAfFWXeIGTlxFwFbGlfU5xZRcIho5evRGKg6v7B0TgnHG3jEAzr9hnISRVYXx2ZIJAAhfWDPhrYntx5BwebrAAX+7uMZKh45Wc3+iKEkPlokd6G6YTzxEjC1FAJBL537m4+dbwIA5mZGPZ2aOcWSmb/l8sBIJbj9N5AGSHEgCJJziA1urZnrQ8vK5i1ZbH1Mu2dGHruG2A/sDffBe6OecAzAmhFFcBKJWU0CPLvcWg8+1ZmscSI+IzjmdSXDEGENwzjlrnXM+tF4z9zEXk4fMhG8oZSw95IX6XqhqrZsPnnZ/q0C5fMbI0aONT7RUONbEb1TuH7sAwHThY8+cE8jIXJ5k5jqNCpkIvD3JzCXsbcaAXFgFgBBICL4gz+eec+83fTQWfPrgU05W0bUsIgBP2qcqWbIhIlqApi9mfolLiYRV0hqNYRLRmPTlGKM1D5kJ55y11js9wdfaauu1llpqa33MzDPvFxD+OkDvvY+50jvqcroct1Eaj3Ui/zcKlGsn1IRGSaapptYe5qp0/ebk/ukZ4Kyfdu1wyFyvchszZAaqqlj3vJyC3OG8shWStrUn8emNpeKuWWfctmCNiTlLLYbSuwHUvXcv9NYRJWD2DQDDG3oLgL7p4SqXQimlnY+DiDotnLNq8raWlHNOSTeRR+ut9dZaq633SQunrnDt9ZVydd8ZOBYEIGvFhjAr2XWd0lMi+V8TN/mAFp0WDABixBBzHU/i2veOt8UH9c8o4vxp99vVuU4TZU4crY/WaghQ2XiGmivqQ2yiD/MUP63j5UhEpKP0s0U2AHQi0tZ7owwBiJ7eO5AzZJ3V9Kyd96GU0L7k4CpXWjv0edDW2cqgOeYk6iWHTm8nbR1hCCIMr2e+5Cc89aifRCBijZ5wb+9IX2fifOh/R8ymua0E1AJevRXaWB9jbXWM0fuYt4vDN7gjuT9l9xVubuu8eObsvY3eR6vVCM6zB/JOepMKImJd6NtGP06pIPIZZN3iqt2e2XtOuGbSPqRSe62zE9ApxeDeFER66WX0XoVrXxuoEQDUR3SFSYUeC20f9G2hU7eluZnySzO8ivk4L5ttqIszAvJKc1Ls7aR0Zut/Qjq0TaN4owW8dQIYE1Ibhz6EEHyIpfUxac45xhjzBowf4R+NwQdOn1VMGD5ilrQ/OLcxbT1zafMYo9faQgkFdRMdSGASWONCzG3eT3NfyPyEjco+U60N9eZZQii9MrNIGXgcJRht1INqREQ2xMhjr9nXGGMsnANgi8fVv7vKlPOh0HMfc6gJv/CqnisAgA/DPvlrRdJZAhGMJso7Seoue24B5aNE9v/5gLRpbunRacHgMuNSCKGV1NZiCCml4GMIqfZx3PwVNQ8lv593Be6kxzR83kfHV3ks8z5n7tO6TKO1WosL4aoBOCJ4G5xtq+ITm4uXF1dJyWuljaenl2sBwOnScLtKrBsAe01kfcy9t8pcWxtrroP7tToXXL/GpMbU6dnnbsR4NclLdSF40V9RRXlaLfd5Waep1eOJ94b/doRxea6bJVgJm7mQ2hitlNLG+pxbPyt8ac/v33nbN6iU9/CInT/bx8fhmcdYl3mM0VoYvybOCWwI3nt8iZ77fpXFoonZSgzOW6tpANgfXJPW2gUXi0xc115J61Qyp8yFWTgXESm5SJ2zjzGHtDnKAYDp3nAh2DdcujTo6fdRBC8kZ/jqnrRNiQ7NJxCvc1ZVc2U7nUtS5C65MGUwL+vJaQEnMsY4ABPSeB9z7XORq+Knj6nLL1d794Hg8i2H8H3bu68zf1AmZOZyrOsyT72GKwOIbHAx+pxSCt4HAcYP63ozHsCk4QDscV4u8XD3KinG4CwAeDnAOa82l5KDt87nlAuAaozWLpYqhdvCqSmUVnMuLKWOWqWv2Vtba2/cF7ToYrPvGEgXK/3CSYWeTFmBXcwjTNjneEcmGnkMAbeO2zbkmk7dRmG/kpyC9YqzY3XjPtXJBUBqLNcSI6LsjYDTuTAOYyp9xW42VyG039v/aN5/JKi6xDc4bPO6hW/zsb2qjYcz93VdptaqCRkF2UcrJ1HvfUw5emusCsp2/YTdTcvhdqCVcaRD5NhvfjUFAHaTaDeAOvDxBoAhJQuX3ACMGGLOOaWUucQ0ATDXOvoYtY0+1zyYY66DffAxKgaMC+V8ox9ZlRk1E+5rwH1rT+3s8WB3+sNI4qHixr5wXhIMk8bX+V0GgEJkFIMbcqUdxjauuaHpF//AYXX/AWrza/mAMk3+qTDXeZ6m3rwLX+upZo4tM7d5qqO7mffg2RtVwAdnQ4jeAIrr+ZC3rAB+mtoNJE9h2IBLvQTEgueBjyfu91yzLwBg6bWyVGm1jdn7nAO3B8BewMGva6r0S+fie27wlbJEXFScxRpjC007tJcvkDTHE3YV93OyIhI752B4a3IBEMaH75oAaOQ43JMJ7TDW2ueFTdLQKHMC545+0P53evmUz5RSagc/Ee4mrYzD0A0uvQvA/r2enrVP09KmyWtNoy+QOYAcYWywKmg3RhRvJm+hFYCPCQvgN2tGYLbHbsODn05cx1gHt3tubPxfeMtcSAnfNobgYhx8GJIAgBg/7Rt4oClSc8JWBtjUJwDQgTevyQWkMTXVL4zylbyCuzKBANNBGO/GIMJPSqdWb6/V+J+mpr+Qj2opAY+U0shMTWoZ+q7LHV51Djh/k2Mctx6b0L5GG+PckWbkeSDZATAAICKAFKoqLwEIiew+riGRjqOHZbwu5707KzMdAPKr/7OfmR2bM9N7xjkA1qlRlQoA9QBMnrnP6+yHyQTfjpG5IDmcHCkxTqEOAzmiLCiSc+WYWIBxp90Xr82J2wCTEgBA5j7n6L3WTpxdRonpOhfT90+K9h9Ql9/GJ36mlBL4wU21SSu563JOKeNt52QOAt/i+b6fNx6XMZb1WEg3lBBJT8oJpw/cAWYHfjUHV+KpW4Buuo4z4J1fMwDIlEr9/5LHqu5CIvhaz/TShRC8NdZ7Y5yGHAGQA8+jA6RW6rolwpVqjpvUBy4J4vPYe+tgSS7byQSrJUDALj9wTCoADPiFZPh9AEzmXCuXSyk5p1hHWPWgWTYzKJuT/o198qv4zCmlBM1xdxWRVkvZck4xxi66Dygv28GcvkVmTvdy2pfjmMnQkwc3E6NmkHoSASCvA1iPSHAhAkw1DkBm322AGCIyAAo5hCIyfnH+NTrG9msyF1EPY7pHe2bmMQ1djt6F6EOK0YqPETMJY4OHLLNppLbrWqmZwQ6SWFOSrrACmuMwDTkDQCYJwFqjAqGFkQRIUguQpRTIzq3dKyrSNkSf+LZwX2tuiiRicmh6/rb97+GTZ5qx99Zbq6WUHGMI6NAhBjXukjylX+P0G6oDwnha9mW51c5juqXb7X57StoGWZjmdTtcDNytZ9W59zsAfRZufay9JjoA4hxiqW2stfYUAP2jeeXHL2fm0RAAtH8fu872WC2q+jlwzJar7/tOUnPrLem9ao7emhCM0dooY4zzOnm6qjJnTZpIKyIiVTE1QG/VJAmI7QZvfbDWkqRRB0AAwEoSQNnPI8ekUp8b65LYjfMxp5RzKnUtsSQnJEIC2vxPoPah9Cfw8XvOpZaSc0oxhBg8BkTngrjVL+8jf8/v9/y4vVJK6XZL6XZPPzlS7IFrXw+yG+nVxxSDDzFyq731HYDmJefEdT/N/Tyv27Zux/GiZexzSqmO5UnATT6+xzkNQz9MZA+FMWKM+6Sq0Sew96yccrCkrCat6MoAAl3T3GewuyGihA+IMulQFFFjBOhJivNqrM88zwcU9UBC8fzwyqKKkYi09T6mmFKStaZSJEnAAv5CfzpXf8OecPK3+dEFzJ4iT3rNMaYUYogxxZhLdsZ5RPmHCCPODKXk9/P+eD1u91vq3m4pJQjQvYOaJ4UHQBZh+sr1rI3bDLTAIaacWLi2aSBz7vppWeZ52/fCcWWb5zXVjv3Y1yE6RX3JiR1u9+9wGKUnEvWORLA+Dd8hfXKrJXpfSvHWam2NuhAJEEgZItJpAcOQ1koREQBNZF2ITisiwJHDCVBRYxywknqQPNYCoAC5fD9MVTsDKWZtiyQmVOWstdZZ50OIsZ2tjQAgt1wtm/4K9U0wS/8qPzkCKE9B1Ca9Boc++BhijLV5qb13Advf4RjnyvSaS1tT97UNfjhoOJVuM4B7eNwaUNqEkAqzSEtP7zcAnAPsc85BBptCHsZxHOeNG3lM+7wuMxcXyeUYumCsJB557ZIVo4KLMsHry5fNKiS5kOROHiRhUBxfdR7bPFUDZzq6VTE7ImPuiNxciYyyhsiNPSMpIpuKOQA7p5339gaYyZNaayACgKTZ2KWuy00t0B48IL/s4AWQRjjXvbKYNt2HlGIIIdaz51JXUFy87Wi/Y08wS/6g0es5wUTgMYhGo1dv0MeYUkStjI+1tWr+FtdtTiuF5Zbg+Rs6CHBMZtkm9Rit4yAq9g6YWmttwsIlBcAGH1OMMXEVYQJyb1VE2pxzzETSTeO8bqzvfuuHPix0GLh22eAciZtJ4a3rF7W8PQN5f5OfGkna7FYHYEOk6GqdJzIPRA5QThvnHek4IRPAHqWgOE8fkgAgmoZxjEIGMugyLSQdNNMyowb6aukX4snFjseMtUrdWyr1Bb4IUP0das9f3HqZkz4M0ciDiChY57yzPuRagoZX9idZe935db8nWH5GbGoVAPwyLsd6NjCP7jzb47b7WBPAvmwAXFm4lJxTMRuwUjjlaLQ2RERw9CEJsdY6G7pxWQ+Sduy67CwjMNIoqjcNAa4734L6Ndmjg5EkEGIat67h9W5QYTtM07wuZhqHqZ0nswGo9FZPR28ZzecUvTGa1AbY0bP5AKRnuyEHx4PcNiinIQxjLk5LKQCJhWdNAGNBp0/45X9N5lVO97J/EqJROhFR7yNZBd8T0fxrBNx1ADxT8P4Z7b24H5NZtvUQrHtwYQEihrTVFu4bgDmqlFxKDoWAkXoX5hJj9M6RyorUu8sbvXUhO/gRAKiox3uaNe8B9K+TJlA7I0jifauqM2skAl4oIgv7hjxMMPQ4Nr3WH3Rs7aaVOzbaTO4rzLxYZXWYG4CUwvPquZeT2X4ctQulf4EXUy5aBppHedswSLieiYjmbLW2+VcAVq8le+/4vF/I4bkuxbEt62YF80qIE3CeXlv3A2jAQgawMGqrnFOOFkjMzCV5H7xzjjRYpeis1Uqpi7tCotzj7PuGpw0g44Vr46sliwRAwbqXrXqh0USUyfiH2/iKAHo73Lttbe6TxW0i0QUVgfVWbdg2RGJbFl5WXjR9WwwHkgn3V7Tv+ePWOPYEk+TZPD1z9cUo4UeZFtYX+nr0Zn34B7ABJnl7T6Xzel7oI8ToU1vio/OMJsIx5awB7Z133mlSRKSJ0MhpRc/Mw0QVgagC8OwqrvBiJJ/wTedhj+8Bfej4ft+rdH9SePDq0/aK6isCxsGexz53qfdxggnee5+T9zH5kEFiJHtkGsM0DII61IUKqS+VTCYePbHsPsU1GrUimOXJQy2e5nwGtMjjeNjsv/oz";
+</script>
+
+<script>
+/* موتور ناوبری و هماهنگی المان‌ها */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const st=$("#stage"),S=$$(".sl");
+let n=0,tm;
+
+function fit(){
+  st.style.transform="translate(-50%,-50%) scale("+Math.min(innerWidth/1280,innerHeight/720)+")";
+}
+
+function go(i){
+  n=Math.max(0,Math.min(S.length-1,i));
+  S.forEach((s,k)=>s.classList.toggle("on",k===n));
+  
+  // تنظیم عنوان اسلاید در هدر بر اساس زبان فعال
+  const curSlide = S[n];
+  const isFa = document.documentElement.dir === "rtl";
+  $("#lab").textContent = isFa && curSlide.dataset.tFa ? curSlide.dataset.tFa : curSlide.dataset.t;
+  
+  // شمارنده اسلایدها (18 اسلاید)
+  $("#ct").textContent=String(n+1).padStart(2,"0")+" / "+String(S.length).padStart(2,"0");
+  $("#pg").style.width=(n+1)/S.length*100+"%";
+  history.replaceState(null,"","#"+(n+1));
+  clearInterval(tm);
+  
+  // شمارنده رندوم امتیاز مینی‌گیم پهپادی اسلاید 7
+  if(S[n].id==="s7"){
+    let v=0;
+    tm=setInterval(()=>{
+      v=(v+137)%14000;
+      $("#score").textContent=v.toLocaleString("en-US");
+    },60);
+  }
+}
+
+// جایگذاری تصویر پهپاد
+$$("img.drone").forEach(i=>i.src=DRONE);
+
+// ایندکس‌گذاری المان‌های ورودی برای ترنزیشن پله‌ای
+S.forEach(s=>$$(".a",s).forEach((e,k)=>e.style.setProperty("--i",k)));
+
+$("#nx").onclick=()=>go(n+1);
+$("#pv").onclick=()=>go(n-1);
+
+addEventListener("keydown",e=>{
+  const k=e.key;
+  if(k==="ArrowRight"||k==="PageDown"||k===" "){e.preventDefault();go(n+1)}
+  else if(k==="ArrowLeft"||k==="PageUp")go(n-1);
+  else if(k==="Home")go(0);
+  else if(k==="End")go(S.length-1);
+  else if(k==="f"||k==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+});
+
+let x0=0;
+addEventListener("touchstart",e=>{x0=e.touches[0].clientX});
+addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(n+(d<0?1:-1))});
+addEventListener("resize",fit);
+
+/* موتور تغییر زبان تعاملی (Bilingual Toggle EN / FA) */
+let currentLang = "en";
+const langBtn = $("#langToggle");
+const langTxt = $("#langTxt");
+
+function updateLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+  
+  if (langTxt) langTxt.textContent = lang === "fa" ? "EN" : "FA";
+  
+  // تعویض تمام متون دارای برچسب data-en و data-fa
+  document.querySelectorAll("[data-en][data-fa]").forEach(el => {
+    el.textContent = el.getAttribute(`data-${lang}`);
+  });
+  
+  // به‌روزرسانی عنوان اسلاید در هدر
+  const curSlide = S[n];
+  if (curSlide) {
+    const titleKey = lang === "fa" && curSlide.dataset.tFa ? curSlide.dataset.tFa : curSlide.dataset.t;
+    $("#lab").textContent = titleKey;
+  }
+}
+
+if (langBtn) {
+  langBtn.addEventListener("click", () => {
+    updateLanguage(currentLang === "en" ? "fa" : "en");
+  });
+}
+
+// اجرای اولیه
+fit();
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
