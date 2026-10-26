@@ -1108,6 +1108,100 @@ em{font-style:normal;color:var(--color-accent)}
   100% { transform: translateY(-6px); }
 }
 
+/* ---------- PITCH DECK CTA BOX (GLASSMORPHIC) ---------- */
+.deck-sec {
+  padding-top: 100px; /* Reduced gap since it sits right below About */
+  padding-bottom: 20px;
+}
+.deck-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 42px 50px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--duration-normal), border-color var(--duration-normal), box-shadow var(--duration-normal);
+}
+.deck-box__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 50%, rgba(236, 88, 0, 0.12), transparent 45%),
+              radial-gradient(circle at 0% 0%, rgba(0, 150, 255, 0.08), transparent 40%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity var(--duration-normal);
+}
+.deck-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(236, 88, 0, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(236, 88, 0, 0.15);
+}
+.deck-box:hover .deck-box__bg {
+  opacity: 1;
+}
+
+.deck-txt {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.deck-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  background: rgba(1, 11, 19, 0.6);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+}
+.deck-txt h3 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+.deck-txt p {
+  color: var(--color-text-secondary);
+  font-size: 15.5px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.deck-action {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.btn--deck {
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #09131E 0%, #02080E 100%);
+  border: 1px solid rgba(236, 88, 0, 0.45);
+  color: var(--color-accent);
+  box-shadow: 0 4px 16px rgba(236, 88, 0, 0.15), inset 0 0 12px rgba(236, 88, 0, 0.05);
+}
+.btn--deck:hover {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(236, 88, 0, 0.35);
+}
+.btn--deck:hover .i {
+  stroke: #fff;
+}
+
+
+
 
 /* ---------- RESPONSIVE: mobile nav ---------- */
 @media (max-width:960px){
@@ -1147,6 +1241,7 @@ em{font-style:normal;color:var(--color-accent)}
   .foot__grid{grid-template-columns:repeat(2,1fr)}
   .foot__bot{flex-direction:column}
   .about__pillars { grid-template-columns: 1fr; }
+  .deck-box { flex-direction: column; align-items: flex-start; padding: 32px; gap: 24px; }
 /* Mobile Roadmap Override */
   .rm__line, .rm__track { left: 34px; transform: translateX(-50%); }
   .rm__item { grid-template-columns: 68px 1fr; gap: 24px; margin-bottom: 56px; }
@@ -1314,3 +1409,120 @@ em{font-style:normal;color:var(--color-accent)}
 /* Staggered Scroll Reveal Animation */
 .team__card.rv { opacity: 0; transform: translateY(50px); transition: opacity var(--duration-slow), transform var(--duration-slow); transition-delay: calc(var(--k) * 100ms); }
 .team__card.rv.in { opacity: 1; transform: translateY(0); }
+
+/* =====================================================
+   SECTION 09.5: FLY-ACROSS AVIATION PHYSICS
+================================================= */
+.aviation-sec { padding-bottom: 120px; }
+.av-head { text-align: center; margin-bottom: 50px; }
+.av-head h2 { font-size: clamp(28px, 4vw, 48px); max-width: 900px; margin: 0 auto; line-height: 1.15; letter-spacing: -0.02em; }
+.av-head h2 em { color: var(--color-accent); font-style: normal; }
+
+/* The Deep Sky Window */
+/* The Deep Sky Window - NOW FULLY TRANSPARENT */
+.sky-stage {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+/* High Speed Wind lines moving backwards */
+.sky-atmosphere {
+  position: absolute; inset: -50%;
+  background: repeating-linear-gradient(110deg, transparent, transparent 150px, rgba(0, 150, 255, 0.04) 150px, rgba(0, 150, 255, 0.04) 153px);
+  animation: windRush 2s linear infinite;
+}
+
+/* Base Floating Rig (Moves from Bottom-Left to Top-Right) */
+.flight-rig {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(850px, 90vw);
+  z-index: 10;
+  pointer-events: none;
+  /* 14 seconds loop: Fly in, soar, fly out, repeat */
+  animation: flyAcross 14s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+/* Micro-Turbulence (Wing Jitter inside the moving rig) */
+.turbulence-box {
+  position: relative; width: 100%; height: 100%;
+  animation: heavyTurbulence 0.18s linear infinite alternate;
+}
+
+/* The Image Blending */
+.plane-img {
+  width: 100%; display: block;
+  /* Removes black bg & creates vivid glow */
+  mix-blend-mode: screen; 
+  filter: contrast(1.15) brightness(1.2) drop-shadow(0 40px 60px rgba(0, 150, 255, 0.15));
+}
+
+/* Aircraft Lighting System (Positioned specifically for your image) */
+.plane-light { position: absolute; border-radius: 50%; z-index: 5; }
+.beacon-top { top: 32%; left: 41%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite; }
+.beacon-bottom { bottom: 33%; left: 34%; width: 10px; height: 10px; background: #ff1100; box-shadow: 0 0 35px 15px rgba(255, 0, 0, 0.9); animation: beaconFlash 1.4s infinite 0.7s; }
+.strobe-wing { bottom: 34%; right: 9%; width: 8px; height: 8px; background: #fff; box-shadow: 0 0 40px 15px #fff; animation: strobeFlash 0.1s infinite alternate; }
+
+/* Core Engine Glows */
+.engine-glow { position: absolute; border-radius: 50%; filter: blur(14px); z-index: 2; mix-blend-mode: screen; }
+.left-engine { bottom: 32%; left: 16%; width: 50px; height: 35px; background: rgba(236, 88, 0, 0.9); animation: enginePulse 0.1s infinite alternate; transform: rotate(-15deg); }
+.right-engine { bottom: 42%; left: 45%; width: 40px; height: 25px; background: rgba(236, 88, 0, 0.7); animation: enginePulse 0.1s infinite alternate-reverse; transform: rotate(-15deg); }
+
+/* Particle Emitter Anchors */
+.exhaust-anchor { position: absolute; width: 1px; height: 1px; z-index: -1; }
+#anchor-engine-main { bottom: 35%; left: 17%; }
+#anchor-engine-tail { top: 38%; left: 56%; }
+
+/* JS Particle Styling (Appended to sky-stage, not the plane) */
+.cyber-dust {
+  position: absolute; 
+  background: var(--dust-c);
+  box-shadow: 0 0 15px var(--dust-c);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* --- PHYSICS KEYFRAMES --- */
+@keyframes windRush {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-200px, 100px); }
+}
+@keyframes heavyTurbulence {
+  from { transform: translateY(-2px) translateX(-1px) rotate(-0.3deg); }
+  to { transform: translateY(2px) translateX(1px) rotate(0.3deg); }
+}
+@keyframes beaconFlash {
+  0%, 40% { opacity: 0; transform: scale(0.2); }
+  50%, 100% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes strobeFlash {
+  0% { opacity: 0; } 100% { opacity: 1; }
+}
+@keyframes enginePulse {
+  0% { opacity: 0.8; transform: scale(0.9) rotate(-15deg); }
+  100% { opacity: 1; transform: scale(1.1) rotate(-15deg); }
+}
+@keyframes shootDust {
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; filter: blur(5px); }
+}
+
+/* The Grand Flight Trajectory */
+@keyframes flyAcross {
+  0%   { transform: translate(-100vw, 40vh) scale(0.65) rotate(5deg); opacity: 0; filter: blur(6px); }
+  10%  { opacity: 1; filter: blur(0); }
+  45%  { transform: translate(-50%, -48%) scale(1) rotate(0deg); } /* Center Stage */
+  85%  { opacity: 1; filter: blur(0); }
+  100% { transform: translate(100vw, -50vh) scale(1.25) rotate(-5deg); opacity: 0; filter: blur(6px); }
+}
+
+@media (max-width: 900px) {
+  .sky-stage { height: 400px; }
+  .flight-rig { width: 120vw; }
+}
