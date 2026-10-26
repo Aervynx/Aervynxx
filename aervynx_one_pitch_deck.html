@@ -428,19 +428,96 @@ html[dir="rtl"] .hero-logo-wrap{right:auto;left:65px}
 .bnpl-col span{font:600 10px "JetBrains Mono", monospace;color:var(--m)}
 
 /* =====================================================
-   SLIDE 7: ARCADE SCREEN
+   SLIDE 7: LIVE ANIMATED ARCADE GAME ENGINE (PURE CSS)
 ===================================================== */
-.screen{position:relative;height:340px;overflow:hidden;border-radius:22px;border:1px solid var(--l);background:linear-gradient(var(--l) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--l) 1px,transparent 1px) 0 0/40px 40px,var(--g)}
-.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px);pointer-events:none}
-.hud{position:absolute;top:16px;left:20px;z-index:2;font:500 12px "JetBrains Mono",monospace;color:var(--m)}.hud b{display:block;font-size:34px;color:#fff}
-html[dir="rtl"] .hud{left:auto;right:20px}
-.sm{position:absolute;left:35px;top:36%;width:185px;animation:bob 2.6s ease-in-out infinite}
-html[dir="rtl"] .sm{left:auto;right:35px}
-.ob{position:absolute;right:-60px;top:var(--y);width:28px;height:90px;border:1.5px solid var(--o);border-radius:6px;background:rgba(236,88,0,.15);animation:ob 3.6s linear infinite;animation-delay:var(--d)}
-html[dir="rtl"] .ob{right:auto;left:-60px}
-.pipe2 .chip:not(:last-child)::after{content:"→";margin-left:12px;color:var(--o)}
-html[dir="rtl"] .pipe2 .chip:not(:last-child)::after{content:"←";margin-left:0;margin-right:12px}
+.arc-wrap {
+  position:relative; width:100%; height:370px;
+  background:#02060C; border-radius:24px; overflow:hidden;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,150,255,0.15);
+  border:1px solid rgba(255,255,255,0.1);
+}
+.arc-bg {
+  position:absolute; inset:-50%;
+  background:radial-gradient(circle at 50% 100%, rgba(0,150,255,0.12), transparent 60%);
+}
+/* پس‌زمینه متحرک (شبکه و ستاره‌ها) */
+.arc-grid {
+  position:absolute; inset:-50%;
+  background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/40px 40px;
+  animation: arcScroll 3s linear infinite;
+}
+.arc-stars {
+  position:absolute; inset:0;
+  background:radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+             radial-gradient(1px 1px at 60px 80px, #fff, rgba(0,0,0,0)),
+             radial-gradient(1.5px 1.5px at 90px 40px, rgba(0,150,255,0.8), rgba(0,0,0,0));
+  background-size: 120px 120px;
+  animation: arcScroll 1.5s linear infinite;
+  opacity:0.4;
+}
+@keyframes arcScroll { to { transform:translateY(40px); } }
 
+/* حرکت سفینه بازیکن */
+.arc-player {
+  position:absolute; bottom:15px; left:50%; width:90px; height:90px; margin-left:-45px;
+  animation: pMove 2.5s ease-in-out infinite alternate;
+  z-index:10;
+}
+@keyframes pMove {
+  0% { transform:translateX(-110px) rotate(-10deg); }
+  100% { transform:translateX(110px) rotate(10deg); }
+}
+
+/* لیزرهای آبی بازیکن */
+.arc-laser-p {
+  position:absolute; width:4px; height:35px; background:#0096FF;
+  box-shadow:0 0 15px #0096FF, 0 0 30px #0096FF; border-radius:4px;
+  top:-10px; animation: pShoot 0.2s linear infinite;
+}
+.arc-laser-p.l1 { left:20px; }
+.arc-laser-p.l2 { right:66px; }
+@keyframes pShoot {
+  0% { transform:translateY(0); opacity:1; }
+  100% { transform:translateY(-380px); opacity:0; }
+}
+
+/* سفینه‌های دشمن */
+.arc-enemy {
+  position:absolute; width:70px; height:70px; top:-80px;
+  animation: eFly linear infinite; z-index:5;
+}
+.arc-enemy.e1 { left:10%; animation-duration: 5s; animation-delay: 0s; }
+.arc-enemy.e2 { left:42%; animation-duration: 6s; animation-delay: 1.5s; }
+.arc-enemy.e3 { left:75%; animation-duration: 4.5s; animation-delay: 0.8s; }
+@keyframes eFly {
+  0% { transform:translateY(0) scale(0.8); opacity:1; }
+  100% { transform:translateY(480px) scale(1.1); opacity:0; }
+}
+
+/* لیزرهای نارنجی دشمن */
+.arc-laser-e {
+  position:absolute; width:4px; height:20px; background:#EC5800;
+  box-shadow:0 0 15px #EC5800; border-radius:4px;
+  bottom:-10px; left:33px; animation: eShoot 1.2s linear infinite;
+}
+@keyframes eShoot {
+  0% { transform:translateY(0); opacity:1; }
+  100% { transform:translateY(300px); opacity:0; }
+}
+
+/* پنل امتیازات */
+.arc-hud {
+  position:absolute; top:18px; left:20px;
+  background:rgba(1,11,19,0.7); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1); padding:10px 20px;
+  border-radius:14px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  z-index:20;
+}
+html[dir="rtl"] .arc-hud { left:auto; right:20px; }
+.arc-hud span { display:block; font:600 12px "JetBrains Mono", monospace; color:var(--o); letter-spacing:0.1em; }
+.arc-hud b { display:block; font:700 32px "JetBrains Mono", monospace; color:#fff; line-height:1.2; text-shadow:0 0 20px rgba(255,255,255,0.4); }
 /* =====================================================
    SLIDE 8: AIR TRAVEL ROUTE (1D ORANGE PLANE & RTL SWAP)
 ===================================================== */
@@ -705,36 +782,375 @@ html[dir="rtl"] .road-laser{transform-origin:right center}
   <span id="lab">Vision</span>
 </header>
 
-<!-- ===== SLIDE 1 · VISION (FLOATING ANIMATED LOGO) ===== -->
-<section class="sl on" data-t="Vision" data-t-fa="چشم‌انداز">
- <div class="hero-logo-wrap">
-  <div class="ring" style="width:360px;height:360px"></div>
-  <div class="ring r2" style="width:440px;height:440px"></div>
-  
-  <div class="floating-logo">
-   <!-- =========================================================================
-        راهنمای بارگذاری لوگو در اسلاید ۱:
-        در حال حاضر لوگوی وکتور و معلق Aervnyx با کد طراحی شده است.
-        برای جایگزینی با فایل تصویر لوگوی خودتان:
-        ۱. خط <img src="assets/logo.png" ...> زیر را از حالت کامنت خارج کنید.
-        ۲. تگ <svg> پایینی را پاک یا کامنت کنید.
-   ========================================================================== -->
-   <!-- <img src="assets/your-logo.png" alt="Aervynx Logo"> -->
-   <svg viewBox="0 0 200 200" aria-label="Aervynx Floating Logo">
-    <defs>
-     <linearGradient id="heroLogoGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FF7A29"/>
-      <stop offset="50%" stop-color="#EC5800"/>
-      <stop offset="100%" stop-color="#0096FF"/>
-     </linearGradient>
-    </defs>
-    <polygon points="100,14 182,174 140,174 100,92 60,174 18,174" fill="url(#heroLogoGrad)"/>
-    <polygon points="68,142 132,142 142,162 58,162" fill="#ffffff" opacity="0.9"/>
-   </svg>
-  </div>
+<!-- ===== SLIDE 1 · VISION (QUANTUM REACTOR & 3D CYBERNETIC A ENGINE) ===== -->
+<style>
+  #slide-vision .reactor-stage {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    width: 520px;
+    height: 520px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+  html[dir="rtl"] #slide-vision .reactor-stage {
+    right: auto;
+    left: 45px;
+  }
+
+  /* هاله انرژی پس‌زمینه راکتور */
+  #slide-vision .reactor-aura {
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(236,88,0,0.32) 0%, rgba(0,150,255,0.14) 45%, transparent 72%);
+    filter: blur(28px);
+    animation: auraPulse 4s ease-in-out infinite alternate;
+  }
+
+  /* شبکه هدف‌گیری سایبرنتیک پشت راکتور */
+  #slide-vision .reactor-grid {
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    background:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 26px 26px;
+    -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+    mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  }
+
+  /* کانتینر اصلی SVG */
+  #slide-vision .reactor-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* انیمیشن‌های چرخش رینگ‌های راکتور */
+  #slide-vision .spin-cw-slow {
+    transform-origin: 250px 250px;
+    animation: rSpinCW 36s linear infinite;
+  }
+  #slide-vision .spin-ccw-med {
+    transform-origin: 250px 250px;
+    animation: rSpinCCW 20s linear infinite;
+  }
+  #slide-vision .spin-cw-fast {
+    transform-origin: 250px 250px;
+    animation: rSpinCW 10s linear infinite;
+  }
+
+  /* انیمیشن معلق بودن و تپش حرف A در مرکز */
+  #slide-vision .monolith-a {
+    transform-origin: 250px 250px;
+    animation: monolithFloat 4.5s ease-in-out infinite;
+    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.85)) drop-shadow(0 0 35px rgba(236,88,0,0.4));
+  }
+
+  /* ذرات کوانتومی صعودکننده */
+  #slide-vision .q-spark {
+    animation: sparkRise var(--d, 3s) linear infinite;
+    animation-delay: var(--dl, 0s);
+  }
+
+  /* تگ‌های تله‌متری شناور اطراف راکتور */
+  #slide-vision .hud-tag {
+    position: absolute;
+    font: 600 10px "JetBrains Mono", monospace;
+    letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(3, 10, 18, 0.82);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #slide-vision .hud-tag i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c, var(--o));
+    box-shadow: 0 0 8px var(--c, var(--o));
+  }
+  #slide-vision .hud-tag.t1 { top: 48px; left: 40px; animation: tagBob 4s ease-in-out infinite; }
+  #slide-vision .hud-tag.t2 { bottom: 58px; right: 30px; animation: tagBob 4s ease-in-out infinite 1.5s; }
+
+  @keyframes rSpinCW { to { transform: rotate(360deg); } }
+  @keyframes rSpinCCW { to { transform: rotate(-360deg); } }
+  @keyframes auraPulse {
+    0% { transform: scale(0.92); opacity: 0.75; }
+    100% { transform: scale(1.08); opacity: 1; }
+  }
+  @keyframes monolithFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-12px) scale(1.03); }
+  }
+  @keyframes sparkRise {
+    0% { transform: translateY(40px) scale(0.4); opacity: 0; }
+    30% { opacity: 1; }
+    80% { opacity: 0.9; }
+    100% { transform: translateY(-90px) scale(1.2); opacity: 0; }
+  }
+  @keyframes tagBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+</style>
+
+<!-- ===== SLIDE 1 · VISION (QUANTUM REACTOR & 3D CYBERNETIC A ENGINE) ===== -->
+<style>
+  #slide-vision .reactor-stage {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    width: 520px;
+    height: 520px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+  html[dir="rtl"] #slide-vision .reactor-stage {
+    right: auto;
+    left: 45px;
+  }
+
+  /* هاله انرژی پس‌زمینه راکتور */
+  #slide-vision .reactor-aura {
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(236,88,0,0.32) 0%, rgba(0,150,255,0.14) 45%, transparent 72%);
+    filter: blur(28px);
+    animation: auraPulse 4s ease-in-out infinite alternate;
+  }
+
+  /* شبکه هدف‌گیری سایبرنتیک پشت راکتور */
+  #slide-vision .reactor-grid {
+    position: absolute;
+    inset: 40px;
+    border-radius: 50%;
+    background:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 26px 26px;
+    -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+    mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  }
+
+  #slide-vision .reactor-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  #slide-vision .spin-cw-slow {
+    transform-origin: 250px 250px;
+    animation: rSpinCW 36s linear infinite;
+  }
+  #slide-vision .spin-ccw-med {
+    transform-origin: 250px 250px;
+    animation: rSpinCCW 20s linear infinite;
+  }
+  #slide-vision .spin-cw-fast {
+    transform-origin: 250px 250px;
+    animation: rSpinCW 10s linear infinite;
+  }
+
+  #slide-vision .monolith-a {
+    transform-origin: 250px 250px;
+    animation: monolithFloat 4.5s ease-in-out infinite;
+    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.9)) drop-shadow(0 0 35px rgba(236,88,0,0.4));
+  }
+
+  #slide-vision .q-spark {
+    animation: sparkRise var(--d, 3s) linear infinite;
+    animation-delay: var(--dl, 0s);
+  }
+
+  #slide-vision .hud-tag {
+    position: absolute;
+    font: 600 10px "JetBrains Mono", monospace;
+    letter-spacing: 0.12em;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(3, 10, 18, 0.82);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  #slide-vision .hud-tag i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c, var(--o));
+    box-shadow: 0 0 8px var(--c, var(--o));
+  }
+  #slide-vision .hud-tag.t1 { top: 48px; left: 40px; animation: tagBob 4s ease-in-out infinite; }
+  #slide-vision .hud-tag.t2 { bottom: 58px; right: 30px; animation: tagBob 4s ease-in-out infinite 1.5s; }
+
+  @keyframes rSpinCW { to { transform: rotate(360deg); } }
+  @keyframes rSpinCCW { to { transform: rotate(-360deg); } }
+  @keyframes auraPulse {
+    0% { transform: scale(0.92); opacity: 0.75; }
+    100% { transform: scale(1.08); opacity: 1; }
+  }
+  @keyframes monolithFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-12px) scale(1.03); }
+  }
+  @keyframes sparkRise {
+    0% { transform: translateY(40px) scale(0.4); opacity: 0; }
+    30% { opacity: 1; }
+    80% { opacity: 0.9; }
+    100% { transform: translateY(-90px) scale(1.2); opacity: 0; }
+  }
+  @keyframes tagBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+</style>
+
+<section class="sl on" id="slide-vision" data-t="Vision" data-t-fa="چشم‌انداز">
+ 
+ <div class="reactor-stage a">
+  <div class="reactor-aura"></div>
+  <div class="reactor-grid"></div>
+
+  <div class="hud-tag t1" style="--c:var(--gn)"><i></i><span>CHAIN ID · 505</span></div>
+  <div class="hud-tag t2" style="--c:var(--o)"><i></i><span>RWA CORE · ONLINE</span></div>
+
+  <svg class="reactor-svg" viewBox="0 0 500 500" aria-label="Aervynx Quantum Core">
+   <defs>
+    <!-- رنگ مشکی خالص برای داخل بدنه حرف A -->
+    <linearGradient id="armorDark" x1="0%" y1="0%" x2="100%" y2="100%">
+     <stop offset="0%" stop-color="#000000"/>
+     <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+
+    <linearGradient id="armorBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+     <stop offset="0%" stop-color="#EC5800" stop-opacity="0.55"/>
+     <stop offset="50%" stop-color="#0F172A" stop-opacity="0.9"/>
+     <stop offset="100%" stop-color="#0096FF" stop-opacity="0.45"/>
+    </linearGradient>
+
+    <linearGradient id="plasmaOrange" x1="0%" y1="100%" x2="100%" y2="0%">
+     <stop offset="0%" stop-color="#EC5800"/>
+     <stop offset="50%" stop-color="#FF9944"/>
+     <stop offset="100%" stop-color="#FFD000"/>
+    </linearGradient>
+
+    <linearGradient id="plasmaBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+     <stop offset="0%" stop-color="#00E5FF"/>
+     <stop offset="100%" stop-color="#0096FF"/>
+    </linearGradient>
+
+    <linearGradient id="laserLine" x1="0%" y1="0%" x2="100%" y2="0%">
+     <stop offset="0%" stop-color="transparent"/>
+     <stop offset="20%" stop-color="#EC5800"/>
+     <stop offset="50%" stop-color="#FFFFFF"/>
+     <stop offset="80%" stop-color="#0096FF"/>
+     <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+
+    <clipPath id="aClip">
+     <path d="M250 75 L390 395 L322 395 L292 322 L208 322 L178 395 L110 395 Z M250 162 L219 266 L281 266 Z" clip-rule="evenodd"/>
+    </clipPath>
+   </defs>
+
+   <g class="spin-cw-slow">
+    <circle cx="250" cy="250" r="228" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(236,88,0,0.35)" stroke-width="2" stroke-dasharray="4 14"/>
+    <polygon points="250,42 430,146 430,354 250,458 70,354 70,146" fill="none" stroke="rgba(0,150,255,0.18)" stroke-width="1.2" stroke-dasharray="10 8"/>
+    <path d="M250,14 L250,28 M250,472 L250,486 M14,250 L28,250 M472,250 L486,250" stroke="#EC5800" stroke-width="2.5" stroke-linecap="round"/>
+   </g>
+
+   <g class="spin-ccw-med">
+    <circle cx="250" cy="250" r="186" fill="none" stroke="url(#plasmaOrange)" stroke-width="3.5" stroke-dasharray="110 180" stroke-linecap="round"/>
+    <circle cx="250" cy="250" r="172" fill="none" stroke="url(#plasmaBlue)" stroke-width="2" stroke-dasharray="60 120" stroke-linecap="round" opacity="0.8"/>
+    <circle cx="250" cy="64" r="5" fill="#FF9944"/>
+    <circle cx="250" cy="436" r="5" fill="#00E5FF"/>
+   </g>
+
+   <g class="spin-cw-fast">
+    <circle cx="250" cy="250" r="142" fill="none" stroke="rgba(236,88,0,0.5)" stroke-width="1.5" stroke-dasharray="25 70 10 40" stroke-linecap="round"/>
+   </g>
+
+   <g opacity="0.35">
+    <line x1="50" y1="250" x2="450" y2="250" stroke="url(#laserLine)" stroke-width="1" stroke-dasharray="4 6"/>
+    <line x1="250" y1="50" x2="250" y2="450" stroke="url(#laserLine)" stroke-width="1" stroke-dasharray="4 6"/>
+   </g>
+
+   <!-- مونوگرام غول‌پیکر و سه‌بعدی "A" با داخل کاملاً مشکی -->
+   <g class="monolith-a">
+    
+    <path fill="url(#armorBevel)" 
+          d="M250 87 L398 407 L326 407 L296 334 L204 334 L174 407 L102 407 Z M250 174 L219 278 L281 278 Z" 
+          fill-rule="evenodd"/>
+
+    <!-- بدنه اصلی با داخل مشکی خالص -->
+    <path fill="url(#armorDark)" stroke="rgba(255,255,255,0.18)" stroke-width="2" 
+          d="M250 75 L390 395 L322 395 L292 322 L208 322 L178 395 L110 395 Z M250 162 L219 266 L281 266 Z" 
+          fill-rule="evenodd"/>
+
+    <g stroke="rgba(255,255,255,0.06)" stroke-width="1.5" fill="none">
+     <path d="M250 98 L138 380 M250 98 L362 380"/>
+     <path d="M196 300 L304 300"/>
+    </g>
+
+    <!-- هسته مثلثی راکتور در دل حرف A -->
+    <polygon points="250,162 219,266 281,266" fill="url(#plasmaOrange)" opacity="0.18">
+     <animate attributeName="opacity" values="0.08;0.38;0.08" dur="1.8s" repeatCount="indefinite"/>
+    </polygon>
+
+    <path fill="none" stroke="url(#plasmaOrange)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+          d="M250 75 L390 395 L322 395 L292 322 L208 322 L178 395 L110 395 Z">
+     <animate attributeName="stroke-dasharray" values="0,1200; 600,600; 1200,0" dur="3.2s" repeatCount="indefinite"/>
+    </path>
+
+    <polygon points="250,162 219,266 281,266" fill="none" stroke="url(#plasmaBlue)" stroke-width="3" stroke-linejoin="round">
+     <animate attributeName="stroke-dasharray" values="320,0; 0,320; 320,0" dur="2.4s" repeatCount="indefinite"/>
+    </polygon>
+
+    <!-- پرتو اسکنر هولوگرافیک -->
+    <g clip-path="url(#aClip)">
+     <rect x="90" y="60" width="320" height="10" fill="url(#laserLine)" opacity="0.85">
+      <animate attributeName="y" values="65; 405; 65" dur="2.6s" repeatCount="indefinite"/>
+     </rect>
+    </g>
+
+    <circle cx="250" cy="75" r="5" fill="#FFFFFF"/>
+    <circle cx="110" cy="395" r="4.5" fill="#FF9944"/>
+    <circle cx="390" cy="395" r="4.5" fill="#EC5800"/>
+    <circle cx="208" cy="322" r="3.5" fill="#00E5FF"/>
+    <circle cx="292" cy="322" r="3.5" fill="#00E5FF"/>
+   </g>
+
+   <g>
+    <rect class="q-spark" style="--d:2.6s;--dl:0s" x="155" y="340" width="5" height="5" fill="#EC5800" rx="1"/>
+    <rect class="q-spark" style="--d:3.2s;--dl:0.7s" x="340" y="350" width="4" height="4" fill="#00E5FF" rx="1"/>
+    <rect class="q-spark" style="--d:2.3s;--dl:1.2s" x="200" y="390" width="6" height="6" fill="#FF9944" rx="1"/>
+    <rect class="q-spark" style="--d:2.9s;--dl:0.4s" x="295" y="380" width="4" height="4" fill="#EC5800" rx="1"/>
+    <rect class="q-spark" style="--d:2.1s;--dl:1.6s" x="248" y="130" width="5" height="5" fill="#FFFFFF" rx="1"/>
+   </g>
+  </svg>
  </div>
 
- <div style="position:relative;z-index:2;max-width:650px">
+ <div style="position:relative;z-index:2;max-width:640px">
   <p class="a mono" style="color:var(--m);font-size:14px;margin-bottom:26px" 
      data-en="DotOne Smart Chain, Chain ID 505" 
      data-fa="شبکه هوشمند دات‌وان (Chain ID: 505)">DotOne Smart Chain, Chain ID 505</p>
@@ -749,7 +1165,6 @@ html[dir="rtl"] .road-laser{transform-origin:right center}
   </div>
  </div>
 </section>
-
 <!-- ===== SLIDE 2 · PROBLEM AND SOLUTION (30% LARGER DIAGRAM) ===== -->
 <section class="sl g2" data-t="Problem and solution" data-t-fa="مسئله و راهکار" style="grid-template-columns:0.95fr 1.05fr">
  <div>
@@ -860,34 +1275,14 @@ html[dir="rtl"] .road-laser{transform-origin:right center}
 <!-- ===== SLIDE 5 · LOGISTICS AND ESCROW (EDITED & STRUCTURED) ===== -->
 <section class="sl g2" data-t="Logistics and escrow" data-t-fa="لجستیک و امانت هوشمند">
  <div class="rel a">
-  <div class="nfc"><i></i><i></i><i></i></div>
-  <!-- =========================================================================
-       راهنمای بارگذاری تصویر پهپاد در اسلاید ۵:
-       برای قرار دادن عکس پهپاد خودتان، خط <img ...> زیر را از کامنت خارج کرده
-       و آدرس عکس خود را در src بنویسید، و تگ <svg> پایینی را پاک یا کامنت کنید:
-  ========================================================================== -->
-  <!-- <img class="drone-float mid" src="assets/my-drone.png" alt="Aervynx Drone"> -->
-  <svg class="drone-float mid" viewBox="0 0 420 260" aria-label="Aervynx Delivery Drone">
-   <defs>
-    <linearGradient id="drBody" x1="0" y1="0" x2="1" y2="1">
-     <stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#090D16"/>
-    </linearGradient>
-   </defs>
-   <!-- Arms -->
-   <path d="M90 80 L330 80 M70 120 L350 120" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
-   <!-- Rotors -->
-   <ellipse cx="90" cy="72" rx="52" ry="8" fill="rgba(0,150,255,0.25)" stroke="#0096FF" stroke-width="1.5"/>
-   <ellipse cx="330" cy="72" rx="52" ry="8" fill="rgba(0,150,255,0.25)" stroke="#0096FF" stroke-width="1.5"/>
-   <ellipse cx="70" cy="112" rx="46" ry="7" fill="rgba(236,88,0,0.25)" stroke="#EC5800" stroke-width="1.5"/>
-   <ellipse cx="350" cy="112" rx="46" ry="7" fill="rgba(236,88,0,0.25)" stroke="#EC5800" stroke-width="1.5"/>
-   <!-- Main Hull -->
-   <rect x="140" y="68" width="140" height="54" rx="26" fill="url(#drBody)" stroke="#EC5800" stroke-width="2"/>
-   <line x1="170" y1="95" x2="250" y2="95" stroke="#EC5800" stroke-width="3" stroke-linecap="round"/>
-   <!-- Cargo Box with Aervnyx Emblem -->
-   <path d="M165 122 L175 160 M255 122 L245 160" stroke="#94A3B8" stroke-width="3"/>
-   <rect x="155" y="160" width="110" height="72" rx="10" fill="#0B1320" stroke="#EC5800" stroke-width="2"/>
-   <polygon points="210,174 228,214 218,214 210,196 202,214 192,214" fill="#EC5800"/>
-  </svg>
+  <!-- افکت نئونی پشت عکس پهپاد -->
+  <div class="nfc" style="top:50%;left:50%;transform:translate(-50%,-50%);z-index:0">
+    <i style="animation:ping 4s ease-out infinite"></i>
+    <i style="animation:ping 4s ease-out infinite;animation-delay:1.3s"></i>
+  </div>
+  
+  <!-- عکس پهپاد شما با انیمیشن معلق (تگ‌های SVG کامل حذف شدند) -->
+  <img class="drone-float mid" src="assets/how-it-works.webp" alt="Aervynx Delivery Drone" style="position:relative;z-index:1;mix-blend-mode:screen;filter:drop-shadow(0 20px 40px rgba(236,88,0,0.3));width:110%">
  </div>
  <div>
   <h2 class="a" style="font-size:40px;max-width:20ch">
@@ -1024,39 +1419,79 @@ html[dir="rtl"] .road-laser{transform-origin:right center}
  </div>
 </section>
 
-<!-- ===== SLIDE 7 · PLAY TO DISCOUNT ===== -->
-<section class="sl g2" id="s7" data-t="Play to discount" data-t-fa="بازی و پاداش تخفیف" style="grid-template-columns:1.15fr 1fr">
- <div class="screen a">
-  <div class="hud">
-   <span data-en="SCORE" data-fa="امتیاز">SCORE</span>
+<!-- ===== SLIDE 7 · PLAY TO DISCOUNT (LIVE ARCADE GAME) ===== -->
+<section class="sl g2" id="s7" data-t="Play to discount" data-t-fa="بازی و پاداش تخفیف" style="grid-template-columns:1.25fr 1fr">
+ 
+ <!-- Live Arcade Game Engine -->
+ <div class="arc-wrap a">
+  <div class="arc-bg"></div>
+  <div class="arc-grid"></div>
+  <div class="arc-stars"></div>
+
+  <!-- Score HUD -->
+  <div class="arc-hud">
+   <span data-en="LIVE SCORE" data-fa="امتیاز زنده">LIVE SCORE</span>
    <b id="score">0</b>
   </div>
-  <!-- =========================================================================
-       راهنمای بارگذاری عکس در بخش بازی (اسلاید ۷):
-       ۱. برای قرار دادن عکس پهپاد داخل بازی، خط <img class="sm" ...> زیر را از کامنت
-          خارج کرده و تگ <svg class="sm"> را پاک کنید:
-          <img class="sm" src="assets/game-drone.png" alt="Game Drone">
-       ۲. یا برای قرار دادن اسکرین‌شات کامل از محیط بازی، این خط را از کامنت خارج کنید:
-          <img src="assets/game-screen.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1" alt="Game">
-  ========================================================================== -->
-  <!-- <img class="sm" src="assets/game-drone.png" alt="Aervynx arcade drone"> -->
-  <svg class="sm" viewBox="0 0 220 120" aria-label="Arcade Drone">
-   <path d="M35 40 L185 40" stroke="#0096FF" stroke-width="4" stroke-linecap="round"/>
-   <ellipse cx="45" cy="32" rx="32" ry="6" fill="rgba(236,88,0,0.4)" stroke="#EC5800" stroke-width="1.5"/>
-   <ellipse cx="175" cy="32" rx="32" ry="6" fill="rgba(236,88,0,0.4)" stroke="#EC5800" stroke-width="1.5"/>
-   <rect x="70" y="28" width="80" height="32" rx="16" fill="#0F172A" stroke="#EC5800" stroke-width="2"/>
-   <rect x="85" y="64" width="50" height="34" rx="6" fill="#1E293B" stroke="#0096FF" stroke-width="1.5"/>
-  </svg>
-  <i class="ob" style="--y:16%;--d:0s"></i>
-  <i class="ob" style="--y:56%;--d:1.3s"></i>
-  <i class="ob" style="--y:76%;--d:2.4s"></i>
+
+  <!-- Enemy Drone 1 -->
+  <div class="arc-enemy e1">
+   <div class="arc-laser-e"></div>
+   <svg viewBox="0 0 100 100" style="filter:drop-shadow(0 10px 15px rgba(236,88,0,0.4))">
+    <path d="M15 40 L85 40" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="15" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <ellipse cx="85" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <polygon points="50,20 75,60 25,60" fill="#0F172A" stroke="#EC5800" stroke-width="2"/>
+    <circle cx="50" cy="45" r="5" fill="#EC5800"/>
+   </svg>
+  </div>
+
+  <!-- Enemy Drone 2 -->
+  <div class="arc-enemy e2">
+   <div class="arc-laser-e"></div>
+   <svg viewBox="0 0 100 100" style="filter:drop-shadow(0 10px 15px rgba(236,88,0,0.4))">
+    <path d="M15 40 L85 40" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="15" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <ellipse cx="85" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <polygon points="50,20 75,60 25,60" fill="#0F172A" stroke="#EC5800" stroke-width="2"/>
+    <circle cx="50" cy="45" r="5" fill="#EC5800"/>
+   </svg>
+  </div>
+
+  <!-- Enemy Drone 3 -->
+  <div class="arc-enemy e3">
+   <div class="arc-laser-e"></div>
+   <svg viewBox="0 0 100 100" style="filter:drop-shadow(0 10px 15px rgba(236,88,0,0.4))">
+    <path d="M15 40 L85 40" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="15" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <ellipse cx="85" cy="36" rx="18" ry="4" fill="rgba(236,88,0,0.3)" stroke="#EC5800" stroke-width="1.5"/>
+    <polygon points="50,20 75,60 25,60" fill="#0F172A" stroke="#EC5800" stroke-width="2"/>
+    <circle cx="50" cy="45" r="5" fill="#EC5800"/>
+   </svg>
+  </div>
+
+  <!-- Player Drone (Bottom Center) -->
+  <div class="arc-player">
+   <div class="arc-laser-p l1"></div>
+   <div class="arc-laser-p l2"></div>
+   <svg viewBox="0 0 100 100" style="filter:drop-shadow(0 15px 25px rgba(0,150,255,0.5))">
+    <path d="M10 50 L90 50" stroke="#475569" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="15" cy="48" rx="22" ry="5" fill="rgba(0,150,255,0.3)" stroke="#0096FF" stroke-width="1.5"/>
+    <ellipse cx="85" cy="48" rx="22" ry="5" fill="rgba(0,150,255,0.3)" stroke="#0096FF" stroke-width="1.5"/>
+    <rect x="35" y="30" width="30" height="45" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+    <path d="M40 75 L60 75 L55 90 L45 90 Z" fill="#0F172A" stroke="#0096FF" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="6" fill="#0096FF"/>
+    <polygon points="50,40 55,48 45,48" fill="#1E293B"/>
+   </svg>
+  </div>
  </div>
+
  <div>
-  <h2 class="a">
+  <h2 class="a" style="font-size:42px">
    <span data-en="Play. Score. " data-fa="بازی کنید. رکورد بزنید. ">Play. Score. </span>
    <span style="color:var(--m)" data-en="Save." data-fa="تخفیف بگیرید.">Save.</span>
   </h2>
-  <div class="row pipe2 a">
+  <div class="row pipe2 a" style="margin-top:20px;margin-bottom:20px">
    <span class="chip hot" data-en="Score" data-fa="امتیاز بازی">Score</span>
    <span class="chip hot" data-en="Voucher" data-fa="واچر تخفیف">Voucher</span>
    <span class="chip hot" data-en="Discount" data-fa="تخفیف خرید">Discount</span>
