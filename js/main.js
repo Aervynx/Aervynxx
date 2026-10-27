@@ -95,16 +95,161 @@ const CONFIG = {
     { icon: "chart", t: "Profit Distribution", s: "Defined and Transparent Distribution Workflows" },
     { icon: "store", t: "Marketplace", s: "Discovery and Participation" }
   ],
-
-  // TECHNOLOGY MODULES (first and last render wider on desktop)
-  tech: [
-    { icon: "key", t: "Role-Based Access Control", s: "Permissions scoped to clearly defined roles." },
-    { icon: "clock", t: "Timelock Operations", s: "Delay windows that allow review before sensitive actions execute." },
-    { icon: "pause", t: "Emergency Pause", s: "Mechanisms designed to halt activity quickly when needed." },
-    { icon: "exec", t: "Controlled Execution", s: "Transactions run within predefined limits and conditions." },
-    { icon: "ledger", t: "Transparent On-Chain Records", s: "Activity designed to be verifiable on public ledgers." },
-    { icon: "lock", t: "Escrow Conditions", s: "Funds released only when defined conditions are met." },
-    { icon: "verify", t: "Physical-to-Digital Verification", s: "Workflows that link authenticated real-world evidence to on-chain state." }
+tech: [
+    {
+      iconHtml: `
+        <svg viewBox="5 5 54 54" class="i">
+          <style>
+            .n-pulse { animation: nPulse 2s ease-in-out infinite; }
+            .n-pass { animation: nPass 2s ease-in-out infinite; }
+            .n-fail { animation: nFail 2s ease-in-out infinite; }
+            @keyframes nPulse { 0%,100%{r:4px; opacity:0.6;} 50%{r:6px; opacity:1;} }
+            @keyframes nPass { 0%,40%{stroke:#64748B;} 50%,100%{stroke:#27D17F;} }
+            @keyframes nFail { 0%,40%{stroke:#64748B;} 50%,100%{stroke:#FF3D57;} }
+          </style>
+          <path d="M32 16 L16 40 M32 16 L48 40 M16 40 L48 40" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+          <g class="n-pass"><circle cx="32" cy="16" r="6" fill="#0B1320" stroke-width="2"/><path d="M29 16 L31 18 L36 13" fill="none" stroke-width="2" stroke-linecap="round"/></g>
+          <g class="n-pass"><circle cx="16" cy="40" r="6" fill="#0B1320" stroke-width="2"/><path d="M13 40 L15 42 L20 37" fill="none" stroke-width="2" stroke-linecap="round"/></g>
+          <g class="n-fail"><circle cx="48" cy="40" r="6" fill="#0B1320" stroke-width="2"/><path d="M45 37 L51 43 M51 37 L45 43" fill="none" stroke-width="2" stroke-linecap="round"/></g>
+          <circle cx="32" cy="16" class="n-pulse" fill="#27D17F"/>
+          <circle cx="16" cy="40" class="n-pulse" fill="#27D17F" style="animation-delay:0.3s"/>
+          <circle cx="48" cy="40" class="n-pulse" fill="#FF3D57" style="animation-delay:0.6s"/>
+        </svg>
+      `,
+      title: "Role-Based Access Control",
+      desc: "Permissions scoped to clearly defined roles.",
+      titleFa: "کنترل دسترسی مبتنی بر نقش",
+      descFa: "مجوزهای دسترسی دقیقاً بر اساس نقش‌های تعریف‌شده در قراردادهای هوشمند صادر می‌شوند."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="7.5 7.5 49 49" class="i">
+          <style>
+            .t-hand-m { transform-origin: 32px 32px; animation: tSpin 2s linear infinite; }
+            .t-hand-h { transform-origin: 32px 32px; animation: tSpin 12s linear infinite; }
+            .t-ring { stroke-dasharray: 125; animation: tFill 2s ease-out infinite; }
+            @keyframes tSpin { to { transform: rotate(360deg); } }
+            @keyframes tFill { 0%{stroke-dashoffset:125;} 100%{stroke-dashoffset:0;} }
+          </style>
+          <circle cx="32" cy="32" r="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3"/>
+          <circle cx="32" cy="32" r="20" fill="none" stroke="#EC5800" stroke-width="3" stroke-linecap="round" class="t-ring" transform="rotate(-90 32 32)"/>
+          <line x1="32" y1="32" x2="32" y2="18" stroke="#0096FF" stroke-width="2.5" stroke-linecap="round" class="t-hand-m"/>
+          <line x1="32" y1="32" x2="42" y2="32" stroke="#fff" stroke-width="3" stroke-linecap="round" class="t-hand-h"/>
+          <circle cx="32" cy="32" r="3" fill="#fff"/>
+        </svg>
+      `,
+      title: "Timelock Operations",
+      desc: "Delay windows that allow review before sensitive actions execute.",
+      titleFa: "عملیات قفل زمانی (Timelock)",
+      descFa: "پنجره‌های تأخیر امنیتی که امکان بازبینی تراکنش‌های حساس را پیش از اجرا فراهم می‌کنند."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="12 12 40 40" class="i">
+          <style>
+            .p-flash { animation: pFlash 1s steps(2, end) infinite; }
+            .p-ring { animation: pRing 2s ease-out infinite; }
+            @keyframes pFlash { 0%,100%{fill:#FF3D57; opacity:1;} 50%{fill:#FF3D57; opacity:0.3;} }
+            @keyframes pRing { 0%{transform:scale(0.8); opacity:0.8;} 100%{transform:scale(1.25); opacity:0;} }
+          </style>
+          <circle cx="32" cy="32" r="16" fill="none" stroke="#FF3D57" stroke-width="2" class="p-ring" transform-origin="32px 32px"/>
+          <rect x="22" y="20" width="6" height="24" rx="1.5" class="p-flash"/>
+          <rect x="36" y="20" width="6" height="24" rx="1.5" class="p-flash" style="animation-delay:0.1s"/>
+        </svg>
+      `,
+      title: "Emergency Pause",
+      desc: "Mechanisms designed to halt activity quickly when needed.",
+      titleFa: "توقف اضطراری",
+      descFa: "سازوکارهایی برای متوقف کردن سریع تمامی عملیات‌های شبکه در مواقع خطر."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="12 12 40 40" class="i">
+          <style>
+            .e-flow { animation: eFlow 1.5s linear infinite; }
+            .e-gate { animation: eGate 1.5s step-end infinite; }
+            @keyframes eFlow { 0%{transform:translateX(-20px); opacity:0;} 50%{opacity:1;} 100%{transform:translateX(20px); opacity:0;} }
+            @keyframes eGate { 0%,100%{stroke:#0096FF;} 50%{stroke:#27D17F;} }
+          </style>
+          <path d="M10 32 L54 32" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M32 18 L32 46" stroke="#0096FF" stroke-width="3" stroke-linecap="round" class="e-gate"/>
+          <g class="e-flow">
+            <path d="M22 26 L28 32 L22 38" fill="none" stroke="#EC5800" stroke-width="3" stroke-linecap="round"/>
+            <line x1="12" y1="32" x2="26" y2="32" stroke="#EC5800" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+      `,
+      title: "Controlled Execution",
+      desc: "Transactions run within predefined limits and conditions.",
+      titleFa: "اجرای کنترل‌شده",
+      descFa: "تراکنش‌ها تنها در چارچوب محدودیت‌ها و شرایط از پیش‌تعیین‌شده اجرا می‌شوند."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="12 12 40 40" class="i">
+          <style>
+            .b-link { animation: bLink 2s ease-in-out infinite; stroke-dasharray: 20; }
+            .b-glow { animation: bGlow 2s ease-in-out infinite; }
+            @keyframes bLink { 0%{stroke-dashoffset:20;opacity:0;} 50%,100%{stroke-dashoffset:0;opacity:1;} }
+            @keyframes bGlow { 0%,40%{fill:#1E293B;} 60%,100%{fill:#27D17F;} }
+          </style>
+          <rect x="14" y="24" width="10" height="16" rx="2" fill="none" stroke="#0096FF" stroke-width="2"/>
+          <rect x="27" y="24" width="10" height="16" rx="2" fill="none" stroke="#0096FF" stroke-width="2"/>
+          <rect x="40" y="24" width="10" height="16" rx="2" fill="none" stroke="#0096FF" stroke-width="2"/>
+          <line x1="24" y1="32" x2="27" y2="32" stroke="#fff" stroke-width="2" class="b-link"/>
+          <line x1="37" y1="32" x2="40" y2="32" stroke="#fff" stroke-width="2" class="b-link" style="animation-delay:0.5s"/>
+          <circle cx="19" cy="32" r="2" fill="#1E293B" class="b-glow"/>
+          <circle cx="32" cy="32" r="2" fill="#1E293B" class="b-glow" style="animation-delay:0.5s"/>
+          <circle cx="45" cy="32" r="2" fill="#1E293B" class="b-glow" style="animation-delay:1s"/>
+        </svg>
+      `,
+      title: "Transparent On-Chain Records",
+      desc: "Activity designed to be verifiable on public ledgers.",
+      titleFa: "سوابق شفاف روی زنجیره",
+      descFa: "تمامی فعالیت‌ها روی دفترکل عمومی ثبت و به راحتی قابل تأیید و پیگیری هستند."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="10 10 44 44" class="i">
+          <style>
+            .es-shackle { transform-origin: 32px 30px; animation: esOpen 3s ease-in-out infinite; }
+            .es-body { animation: esColor 3s ease-in-out infinite; }
+            .es-dot { animation: esPass 3s ease-in-out infinite; }
+            @keyframes esOpen { 0%,20%,80%,100%{transform:translateY(0);} 40%,60%{transform:translateY(-6px);} }
+            @keyframes esColor { 0%,20%,80%,100%{stroke:#64748B;} 40%,60%{stroke:#27D17F;} }
+            @keyframes esPass { 0%,30%{transform:translateX(-20px);opacity:0;} 40%,60%{transform:translateX(0);opacity:1;} 70%,100%{transform:translateX(20px);opacity:0;} }
+          </style>
+          <path d="M22 28 V20 A10 10 0 0 1 42 20 V28" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" class="es-shackle"/>
+          <rect x="16" y="28" width="32" height="22" rx="4" fill="#0B1320" stroke-width="3" class="es-body"/>
+          <circle cx="32" cy="39" r="2" fill="#fff"/>
+          <path d="M32 41 L32 45" stroke="#fff" stroke-width="2"/>
+          <circle cx="32" cy="39" r="4" fill="#EC5800" class="es-dot"/>
+        </svg>
+      `,
+      title: "Escrow Conditions",
+      desc: "Funds released only when defined conditions are met.",
+      titleFa: "شرایط امانی (Escrow)",
+      descFa: "آزادسازی وجوه قفل‌شده تنها در صورت تحقق شروط از پیش‌تعیین‌شده قرارداد انجام می‌شود."
+    },
+    {
+      iconHtml: `
+        <svg viewBox="10 10 44 44" class="i">
+          <style>
+            .v-laser { animation: vScan 2s ease-in-out infinite alternate; }
+            .v-tick { stroke-dasharray: 20; animation: vVerify 4s ease-in-out infinite; }
+            @keyframes vScan { 0%{transform:translateY(16px);} 100%{transform:translateY(48px);} }
+            @keyframes vVerify { 0%,50%{stroke-dashoffset:20;} 60%,100%{stroke-dashoffset:0;} }
+          </style>
+          <path d="M24 16 L40 16 M20 24 L44 24 M24 32 L40 32 M20 40 L44 40 M24 48 L40 48" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="0" x2="48" y2="0" stroke="#0096FF" stroke-width="3" class="v-laser" stroke-linecap="round" filter="drop-shadow(0 0 4px #0096FF)"/>
+          <path d="M26 32 L30 36 L38 28" fill="none" stroke="#27D17F" stroke-width="3" stroke-linecap="round" class="v-tick"/>
+        </svg>
+      `,
+      title: "Physical-to-Digital Verification",
+      desc: "Workflows that link authenticated real-world evidence to on-chain state.",
+      titleFa: "تایید فیزیکی به دیجیتال",
+      descFa: "روندهایی که مدارک و شواهد تایید شده فیزیکی را مستقیماً به وضعیت روی زنجیره متصل می‌کنند."
+    }
   ],
 
   // HOW IT WORKS
@@ -174,8 +319,14 @@ function render() {
     `<a class="m__more rv" style="--k:4" href="#ecosystem"><span>More than assets.<br>A movement.</span>${svg("arrow")}</a>`;
   $("#feat").innerHTML = C.features.map(f =>
     `<li><a href="#technology"><span class="ic">${svg(f.icon)}</span><span><b>${f.t}</b><small>${f.s}</small></span>${svg("arrow")}</a></li>`).join("");
+  const isFa = document.documentElement.lang === "fa";
   $("#tech").innerHTML = C.tech.map((t, k) =>
-    `<article class="rv" style="--k:${k % 3}">${svg(t.icon)}<h3>${t.t}</h3><p>${t.s}</p></article>`).join("");
+    `<article class="rv" style="--k:${k % 3}">
+      ${t.iconHtml}
+      <h3 data-en="${t.title}" data-fa="${t.titleFa}">${isFa && t.titleFa ? t.titleFa : t.title}</h3>
+      <p data-en="${t.desc}" data-fa="${t.descFa}">${isFa && t.descFa ? t.descFa : t.desc}</p>
+    </article>`
+  ).join("");
   $("#steps").innerHTML = C.steps.map((s, k) =>
     `<li class="step" style="--k:${k}"><div class="step__top"><span class="step__n">0${k + 1}</span>${svg(s.icon)}</div><h3>${s.t}</h3><p>${s.s}</p></li>`).join("");
   $("#fgroups").innerHTML = C.footer.map(([t, l]) =>
