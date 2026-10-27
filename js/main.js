@@ -36,12 +36,12 @@ const CONFIG = {
   newsletterEndpoint: "",  // optional URL accepting POST {"email": "..."}; empty = demo mode (nothing is stored)
   // TEAM
   team: [
-    { img: "assets/IMG_TEAM.PNG", name: "Alex Mercer", role: "Lead Systems Architect", text: "Expert in EAL6+ secure enclaves, zero-knowledge architecture, and physical hardware security.", social: "#" },
-    { img: "", name: "Elena Rostova", role: "Head of Smart Contracts", text: "Pioneering ERC-4337 Account Abstraction and Paymaster logic on the DotOne Smart Chain.", social: "#" },
-    { img: "", name: "Marcus Vance", role: "Director of Logistics", text: "Bridging physical drone networks with on-chain DeliveryEscrow and NFC verification.", social: "#" },
-    { img: "", name: "Dr. Sarah Lin", role: "Cryptographic Engineer", text: "Specializes in seedless Shamir's Secret Sharing and advanced zk-DID identity protocols.", social: "#" },
-    { img: "", name: "Julian Drake", role: "Product VP (Hardware)", text: "Overseeing the physical manufacturing and flawless NFC integration of the AERVYNX.One Card.", social: "#" },
-    { img: "", name: "Nadia Kael", role: "Global Compliance Head", text: "Navigating international BaaS integrations and localized fiat-collateralized credit lines.", social: "#" }
+    { img: "assets/Ali_Nasirlou.jpg", name: "Ali Nasirlou", role: "Founder & Smart Contract Security", text: "Smart Contract Development and Security Auditing, focused on vulnerability detection, protocol optimization, and secure on-chain solutions.", social: "#" },
+    { img: "assets/Mmd_Cyrax2.jpg", name: "Mohammad.H Ghiasvand", role: "Founder & Smart Contract & Web Developer", text: "Smart Contract Development and Implementation, On-chain Mechanism Design, and Building Decentralized Solutions on EVM-compatible Networks.", social: "#" },
+    { img: "assets/Parsa-Rad.jpg", name: "Parsa Abolhasani", role: "Founder & Technical Advisor", text: "Technical Consulting and Solution Architecture for Blockchain Systems, Account Abstraction (ERC-4337), and Web3 Infrastructure Integration.", social: "#" },
+    { img: "assets/Alizadeh.jpg", name: "Marzieh Alizadeh", role: "Project Manager", text: "Managing agile execution, product roadmap delivery, and ecosystem team alignment.", social: "#" },
+    { img: "assets/Milad_Kalhor.jpg", name: "Milad Kalhor", role: "Senior Full-Stack Engineer", text: "Developing resilient backend microservices, BitBank Shetab rails, and fleet APIs.", social: "#" },
+    { img: "assets/nika-vahidi.jpg", name: "Nika Vahidi", role: "Creative Content Strategist", text: "Translating complex blockchain architecture and RWA concepts into compelling visual and written narratives for retail adoption and institutional partners.", social: "#" }
   ],
   // NAVIGATION: [label, target]
  
